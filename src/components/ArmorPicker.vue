@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { storeToRefs } from 'pinia'
+import { usePickerFilters } from '../stores/pickerFilters'
 import {
   NO_MONSTER,
   PARTS,
@@ -21,11 +23,10 @@ import MonsterIcon from './MonsterIcon.vue'
 
 const { slots, activePart, targetRarity, equip, equipSeries, closePicker, suppressHashRead } = useBuild()
 
-const query = ref('')
-const skillFilter = ref('')
-const monsterFilter = ref('')
+// 篩選條件放在 Pinia：關掉視窗或換部位都會保留
+const filters = usePickerFilters()
+const { query, skill: skillFilter, monster: monsterFilter, sort: sortKey, hasFilters } = storeToRefs(filters)
 const monsterOpen = ref(false)
-const sortKey = ref<'default' | 'defense' | 'rarity'>('default')
 
 const partLabel = computed(() => PARTS.find((p) => p.id === activePart.value)?.label ?? '')
 const selectedMonster = computed(() =>
@@ -93,11 +94,8 @@ const rows = computed(() => {
 })
 
 const equippedId = computed(() => slots[activePart.value].pieceId)
-const hasFilters = computed(() => !!(query.value || skillFilter.value || monsterFilter.value))
 function resetFilters() {
-  query.value = ''
-  skillFilter.value = ''
-  monsterFilter.value = ''
+  filters.reset()
   monsterOpen.value = false
 }
 
