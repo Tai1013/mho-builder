@@ -1,0 +1,26 @@
+{
+  "source": "https://gamewith.ai/monster-hunter-outlanders/zh-hant",
+  "locale": "zh-hant",
+  "parts": [
+    {
+      "id": "head",
+      "label": "頭部"
+    },
+    {
+      "id": "chest",
+      "label": "胸部"
+    },
+    {
+      "id": "arms",
+      "label": "腕部"
+    },
+    {
+      "id": "waist",
+      "label": "腰部"
+    },
+    {
+      "id": "legs",
+      "label": "腿部"
+    }
+  ]
+}

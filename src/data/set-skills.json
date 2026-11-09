@@ -1,0 +1,682 @@
+[
+  {
+    "id": "guild-comeback",
+    "name": "冒險團之逆襲",
+    "requiredPieces": 2,
+    "bonusLabel": "不屈+1",
+    "bonusEffect": "每次耗盡體力時，冒險者造成的傷害與防禦力就會提升1.1倍、防禦力+10，持續整場狩獵（最多2次）。",
+    "grants": [
+      {
+        "skillId": "adversity",
+        "skillName": "不屈",
+        "level": 1
+      }
+    ],
+    "series": [
+      "adventurers-guild"
+    ]
+  },
+  {
+    "id": "great-jagras-resistance",
+    "name": "大凶豺龍的抵抗",
+    "requiredPieces": 2,
+    "bonusLabel": "昏厥耐性+1",
+    "bonusEffect": "減少昏厥狀態的時間60%。",
+    "grants": [
+      {
+        "skillId": "stun-resistance",
+        "skillName": "昏厥耐性",
+        "level": 1
+      }
+    ],
+    "series": [
+      "great-jagras"
+    ]
+  },
+  {
+    "id": "kulu-ya-ku-flash-attack",
+    "name": "搔鳥的閃擊",
+    "requiredPieces": 2,
+    "bonusLabel": "全力+1",
+    "bonusEffect": "攻擊不會被彈開。",
+    "grants": [
+      {
+        "skillId": "instinct",
+        "skillName": "極力",
+        "level": 1
+      }
+    ],
+    "series": [
+      "kulu-ya-ku"
+    ]
+  },
+  {
+    "id": "pukei-pukei-tailwhip",
+    "name": "毒妖鳥的甩尾",
+    "requiredPieces": 2,
+    "bonusLabel": "毒耐性+1",
+    "bonusEffect": "減少中毒狀態的時間30%。",
+    "grants": [
+      {
+        "skillId": "poison-resistance",
+        "skillName": "毒耐性",
+        "level": 1
+      }
+    ],
+    "series": [
+      "pukei-pukei"
+    ]
+  },
+  {
+    "id": "compound-fiber",
+    "name": "複合纖維",
+    "requiredPieces": 2,
+    "bonusLabel": "火耐性強化+1",
+    "bonusEffect": "火耐性+6。",
+    "grants": [
+      {
+        "skillId": "fire-resistance",
+        "skillName": "火耐性強化",
+        "level": 1
+      }
+    ],
+    "series": [
+      "leather"
+    ]
+  },
+  {
+    "id": "coldsteel-craft",
+    "name": "寒鐵鍊成",
+    "requiredPieces": 3,
+    "bonusLabel": "冰屬性傷害提升+1",
+    "bonusEffect": "冰屬性傷害+3%，挑戰融光種魔物時變為8%。",
+    "grants": [
+      {
+        "skillId": "ice-damage-up",
+        "skillName": "冰屬性傷害提升",
+        "level": 1
+      }
+    ],
+    "series": [
+      "chainmail"
+    ]
+  },
+  {
+    "id": "great-girros-ambush",
+    "name": "大凶顎龍的偷襲",
+    "requiredPieces": 3,
+    "bonusLabel": "雷屬性傷害提升+1",
+    "bonusEffect": "雷屬性傷害+3%，挑戰融光種魔物時變為8%。",
+    "grants": [
+      {
+        "skillId": "thunder-damage-up",
+        "skillName": "雷屬性傷害提升",
+        "level": 1
+      }
+    ],
+    "series": [
+      "great-girros"
+    ]
+  },
+  {
+    "id": "jyuratodus-aquaguard",
+    "name": "泥魚龍的水御",
+    "requiredPieces": 3,
+    "bonusLabel": "水屬性傷害提升+1",
+    "bonusEffect": "水屬性傷害+3%，挑戰融光種魔物時變為8%。",
+    "grants": [
+      {
+        "skillId": "water-damage-up",
+        "skillName": "水屬性傷害提升",
+        "level": 1
+      }
+    ],
+    "series": [
+      "jyuratodus"
+    ]
+  },
+  {
+    "id": "barroth-mudguard",
+    "name": "土砂龍的泥障",
+    "requiredPieces": 2,
+    "bonusLabel": "泥耐性+1",
+    "bonusEffect": "減輕移動速度、迴避行動的限制。",
+    "grants": [
+      {
+        "skillId": null,
+        "skillName": "泥耐性",
+        "level": 1
+      }
+    ],
+    "series": [
+      "barroth"
+    ]
+  },
+  {
+    "id": "sepulcros-divinity",
+    "name": "龍冢的神秘",
+    "requiredPieces": 3,
+    "bonusLabel": "龍屬性傷害提升+1",
+    "bonusEffect": "龍屬性傷害+3%，挑戰融光種魔物時變為8%。",
+    "grants": [
+      {
+        "skillId": "dragon-damage-up",
+        "skillName": "龍屬性傷害提升",
+        "level": 1
+      }
+    ],
+    "series": [
+      "bone"
+    ]
+  },
+  {
+    "id": "wilds-mastery",
+    "name": "荒野精通",
+    "requiredPieces": 2,
+    "bonusLabel": "標本達人+1",
+    "bonusEffect": "以攻擊討伐昆蟲型的小型魔物時，殘骸保留的機率提高。",
+    "grants": [
+      {
+        "skillId": "specimen-expert",
+        "skillName": "標本達人",
+        "level": 1
+      }
+    ],
+    "series": [
+      "hunter"
+    ]
+  },
+  {
+    "id": "insulation-of-the-summit",
+    "name": "巨峰之絕緣",
+    "requiredPieces": 2,
+    "bonusLabel": "麻痺耐性+1",
+    "bonusEffect": "減少麻痺狀態的時間30%。",
+    "grants": [
+      {
+        "skillId": "paralysis-resistance",
+        "skillName": "麻痺耐性",
+        "level": 1
+      }
+    ],
+    "series": [
+      "vespoid"
+    ]
+  },
+  {
+    "id": "anjanath-ember",
+    "name": "蠻顎龍的灼焰",
+    "requiredPieces": 3,
+    "bonusLabel": "火屬性傷害提升+1",
+    "bonusEffect": "火屬性傷害+3%，挑戰融光種魔物時變為8%。",
+    "grants": [
+      {
+        "skillId": "fire-damage-up",
+        "skillName": "火屬性傷害提升",
+        "level": 1
+      }
+    ],
+    "series": [
+      "anjanath"
+    ]
+  },
+  {
+    "id": "rathian-instinct",
+    "name": "雌火龍之感應",
+    "requiredPieces": 3,
+    "bonusLabel": "融光感應+1",
+    "bonusEffect": "融光種魔物處於狂暴狀態時，冒險者造成的傷害提升4%。",
+    "grants": [
+      {
+        "skillId": "radiant-sense",
+        "skillName": "融光感應",
+        "level": 1
+      }
+    ],
+    "series": [
+      "radiant-rathian"
+    ]
+  },
+  {
+    "id": "alloy-barrier",
+    "name": "合金風障",
+    "requiredPieces": 2,
+    "bonusLabel": "風壓耐性+1",
+    "bonusEffect": "減輕風壓【小】。",
+    "grants": [
+      {
+        "skillId": "windproof",
+        "skillName": "風壓耐性",
+        "level": 1
+      }
+    ],
+    "series": [
+      "alloy"
+    ]
+  },
+  {
+    "id": "great-jagras-roll",
+    "name": "大凶豺龍之翻滾",
+    "requiredPieces": 2,
+    "bonusLabel": "看破+1",
+    "bonusEffect": "會心率+2%。",
+    "grants": [
+      {
+        "skillId": "insight",
+        "skillName": "看破",
+        "level": 1
+      }
+    ],
+    "series": [
+      "radiant-great-jagras"
+    ]
+  },
+  {
+    "id": "pukei-pukei-territory",
+    "name": "毒妖鳥之領域",
+    "requiredPieces": 2,
+    "bonusLabel": "無瑕+1",
+    "bonusEffect": "體力全滿時，造成的傷害提升3%。",
+    "grants": [
+      {
+        "skillId": "flawless",
+        "skillName": "無瑕",
+        "level": 1
+      }
+    ],
+    "series": [
+      "radiant-pukei-pukei"
+    ]
+  },
+  {
+    "id": "hornetaur-might",
+    "name": "巨甲之力",
+    "requiredPieces": 2,
+    "bonusLabel": "龍耐性強化+1",
+    "bonusEffect": "龍耐性+6。",
+    "grants": [
+      {
+        "skillId": "dragon-resistance",
+        "skillName": "龍耐性強化",
+        "level": 1
+      }
+    ],
+    "series": [
+      "hornetaur"
+    ]
+  },
+  {
+    "id": "silence-of-the-veins",
+    "name": "礦脈之靜默",
+    "requiredPieces": 2,
+    "bonusLabel": "咆哮耐性+1",
+    "bonusEffect": "減輕咆哮【小】的影響。",
+    "grants": [
+      {
+        "skillId": "roar-resistance",
+        "skillName": "咆哮耐性",
+        "level": 1
+      }
+    ],
+    "series": [
+      "high-metal"
+    ]
+  },
+  {
+    "id": "monocerus-divinity",
+    "name": "獨角之神祕",
+    "requiredPieces": 2,
+    "bonusLabel": "地質專家+1",
+    "bonusEffect": "骸骨採集點的採集次數增加1次。",
+    "grants": [
+      {
+        "skillId": "geo-expert",
+        "skillName": "地質專家",
+        "level": 1
+      }
+    ],
+    "series": [
+      "king-beetle"
+    ]
+  },
+  {
+    "id": "butterfly-bond",
+    "name": "花蝶之親和",
+    "requiredPieces": 2,
+    "bonusLabel": "睡眠耐性+1",
+    "bonusEffect": "減少睡眠狀態的時間30%。",
+    "grants": [
+      {
+        "skillId": "sleep-resistance",
+        "skillName": "睡眠耐性",
+        "level": 1
+      }
+    ],
+    "series": [
+      "butterfly"
+    ]
+  },
+  {
+    "id": "tobi-kadachi-thunderplate",
+    "name": "飛雷龍的雷鎧",
+    "requiredPieces": 2,
+    "bonusLabel": "雷耐性強化+1",
+    "bonusEffect": "雷耐性+6。",
+    "grants": [
+      {
+        "skillId": "thunder-resistance",
+        "skillName": "雷耐性強化",
+        "level": 1
+      }
+    ],
+    "series": [
+      "kadachi"
+    ]
+  },
+  {
+    "id": "anjanath-wrath",
+    "name": "蠻顎龍之怒火",
+    "requiredPieces": 2,
+    "bonusLabel": "破壞王+1",
+    "bonusEffect": "更容易破壞大型魔物的部位，對部位的累積傷害1.1倍。",
+    "grants": [
+      {
+        "skillId": "breaker",
+        "skillName": "破壞王",
+        "level": 1
+      }
+    ],
+    "series": [
+      "radiant-anjanath"
+    ]
+  },
+  {
+    "id": "kulu-ya-ku-skill",
+    "name": "搔鳥之巧技",
+    "requiredPieces": 2,
+    "bonusLabel": "看破+1",
+    "bonusEffect": "會心率+2%。",
+    "grants": [
+      {
+        "skillId": "insight",
+        "skillName": "看破",
+        "level": 1
+      }
+    ],
+    "series": [
+      "radiant-kulu-ya-ku"
+    ]
+  },
+  {
+    "id": "barroth-resolve",
+    "name": "土砂龍之固守",
+    "requiredPieces": 2,
+    "bonusLabel": "防禦技巧+1",
+    "bonusEffect": "防禦時不易膽怯，小幅減少攻擊的威力。",
+    "grants": [
+      {
+        "skillId": "guard-technique",
+        "skillName": "防禦技巧",
+        "level": 1
+      }
+    ],
+    "series": [
+      "radiant-barroth"
+    ]
+  },
+  {
+    "id": "ingot-blast-shield",
+    "name": "鑄鐵之防爆",
+    "requiredPieces": 2,
+    "bonusLabel": "爆破耐性+1",
+    "bonusEffect": "延長爆破前的間隔時間，減輕爆破時受到的傷害。",
+    "grants": [
+      {
+        "skillId": "blast-resistance",
+        "skillName": "爆破耐性",
+        "level": 1
+      }
+    ],
+    "series": [
+      "ingot"
+    ]
+  },
+  {
+    "id": "jyuratodus-flowmend",
+    "name": "泥魚龍之癒流",
+    "requiredPieces": 2,
+    "bonusLabel": "水耐性強化+1",
+    "bonusEffect": "水耐性+6。",
+    "grants": [
+      {
+        "skillId": "water-resistance",
+        "skillName": "水耐性強化",
+        "level": 1
+      }
+    ],
+    "series": [
+      "radiant-jyuratodus"
+    ]
+  },
+  {
+    "id": "rathian-vigor",
+    "name": "雌火龍的強軀",
+    "requiredPieces": 2,
+    "bonusLabel": "體力強化+1",
+    "bonusEffect": "體力+10。",
+    "grants": [
+      {
+        "skillId": "health-boost",
+        "skillName": "體力強化",
+        "level": 1
+      }
+    ],
+    "series": [
+      "rathian"
+    ]
+  },
+  {
+    "id": "rathalos-weakness",
+    "name": "火龍的弱襲",
+    "requiredPieces": 3,
+    "bonusLabel": "弱點特效+1",
+    "bonusEffect": "攻擊魔物肉質較好的部位時，會心率+4%。",
+    "grants": [
+      {
+        "skillId": "weakspot-exploit",
+        "skillName": "弱點特效",
+        "level": 1
+      }
+    ],
+    "series": [
+      "rathalos"
+    ]
+  },
+  {
+    "id": "diablos-footing",
+    "name": "角龍之穩踏",
+    "requiredPieces": 2,
+    "bonusLabel": "震動耐性+1",
+    "bonusEffect": "使震動【小】無效。",
+    "grants": [
+      {
+        "skillId": "tremor-resistance",
+        "skillName": "震動耐性",
+        "level": 1
+      }
+    ],
+    "series": [
+      "diablos"
+    ]
+  },
+  {
+    "id": "great-girros-command",
+    "name": "大凶顎龍之統帥",
+    "requiredPieces": 2,
+    "bonusLabel": "指示隨從+1",
+    "bonusEffect": "隨從傷害變為1.1倍。",
+    "grants": [
+      {
+        "skillId": "buddy-boost",
+        "skillName": "指示隨從",
+        "level": 1
+      }
+    ],
+    "series": [
+      "radiant-great-girros"
+    ]
+  },
+  {
+    "id": "tobi-kadachi-surge",
+    "name": "飛雷龍之激湧",
+    "requiredPieces": 3,
+    "bonusLabel": "潛能釋放+1",
+    "bonusEffect": "狩獵開始90秒後，或累計受到100點傷害後，會心率提升3%，持續180秒。",
+    "grants": [
+      {
+        "skillId": "unleashed",
+        "skillName": "潛能釋放",
+        "level": 1
+      }
+    ],
+    "series": [
+      "radiant-kadachi"
+    ]
+  },
+  {
+    "id": "radobaan-bulwark",
+    "name": "骨鎚龍的鐵壁",
+    "requiredPieces": 2,
+    "bonusLabel": "防禦力DOWN耐性+1",
+    "bonusEffect": "防禦力下降狀態的時間縮短50%。",
+    "grants": [
+      {
+        "skillId": "iron-skin",
+        "skillName": "防禦力DOWN耐性",
+        "level": 1
+      }
+    ],
+    "series": [
+      "baan"
+    ]
+  },
+  {
+    "id": "odogaron-tenacity",
+    "name": "慘爪龍的堅韌",
+    "requiredPieces": 2,
+    "bonusLabel": "裂傷耐性+1",
+    "bonusEffect": "將減輕裂傷狀態造成的傷害。",
+    "grants": [
+      {
+        "skillId": "bleeding-resistance",
+        "skillName": "裂傷耐性",
+        "level": 1
+      }
+    ],
+    "series": [
+      "odogaron"
+    ]
+  },
+  {
+    "id": "legiana-dance",
+    "name": "風漂龍之飄舞",
+    "requiredPieces": 2,
+    "bonusLabel": "冰耐性強化+1",
+    "bonusEffect": "冰耐性+6。",
+    "grants": [
+      {
+        "skillId": "ice-resistance",
+        "skillName": "冰耐性強化",
+        "level": 1
+      }
+    ],
+    "series": [
+      "legiana"
+    ]
+  },
+  {
+    "id": "pink-rathian-acuity",
+    "name": "櫻火龍的敏銳",
+    "requiredPieces": 3,
+    "bonusLabel": "獵手直覺+1",
+    "bonusEffect": "使用場景互動物對魔物造成負面效果或傷害時，自身傷害+4%，持續120秒。",
+    "grants": [
+      {
+        "skillId": "hunting-instinct",
+        "skillName": "獵手直覺",
+        "level": 1
+      }
+    ],
+    "series": [
+      "pink-rathian"
+    ]
+  },
+  {
+    "id": "ruger-aidal-intimidation",
+    "name": "光稜龍之威勢",
+    "requiredPieces": 3,
+    "bonusLabel": "痛點追擊+1",
+    "bonusEffect": "攻擊魔物已被破壞的部位，有75%機率追加相當於4%的傷害。",
+    "grants": [
+      {
+        "skillId": "weakspot-follow-up",
+        "skillName": "痛點追擊",
+        "level": 1
+      }
+    ],
+    "series": [
+      "ruger-aidal"
+    ]
+  },
+  {
+    "id": "paolumu-airflow",
+    "name": "浮空龍之氣流",
+    "requiredPieces": 2,
+    "bonusLabel": "高壓防禦+1",
+    "bonusEffect": "融光種魔物處於狂暴狀態時，冒險者防禦力提升20。",
+    "grants": [
+      {
+        "skillId": "grace-under-pressure",
+        "skillName": "高壓防禦",
+        "level": 1
+      }
+    ],
+    "series": [
+      "radiant-paolumu"
+    ]
+  },
+  {
+    "id": "tzitzi-ya-ku-pursuit",
+    "name": "眩鳥之追襲",
+    "requiredPieces": 3,
+    "bonusLabel": "窮追猛打+1",
+    "bonusEffect": "魔物受到膽怯或壓制後，一段時間內，冒險者造成的傷害提升4%，持續15秒。",
+    "grants": [
+      {
+        "skillId": "relentless-pursuit",
+        "skillName": "窮追猛打",
+        "level": 1
+      }
+    ],
+    "series": [
+      "tzitzi-ya-ku"
+    ]
+  },
+  {
+    "id": "paolumu-presence",
+    "name": "浮空龍的氣勢",
+    "requiredPieces": 2,
+    "bonusLabel": "體力回復+1",
+    "bonusEffect": "受到傷害時，灰色槽的自動回復速度提升2倍。",
+    "grants": [
+      {
+        "skillId": "health-recovery",
+        "skillName": "體力回復",
+        "level": 1
+      }
+    ],
+    "series": [
+      "paolumu"
+    ]
+  }
+]

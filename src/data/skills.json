@@ -1,0 +1,2792 @@
+[
+  {
+    "id": "health-boost",
+    "name": "體力強化",
+    "nameEn": "Health Boost",
+    "description": "提升冒險者的體力。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 14,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "體力+10。"
+      },
+      {
+        "level": 2,
+        "effect": "體力+20。"
+      },
+      {
+        "level": 3,
+        "effect": "體力+30。"
+      }
+    ]
+  },
+  {
+    "id": "recovery-booster",
+    "name": "復甦",
+    "nameEn": "Recovery Booster",
+    "description": "提升使用道具或互動物回復時的回復量。",
+    "maxLevel": 3,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 13,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "體力回復時，回復量1.1倍。"
+      },
+      {
+        "level": 2,
+        "effect": "體力回復時，回復量1.2倍。"
+      },
+      {
+        "level": 3,
+        "effect": "體力回復時，回復量1.3倍。"
+      }
+    ]
+  },
+  {
+    "id": "health-recovery",
+    "name": "體力回復",
+    "nameEn": "Health Recovery",
+    "description": "受到傷害時，灰色槽部分的回復速度會提升。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 16,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "灰色槽的自動回復速度2倍。"
+      },
+      {
+        "level": 2,
+        "effect": "灰色槽的自動回復速度3倍。"
+      },
+      {
+        "level": 3,
+        "effect": "灰色槽的自動回復速度4倍。"
+      }
+    ]
+  },
+  {
+    "id": "defense-up",
+    "name": "防護",
+    "nameEn": "Defense Up",
+    "description": "提升冒險者的防禦力。",
+    "maxLevel": 7,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 12,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "防禦力+5。"
+      },
+      {
+        "level": 2,
+        "effect": "防禦力+10。"
+      },
+      {
+        "level": 3,
+        "effect": "防禦力+15。"
+      },
+      {
+        "level": 4,
+        "effect": "防禦力+20。"
+      },
+      {
+        "level": 5,
+        "effect": "防禦力+25。"
+      },
+      {
+        "level": 6,
+        "effect": "防禦力+30。"
+      },
+      {
+        "level": 7,
+        "effect": "防禦力+35。"
+      }
+    ]
+  },
+  {
+    "id": "insight",
+    "name": "看破",
+    "nameEn": "Insight",
+    "description": "會心率提升。",
+    "maxLevel": 7,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 12,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "會心率+2%。"
+      },
+      {
+        "level": 2,
+        "effect": "會心率+4%。"
+      },
+      {
+        "level": 3,
+        "effect": "會心率+6%。"
+      },
+      {
+        "level": 4,
+        "effect": "會心率+8%。"
+      },
+      {
+        "level": 5,
+        "effect": "會心率+10%。"
+      },
+      {
+        "level": 6,
+        "effect": "會心率+13%。"
+      },
+      {
+        "level": 7,
+        "effect": "會心率+16%。"
+      }
+    ]
+  },
+  {
+    "id": "guard-technique",
+    "name": "防禦技巧",
+    "nameEn": "Guard Technique",
+    "description": "防禦時減少硬直時間，並減輕防禦產生的耐力消耗。",
+    "maxLevel": 5,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 9,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "小幅減少攻擊的威力。"
+      },
+      {
+        "level": 2,
+        "effect": "小幅減少攻擊威力，減少耐力消費量15%。"
+      },
+      {
+        "level": 3,
+        "effect": "大幅減少攻擊威力，減少耐力消耗量15%。"
+      },
+      {
+        "level": 4,
+        "effect": "大幅減少攻擊威力，減少耐力消耗量30%。"
+      },
+      {
+        "level": 5,
+        "effect": "極大幅減少攻擊威力，減少耐力消耗量50%。"
+      }
+    ]
+  },
+  {
+    "id": "flawless",
+    "name": "無瑕",
+    "nameEn": "Flawless",
+    "description": "體力全滿時，造成的傷害提升。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 6,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，傷害+3%。"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，傷害+6%。"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，傷害+9%。"
+      }
+    ]
+  },
+  {
+    "id": "rejuvenation",
+    "name": "超回復力",
+    "nameEn": "Rejuvenation",
+    "description": "體力在達到一定值前會持續回復。",
+    "maxLevel": 3,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 4,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "體力在達到75以前會持續自動回復。"
+      },
+      {
+        "level": 2,
+        "effect": "體力在達到100以前會持續自動回復。"
+      },
+      {
+        "level": 3,
+        "effect": "體力在達到125以前會持續自動回復。"
+      }
+    ]
+  },
+  {
+    "id": "fearless",
+    "name": "無懼",
+    "nameEn": "Fearless",
+    "description": "體力計量表殘留有灰色部分的期間，造成的傷害提升。",
+    "maxLevel": 5,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 8,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，傷害+3%。"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，傷害+6%。"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，傷害+10%。"
+      },
+      {
+        "level": 4,
+        "effect": "技能發動時，傷害+14%。"
+      },
+      {
+        "level": 5,
+        "effect": "技能發動時，傷害+19%。"
+      }
+    ]
+  },
+  {
+    "id": "unleashed",
+    "name": "潛能釋放",
+    "nameEn": "Unleashed",
+    "description": "滿足特定條件後，一定時間內會心率提升。",
+    "maxLevel": 5,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 10,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "狩獵開始90秒後，或累計受到100點傷害後，會心率提升3%，持續180秒。"
+      },
+      {
+        "level": 2,
+        "effect": "狩獵開始90秒後，或累計受到100點傷害後，會心率提升6%，持續180秒。"
+      },
+      {
+        "level": 3,
+        "effect": "狩獵開始90秒後，或累計受到100點傷害後，會心率提升9%，持續180秒。"
+      },
+      {
+        "level": 4,
+        "effect": "狩獵開始90秒後，或累計受到100點傷害後，會心率提升12%，持續180秒。"
+      },
+      {
+        "level": 5,
+        "effect": "狩獵開始90秒後，或累計受到100點傷害後，會心率提升15%，持續180秒。"
+      }
+    ]
+  },
+  {
+    "id": "adversity",
+    "name": "不屈",
+    "nameEn": "Adversity",
+    "description": "每次耗盡體力時，傷害與防禦力就會提升一段時間。（最多2次）",
+    "maxLevel": 1,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 5,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "每次傷害+1.1倍、防禦力+10。"
+      }
+    ]
+  },
+  {
+    "id": "charge-up",
+    "name": "精神抖擻",
+    "nameEn": "Charge Up",
+    "description": "維持耐力計量表全滿狀態一段時間後，造成的傷害提升。",
+    "maxLevel": 7,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 6,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "維持滿耐力5秒，傷害+4%。"
+      },
+      {
+        "level": 2,
+        "effect": "維持滿耐力5秒，傷害+8%。"
+      },
+      {
+        "level": 3,
+        "effect": "維持滿耐力5秒，傷害+12%。"
+      },
+      {
+        "level": 4,
+        "effect": "維持滿耐力5秒，傷害+16%。"
+      },
+      {
+        "level": 5,
+        "effect": "維持滿耐力5秒，傷害+20%。"
+      },
+      {
+        "level": 6,
+        "effect": "維持滿耐力5秒，傷害+24%。"
+      },
+      {
+        "level": 7,
+        "effect": "屬性攻擊力+50，維持滿耐力5秒，傷害+31%。"
+      }
+    ]
+  },
+  {
+    "id": "battle-spirit",
+    "name": "鬥志",
+    "nameEn": "Battle Spirit",
+    "description": "若戰鬥中的大型魔物發怒或融光狂暴時，即會提高會心率。",
+    "maxLevel": 5,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 7,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，會心率+3%。"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，會心率+5%。"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，會心率+7%。"
+      },
+      {
+        "level": 4,
+        "effect": "技能發動時，會心率+11%。"
+      },
+      {
+        "level": 5,
+        "effect": "技能發動時，會心率+15%。"
+      }
+    ]
+  },
+  {
+    "id": "weakspot-exploit",
+    "name": "弱點特效",
+    "nameEn": "Weakspot Exploit",
+    "description": "攻擊魔物肉質較好的部位時，會心率提升。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 11,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "攻擊弱點部位時，會心率+4%。"
+      },
+      {
+        "level": 2,
+        "effect": "攻擊弱點部位時，會心率+8%。"
+      },
+      {
+        "level": 3,
+        "effect": "攻擊弱點部位時，會心率+14%。"
+      }
+    ]
+  },
+  {
+    "id": "breaker",
+    "name": "破壞王",
+    "nameEn": "Breaker",
+    "description": "更容易破壞大型魔物的部位。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 9,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "對部位的累積傷害1.1倍。"
+      },
+      {
+        "level": 2,
+        "effect": "對部位的累積傷害1.2倍。"
+      },
+      {
+        "level": 3,
+        "effect": "對部位的累積傷害1.3倍。"
+      }
+    ]
+  },
+  {
+    "id": "offensive-defense",
+    "name": "寓攻於守",
+    "nameEn": "Offensive Defense",
+    "description": "精準防禦成功後，傷害提升一段時間。",
+    "maxLevel": 7,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 6,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動後，傷害+4%，持續30秒"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動後，傷害+8%，持續30秒"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動後，傷害+12%，持續30秒"
+      },
+      {
+        "level": 4,
+        "effect": "技能發動後，傷害+16%，持續30秒"
+      },
+      {
+        "level": 5,
+        "effect": "技能發動後，傷害+20%，持續30秒"
+      },
+      {
+        "level": 6,
+        "effect": "技能發動後，傷害+24%，持續30秒"
+      },
+      {
+        "level": 7,
+        "effect": "屬性攻擊力+50，技能發動後，傷害+31%，持續30秒"
+      }
+    ]
+  },
+  {
+    "id": "flinching-free",
+    "name": "減輕後仰",
+    "nameEn": "Flinching-Free",
+    "description": "減輕受到小傷害時的反應。",
+    "maxLevel": 3,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 4,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "使受到小傷害時的後仰無效。"
+      },
+      {
+        "level": 2,
+        "effect": "使受到小傷害時的後仰無效，將屁股著地減輕為後仰狀態。"
+      },
+      {
+        "level": 3,
+        "effect": "使受到小傷害時的後仰、屁股著地無效。"
+      }
+    ]
+  },
+  {
+    "id": "blessing",
+    "name": "庇佑",
+    "nameEn": "Blessing",
+    "description": "一定機率減少冒險者受到的傷害。",
+    "maxLevel": 5,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 17,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "受到傷害時，有25%機率將此次傷害減輕15%。"
+      },
+      {
+        "level": 2,
+        "effect": "受到傷害時，有25%機率將此次傷害減輕30%。"
+      },
+      {
+        "level": 3,
+        "effect": "受到傷害時，有25%機率將此次傷害減輕50%。"
+      },
+      {
+        "level": 4,
+        "effect": "受到傷害時，有25%機率將此次傷害減輕60%。"
+      },
+      {
+        "level": 5,
+        "effect": "受到傷害時，有40%機率將此次傷害減輕60%。"
+      }
+    ]
+  },
+  {
+    "id": "roar-resistance",
+    "name": "咆哮耐性",
+    "nameEn": "Roar Resistance",
+    "description": "擁有對大型魔物咆哮的耐性。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 4,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "減輕咆哮【小】的影響。"
+      },
+      {
+        "level": 2,
+        "effect": "使咆哮【小】無效，減輕咆哮【大】的影響。"
+      },
+      {
+        "level": 3,
+        "effect": "使咆哮【小】【大】無效。"
+      }
+    ]
+  },
+  {
+    "id": "windproof",
+    "name": "風壓耐性",
+    "nameEn": "Windproof",
+    "description": "擁有對風壓的耐性。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 9,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "減輕風壓【小】。"
+      },
+      {
+        "level": 2,
+        "effect": "使風壓【小】無效，減輕風壓【大】。"
+      },
+      {
+        "level": 3,
+        "effect": "使風壓【小】【大】無效。"
+      }
+    ]
+  },
+  {
+    "id": "tremor-resistance",
+    "name": "震動耐性",
+    "nameEn": "Tremor Resistance",
+    "description": "擁有對地面震動的耐性。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 1,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "使震動【小】無效。"
+      },
+      {
+        "level": 2,
+        "effect": "使震動【小】無效，減輕震動【大】的影響。"
+      },
+      {
+        "level": 3,
+        "effect": "使震動【小】【大】無效。"
+      }
+    ]
+  },
+  {
+    "id": "poison-resistance",
+    "name": "毒耐性",
+    "nameEn": "Poison Resistance",
+    "description": "減輕中毒狀態時所受到的傷害。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 7,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "減少中毒狀態的時間30%。"
+      },
+      {
+        "level": 2,
+        "effect": "減少中毒狀態的時間60%。"
+      },
+      {
+        "level": 3,
+        "effect": "不會變為中毒狀態。"
+      }
+    ]
+  },
+  {
+    "id": "paralysis-resistance",
+    "name": "麻痺耐性",
+    "nameEn": "Paralysis Resistance",
+    "description": "縮短麻痺狀態的時間。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 7,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "減少麻痺狀態的時間30%。"
+      },
+      {
+        "level": 2,
+        "effect": "減少麻痺狀態的時間60%。"
+      },
+      {
+        "level": 3,
+        "effect": "不會變為麻痺狀態。"
+      }
+    ]
+  },
+  {
+    "id": "sleep-resistance",
+    "name": "睡眠耐性",
+    "nameEn": "Sleep Resistance",
+    "description": "縮短睡眠狀態的時間。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 6,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "減少睡眠狀態的時間30%。"
+      },
+      {
+        "level": 2,
+        "effect": "減少睡眠狀態的時間60%。"
+      },
+      {
+        "level": 3,
+        "effect": "不會變為睡眠狀態。"
+      }
+    ]
+  },
+  {
+    "id": "blast-resistance",
+    "name": "爆破耐性",
+    "nameEn": "Blast Resistance",
+    "description": "擁有對爆破異常狀態的耐性。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 2,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "延長爆破前的間隔時間，減輕爆破時受到的傷害。"
+      },
+      {
+        "level": 2,
+        "effect": "更加延長爆破前的間隔時間，大幅減輕爆破時遭受的傷害。"
+      },
+      {
+        "level": 3,
+        "effect": "不會變為爆破異常狀態。"
+      }
+    ]
+  },
+  {
+    "id": "stun-resistance",
+    "name": "昏厥耐性",
+    "nameEn": "Stun Resistance",
+    "description": "縮短昏厥狀態的時間。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 11,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "減少昏厥狀態的時間60%。"
+      },
+      {
+        "level": 2,
+        "effect": "減少昏厥狀態的時間90%。"
+      },
+      {
+        "level": 3,
+        "effect": "不會變為昏厥狀態。"
+      }
+    ]
+  },
+  {
+    "id": "bleeding-resistance",
+    "name": "裂傷耐性",
+    "nameEn": "Bleeding Resistance",
+    "description": "擁有對裂傷狀態的耐性。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 4,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "將減輕裂傷狀態造成的傷害。"
+      },
+      {
+        "level": 2,
+        "effect": "大幅減輕裂傷狀態造成的傷害。"
+      },
+      {
+        "level": 3,
+        "effect": "不會變為裂傷狀態。"
+      }
+    ]
+  },
+  {
+    "id": "iron-skin",
+    "name": "防禦力DOWN耐性",
+    "nameEn": "Iron Skin",
+    "description": "擁有對防禦力下降的耐性。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 3,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "防禦力下降狀態的時間縮短50%。"
+      },
+      {
+        "level": 2,
+        "effect": "防禦力下降狀態的時間縮短75%。"
+      },
+      {
+        "level": 3,
+        "effect": "不會變為防禦力下降狀態。"
+      }
+    ]
+  },
+  {
+    "id": "fire-damage-up",
+    "name": "火屬性傷害提升",
+    "nameEn": "Fire Damage Up",
+    "description": "強化火屬性傷害，當挑戰融光種魔物時效果增強。",
+    "maxLevel": 7,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 5,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "火屬性傷害+3%，挑戰融光種魔物時變為8%。"
+      },
+      {
+        "level": 2,
+        "effect": "火屬性傷害+6%，挑戰融光種魔物時變為15%。"
+      },
+      {
+        "level": 3,
+        "effect": "火屬性傷害+9%，挑戰融光種魔物時變為23%。"
+      },
+      {
+        "level": 4,
+        "effect": "火屬性傷害+12%，挑戰融光種魔物時變為30%。"
+      },
+      {
+        "level": 5,
+        "effect": "火屬性傷害+16%，挑戰融光種魔物時變為40%。"
+      },
+      {
+        "level": 6,
+        "effect": "火屬性傷害+20%，挑戰融光種魔物時變為50%。"
+      },
+      {
+        "level": 7,
+        "effect": "火屬性攻擊力+50，火屬性傷害+28%，挑戰融光種魔物時變為70%。"
+      }
+    ]
+  },
+  {
+    "id": "water-damage-up",
+    "name": "水屬性傷害提升",
+    "nameEn": "Water Damage Up",
+    "description": "強化水屬性傷害，當挑戰融光種魔物時效果增強。",
+    "maxLevel": 7,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 6,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "水屬性傷害+3%，挑戰融光種魔物時變為8%。"
+      },
+      {
+        "level": 2,
+        "effect": "水屬性傷害+6%，挑戰融光種魔物時變為15%。"
+      },
+      {
+        "level": 3,
+        "effect": "水屬性傷害+9%，挑戰融光種魔物時變為23%。"
+      },
+      {
+        "level": 4,
+        "effect": "水屬性傷害+12%，挑戰融光種魔物時變為30%。"
+      },
+      {
+        "level": 5,
+        "effect": "水屬性傷害+16%，挑戰融光種魔物時變為40%。"
+      },
+      {
+        "level": 6,
+        "effect": "水屬性傷害+20%，挑戰融光種魔物時變為50%。"
+      },
+      {
+        "level": 7,
+        "effect": "水屬性攻擊力+50，水屬性傷害+28%，挑戰融光種魔物時變為70%。"
+      }
+    ]
+  },
+  {
+    "id": "ice-damage-up",
+    "name": "冰屬性傷害提升",
+    "nameEn": "Ice Damage Up",
+    "description": "強化冰屬性傷害，當挑戰融光種魔物時效果增強。",
+    "maxLevel": 7,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 6,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "冰屬性傷害+3%，挑戰融光種魔物時變為8%。"
+      },
+      {
+        "level": 2,
+        "effect": "冰屬性傷害+6%，挑戰融光種魔物時變為15%。"
+      },
+      {
+        "level": 3,
+        "effect": "冰屬性傷害+9%，挑戰融光種魔物時變為23%。"
+      },
+      {
+        "level": 4,
+        "effect": "冰屬性傷害+12%，挑戰融光種魔物時變為30%。"
+      },
+      {
+        "level": 5,
+        "effect": "冰屬性傷害+16%，挑戰融光種魔物時變為40%。"
+      },
+      {
+        "level": 6,
+        "effect": "冰屬性傷害+20%，挑戰融光種魔物時變為50%。"
+      },
+      {
+        "level": 7,
+        "effect": "冰屬性攻擊力+50，冰屬性傷害+28%，挑戰融光種魔物時變為70%。"
+      }
+    ]
+  },
+  {
+    "id": "thunder-damage-up",
+    "name": "雷屬性傷害提升",
+    "nameEn": "Thunder Damage Up",
+    "description": "強化雷屬性傷害，當挑戰融光種魔物時效果增強。",
+    "maxLevel": 7,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 7,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "雷屬性傷害+3%，挑戰融光種魔物時變為8%。"
+      },
+      {
+        "level": 2,
+        "effect": "雷屬性傷害+6%，挑戰融光種魔物時變為15%。"
+      },
+      {
+        "level": 3,
+        "effect": "雷屬性傷害+9%，挑戰融光種魔物時變為23%。"
+      },
+      {
+        "level": 4,
+        "effect": "雷屬性傷害+12%，挑戰融光種魔物時變為30%。"
+      },
+      {
+        "level": 5,
+        "effect": "雷屬性傷害+16%，挑戰融光種魔物時變為40%。"
+      },
+      {
+        "level": 6,
+        "effect": "雷屬性傷害+20%，挑戰融光種魔物時變為50%。"
+      },
+      {
+        "level": 7,
+        "effect": "雷屬性攻擊力+50，雷屬性傷害+28%，挑戰融光種魔物時變為70%。"
+      }
+    ]
+  },
+  {
+    "id": "dragon-damage-up",
+    "name": "龍屬性傷害提升",
+    "nameEn": "Dragon Damage Up",
+    "description": "強化龍屬性傷害，當挑戰融光種魔物時效果增強。",
+    "maxLevel": 7,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 5,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "龍屬性傷害+3%，挑戰融光種魔物時變為8%。"
+      },
+      {
+        "level": 2,
+        "effect": "龍屬性傷害+6%，挑戰融光種魔物時變為15%。"
+      },
+      {
+        "level": 3,
+        "effect": "龍屬性傷害+9%，挑戰融光種魔物時變為23%。"
+      },
+      {
+        "level": 4,
+        "effect": "龍屬性傷害+12%，挑戰融光種魔物時變為30%。"
+      },
+      {
+        "level": 5,
+        "effect": "龍屬性傷害+16%，挑戰融光種魔物時變為40%。"
+      },
+      {
+        "level": 6,
+        "effect": "龍屬性傷害+20%，挑戰融光種魔物時變為50%。"
+      },
+      {
+        "level": 7,
+        "effect": "龍屬性攻擊力+50，龍屬性傷害+28%，挑戰融光種魔物時變為70%。"
+      }
+    ]
+  },
+  {
+    "id": "critical-element",
+    "name": "會心擊【屬性】",
+    "nameEn": "Critical Element",
+    "description": "因攻擊而出現會心時，所造成的屬性傷害（火、水、雷、冰、龍）會提升。",
+    "maxLevel": 3,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 7,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "因攻擊而出現會心時，所造成的屬性傷害提高5%。"
+      },
+      {
+        "level": 2,
+        "effect": "因攻擊而出現會心時，所造成的屬性傷害提高10%。"
+      },
+      {
+        "level": 3,
+        "effect": "因攻擊而出現會心時，所造成的屬性傷害提高15%。"
+      }
+    ]
+  },
+  {
+    "id": "fire-resistance",
+    "name": "火耐性強化",
+    "nameEn": "Fire Resistance",
+    "description": "提高冒險者的火耐性。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 13,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "火耐性+6。"
+      },
+      {
+        "level": 2,
+        "effect": "火耐性+12。"
+      },
+      {
+        "level": 3,
+        "effect": "火耐性+20。"
+      }
+    ]
+  },
+  {
+    "id": "water-resistance",
+    "name": "水耐性強化",
+    "nameEn": "Water Resistance",
+    "description": "提高冒險者的水耐性。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 7,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "水耐性+6。"
+      },
+      {
+        "level": 2,
+        "effect": "水耐性+12。"
+      },
+      {
+        "level": 3,
+        "effect": "水耐性+20。"
+      }
+    ]
+  },
+  {
+    "id": "ice-resistance",
+    "name": "冰耐性強化",
+    "nameEn": "Ice Resistance",
+    "description": "提高冒險者的冰耐性。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 5,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "冰耐性+6。"
+      },
+      {
+        "level": 2,
+        "effect": "冰耐性+12。"
+      },
+      {
+        "level": 3,
+        "effect": "冰耐性+20。"
+      }
+    ]
+  },
+  {
+    "id": "thunder-resistance",
+    "name": "雷耐性強化",
+    "nameEn": "Thunder Resistance",
+    "description": "提高冒險者的雷耐性。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 5,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "雷耐性+6。"
+      },
+      {
+        "level": 2,
+        "effect": "雷耐性+12。"
+      },
+      {
+        "level": 3,
+        "effect": "雷耐性+20。"
+      }
+    ]
+  },
+  {
+    "id": "dragon-resistance",
+    "name": "龍耐性強化",
+    "nameEn": "Dragon Resistance",
+    "description": "提高冒險者的龍耐性。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 2,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "龍耐性+6。"
+      },
+      {
+        "level": 2,
+        "effect": "龍耐性+12。"
+      },
+      {
+        "level": 3,
+        "effect": "龍耐性+20。"
+      }
+    ]
+  },
+  {
+    "id": "instinct",
+    "name": "極力",
+    "nameEn": "Instinct",
+    "description": "攻擊不會被彈開。",
+    "maxLevel": 1,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 1,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "攻擊不會被彈開。"
+      }
+    ]
+  },
+  {
+    "id": "ballistics",
+    "name": "彈道強化",
+    "nameEn": "Ballistics",
+    "description": "縮短彈藥、箭矢達到最大威力時的距離。",
+    "maxLevel": 1,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 4,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "縮短彈藥、箭矢達到最大威力時的距離。"
+      }
+    ]
+  },
+  {
+    "id": "bow-skill-boost",
+    "name": "弓招式強化",
+    "nameEn": "Bow Skill Boost",
+    "description": "提升弓的招式一、招式二、招式三傷害。",
+    "maxLevel": 4,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 5,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "招式傷害+4%。"
+      },
+      {
+        "level": 2,
+        "effect": "招式傷害+8%。"
+      },
+      {
+        "level": 3,
+        "effect": "招式傷害+13%。"
+      },
+      {
+        "level": 4,
+        "effect": "屬性攻擊力+25，招式傷害+20%。"
+      }
+    ]
+  },
+  {
+    "id": "quick-bite",
+    "name": "快吃術",
+    "nameEn": "Quick-Bite",
+    "description": "加快食用肉、回復藥、解毒藥等道具的速度。",
+    "maxLevel": 3,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 7,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "食用肉、回復藥、解毒藥等道具的速度小幅提升。"
+      },
+      {
+        "level": 2,
+        "effect": "食用肉、回復藥、解毒藥等道具的速度提升。"
+      },
+      {
+        "level": 3,
+        "effect": "食用肉、回復藥、解毒藥等道具的速度大幅提升。"
+      }
+    ]
+  },
+  {
+    "id": "thrifty-meal",
+    "name": "節約術",
+    "nameEn": "Thrifty Meal",
+    "description": "食用、飲用類的道具有一定的機率可再次使用。",
+    "maxLevel": 3,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 6,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "效果發動機率25%。"
+      },
+      {
+        "level": 2,
+        "effect": "效果發動機率50%。"
+      },
+      {
+        "level": 3,
+        "effect": "效果發動機率75%。"
+      }
+    ]
+  },
+  {
+    "id": "improviser",
+    "name": "活用環境",
+    "nameEn": "Improviser",
+    "description": "使用棉花孢子草等可任意發動效果的環境物時，能夠追加回復體力。",
+    "maxLevel": 3,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 9,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "體力追加回復50。"
+      },
+      {
+        "level": 2,
+        "effect": "體力追加回復80。"
+      },
+      {
+        "level": 3,
+        "effect": "體力追加回復100。"
+      }
+    ]
+  },
+  {
+    "id": "deterrence",
+    "name": "威勢",
+    "nameEn": "Deterrence",
+    "description": "即使被小型魔物發現也不容易進入狩獵狀態。（對甲蟲種等部分魔物無效）",
+    "maxLevel": 3,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 10,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "即使被發現也不容易進入戰鬥狀態。"
+      },
+      {
+        "level": 2,
+        "effect": "即使被發現也幾乎不會進入戰鬥狀態。"
+      },
+      {
+        "level": 3,
+        "effect": "即使被發現也不會變為戰鬥狀態。"
+      }
+    ]
+  },
+  {
+    "id": "gathering-master",
+    "name": "採集名人",
+    "nameEn": "Gathering Master",
+    "description": "採集行動的速度加快，行動中即使遭受攻擊，也不會膽怯。",
+    "maxLevel": 1,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 2,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "採集行動時，速度上升＆膽怯無效。"
+      }
+    ]
+  },
+  {
+    "id": "botanical-expert",
+    "name": "植物專家",
+    "nameEn": "Botanical Expert",
+    "description": "增加藥草等、消耗道具的取得數。",
+    "maxLevel": 3,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 8,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "草系消耗道具的取得數+1。"
+      },
+      {
+        "level": 2,
+        "effect": "追加果實、種子系消耗道具的取得數＋1。"
+      },
+      {
+        "level": 3,
+        "effect": "追加蟲系消耗道具的取得數＋1。"
+      }
+    ]
+  },
+  {
+    "id": "geo-expert",
+    "name": "地質專家",
+    "nameEn": "Geo Expert",
+    "description": "增加採集點的採集次數。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 4,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "骸骨採集點的採集次數增加1次。"
+      },
+      {
+        "level": 2,
+        "effect": "追加特產採集點的採集次數增加1次。"
+      },
+      {
+        "level": 3,
+        "effect": "追加礦石採掘點的採集次數增加1次。"
+      }
+    ]
+  },
+  {
+    "id": "honey-harvester",
+    "name": "蜂蜜獵人",
+    "nameEn": "Honey Harvester",
+    "description": "增加在原野採集蜂蜜的取得數。",
+    "maxLevel": 1,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 3,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "蜂蜜取得數+1。"
+      }
+    ]
+  },
+  {
+    "id": "carve-master",
+    "name": "剝取名人",
+    "nameEn": "Carve Master",
+    "description": "剝取次數增加1次。（從任務中途開始使用不會有效果）",
+    "maxLevel": 1,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 1,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "剝取次數增加1次。（從任務中途開始使用不會有效果）"
+      }
+    ]
+  },
+  {
+    "id": "carving-pro",
+    "name": "剝取鐵人",
+    "nameEn": "Carving Pro",
+    "description": null,
+    "maxLevel": 5,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 1,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "剝取中即使遭受攻擊，也不會膽怯。"
+      },
+      {
+        "level": 2,
+        "effect": "魔物仍有集中力時，對魔物的傷害將降低其20%火元素抗性。"
+      },
+      {
+        "level": 3,
+        "effect": "魔物仍有集中力時，對魔物的傷害將降低其30%火元素抗性。"
+      },
+      {
+        "level": 4,
+        "effect": "魔物仍有集中力時，對魔物的傷害將降低其40%火元素抗性。"
+      },
+      {
+        "level": 5,
+        "effect": "魔物仍有集中力時，對魔物的傷害將降低其50%火元素抗性。"
+      }
+    ]
+  },
+  {
+    "id": "capturing-expert",
+    "name": "捕獲達人",
+    "nameEn": "Capturing Expert",
+    "description": "捕獲取得得的報酬數量變多的機率很高。（從任務中途開始使用不會有效果）",
+    "maxLevel": 1,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 1,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "捕獲取得得的報酬數量變多的機率很高。（從任務中途開始使用不會有效果）"
+      }
+    ]
+  },
+  {
+    "id": "specimen-expert",
+    "name": "標本達人",
+    "nameEn": "Specimen Expert",
+    "description": "以攻擊討伐昆蟲型的小型魔物時，更容易在剝取狀態下殘留。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 3,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "殘骸保留的機率提高。"
+      },
+      {
+        "level": 2,
+        "effect": "殘骸保留的機率提高。"
+      },
+      {
+        "level": 3,
+        "effect": "必定有殘骸保留。"
+      }
+    ]
+  },
+  {
+    "id": "weakspot-follow-up",
+    "name": "痛點追擊",
+    "nameEn": "Weakspot Follow-Up",
+    "description": "攻擊魔物已被破壞的部位，有一定機率額外造成一次傷害。",
+    "maxLevel": 5,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 9,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動機率75%，追加相當於4%的傷害。"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動機率75%，追加相當於9%的傷害。"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動機率75%，追加相當於14%的傷害。"
+      },
+      {
+        "level": 4,
+        "effect": "技能發動機率75%，追加相當於18%的傷害。"
+      },
+      {
+        "level": 5,
+        "effect": "技能發動機率75%，追加相當於25%的傷害。"
+      }
+    ]
+  },
+  {
+    "id": "relentless-pursuit",
+    "name": "窮追猛打",
+    "nameEn": "Relentless Pursuit",
+    "description": "魔物陷入膽怯或受到壓制後，一段時間內，造成的傷害提升。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 6,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，傷害+4%，持續15秒。"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，傷害+8%，持續15秒。"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，傷害+11%，持續15秒。"
+      }
+    ]
+  },
+  {
+    "id": "counter-boost",
+    "name": "應對強化",
+    "nameEn": "Counter Boost",
+    "description": "觸發完美迴避或招架後一段時間內造成的傷害提升。",
+    "maxLevel": 7,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 8,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，傷害+4%，持續20秒。"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，傷害+8%，持續20秒。"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，傷害+12%，持續20秒。"
+      },
+      {
+        "level": 4,
+        "effect": "技能發動時，傷害+16%，持續20秒。"
+      },
+      {
+        "level": 5,
+        "effect": "技能發動時，傷害+20%，持續20秒。"
+      },
+      {
+        "level": 6,
+        "effect": "技能發動時，傷害+24%，持續20秒。"
+      },
+      {
+        "level": 7,
+        "effect": "屬性攻擊力+50，技能發動時，傷害+31%，持續20秒。"
+      }
+    ]
+  },
+  {
+    "id": "radiant-sense",
+    "name": "融光感應",
+    "nameEn": "Radiant Sense",
+    "description": "融光種魔物處於狂暴狀態時，冒險者造成的傷害提升。",
+    "maxLevel": 5,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 6,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，傷害+4%。"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，傷害+8%。"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，傷害+13%。"
+      },
+      {
+        "level": 4,
+        "effect": "技能發動時，傷害+18%。"
+      },
+      {
+        "level": 5,
+        "effect": "技能發動時，傷害+25%。"
+      }
+    ]
+  },
+  {
+    "id": "health-cycle",
+    "name": "血氣",
+    "nameEn": "Health Cycle",
+    "description": "擊中大型魔物被破壞過的部位時，可根據傷害回復一定體力。",
+    "maxLevel": 3,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 5,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "體力回復2，每8秒只能觸發1次。"
+      },
+      {
+        "level": 2,
+        "effect": "體力回復3，每8秒只能觸發1次。"
+      },
+      {
+        "level": 3,
+        "effect": "體力回復4，每8秒只能觸發1次。"
+      }
+    ]
+  },
+  {
+    "id": "combo-enhancement",
+    "name": "連擊強化",
+    "nameEn": "Combo Enhancement",
+    "description": "若短時間內連續命中魔物，傷害提升一段時間。（貫通或綻裂傷害無法觸發效果）",
+    "maxLevel": 7,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 5,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "在3秒內連續命中5次，傷害+4%，持續12秒。"
+      },
+      {
+        "level": 2,
+        "effect": "在3秒內連續命中5次，傷害+8%，持續12秒。"
+      },
+      {
+        "level": 3,
+        "effect": "在3秒內連續命中5次，傷害+12%，持續12秒。"
+      },
+      {
+        "level": 4,
+        "effect": "在3秒內連續命中5次，傷害+16%，持續12秒。"
+      },
+      {
+        "level": 5,
+        "effect": "在3秒內連續命中5次，傷害+20%，持續12秒。"
+      },
+      {
+        "level": 6,
+        "effect": "在3秒內連續命中5次，傷害+24%，持續12秒。"
+      },
+      {
+        "level": 7,
+        "effect": "屬性攻擊力+50，在3秒內連續命中5次，傷害+31%，持續12秒。"
+      }
+    ]
+  },
+  {
+    "id": "buddy-boost",
+    "name": "指示隨從",
+    "nameEn": "Buddy Boost",
+    "description": "強化隨從造成的傷害。",
+    "maxLevel": 1,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 1,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "隨從傷害變為1.1倍。"
+      }
+    ]
+  },
+  {
+    "id": "bento-lover",
+    "name": "愛吃便當",
+    "nameEn": "Bento Lover",
+    "description": "戰鬥中食用烤肉和攜帶料理後，傷害提升一段時間。",
+    "maxLevel": 7,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 7,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，傷害+4%，持續30秒。"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，傷害+8%，持續30秒。"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，傷害+12%，持續30秒。"
+      },
+      {
+        "level": 4,
+        "effect": "技能發動時，傷害+16%，持續30秒。"
+      },
+      {
+        "level": 5,
+        "effect": "技能發動時，傷害+20%，持續30秒。"
+      },
+      {
+        "level": 6,
+        "effect": "技能發動時，傷害+24%，持續30秒。"
+      },
+      {
+        "level": 7,
+        "effect": "屬性攻擊力+50，技能發動時，傷害+31%，持續30秒。"
+      }
+    ]
+  },
+  {
+    "id": "master-climber",
+    "name": "攀爬達人",
+    "nameEn": "Master Climber",
+    "description": "攀附在壁面或藤蔓進行迴避時，消耗的耐力會減少。",
+    "maxLevel": 1,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 3,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "耐力消耗量減少25%"
+      }
+    ]
+  },
+  {
+    "id": "airborne",
+    "name": "騰空",
+    "nameEn": "Airborne",
+    "description": "騰空攻擊的傷害提升。",
+    "maxLevel": 7,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 7,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "騰空攻擊的傷害+5%。"
+      },
+      {
+        "level": 2,
+        "effect": "騰空攻擊的傷害+9%。"
+      },
+      {
+        "level": 3,
+        "effect": "騰空攻擊的傷害+14%。"
+      },
+      {
+        "level": 4,
+        "effect": "騰空攻擊的傷害+19%。"
+      },
+      {
+        "level": 5,
+        "effect": "騰空攻擊的傷害+24%。"
+      },
+      {
+        "level": 6,
+        "effect": "騰空攻擊的傷害+29%。"
+      },
+      {
+        "level": 7,
+        "effect": "屬性攻擊力+50，騰空攻擊的傷害+37%。"
+      }
+    ]
+  },
+  {
+    "id": "item-master",
+    "name": "道具專家",
+    "nameEn": "Item Master",
+    "description": "延長部分道具的效果時間。",
+    "maxLevel": 3,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 11,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "效果時間1.10倍。"
+      },
+      {
+        "level": 2,
+        "effect": "效果時間1.25倍。"
+      },
+      {
+        "level": 3,
+        "effect": "效果時間1.50倍。"
+      }
+    ]
+  },
+  {
+    "id": "charge-enhancement",
+    "name": "蓄力強化",
+    "nameEn": "Charge Enhancement",
+    "description": "斬擊蓄力或打擊蓄力攻擊命中魔物後，傷害提升一段時間。",
+    "maxLevel": 7,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 6,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，傷害+4%，持續15秒。"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，傷害+8%，持續15秒。"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，傷害+12%，持續15秒。"
+      },
+      {
+        "level": 4,
+        "effect": "技能發動時，傷害+16%，持續15秒。"
+      },
+      {
+        "level": 5,
+        "effect": "技能發動時，傷害+20%，持續15秒。"
+      },
+      {
+        "level": 6,
+        "effect": "技能發動時，傷害+24%，持續15秒。"
+      },
+      {
+        "level": 7,
+        "effect": "屬性攻擊力+50，技能發動時，傷害+31%，持續15秒。"
+      }
+    ]
+  },
+  {
+    "id": "hunting-instinct",
+    "name": "獵手直覺",
+    "nameEn": "Hunting Instinct",
+    "description": "使用場景機關或者環境生物時，傷害提升一段時間。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 10,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，造成的傷害提升4%，持續120秒。"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，造成的傷害提升8%，持續120秒。"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，造成的傷害提升12%，持續120秒。"
+      }
+    ]
+  },
+  {
+    "id": "flash-draw",
+    "name": "拔刀一閃",
+    "nameEn": "Flash Draw",
+    "description": "武器拔刀攻擊後，傷害提升一段時間。",
+    "maxLevel": 7,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 6,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，傷害+4%，持續30秒。"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，傷害+8%，持續30秒。"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，傷害+12%，持續30秒。"
+      },
+      {
+        "level": 4,
+        "effect": "技能發動時，傷害+16%，持續30秒。"
+      },
+      {
+        "level": 5,
+        "effect": "技能發動時，傷害+20%，持續30秒。"
+      },
+      {
+        "level": 6,
+        "effect": "技能發動時，傷害+24%，持續30秒。"
+      },
+      {
+        "level": 7,
+        "effect": "屬性攻擊力+50，技能發動時，傷害+31%，持續30秒。"
+      }
+    ]
+  },
+  {
+    "id": "spirit-bind-blade",
+    "name": "練氣纏刃",
+    "nameEn": "Spirit Bind Blade",
+    "description": "提升練氣計量表階段時，一段時間內造成的傷害提升。",
+    "maxLevel": 4,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 5,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，傷害+3%，持續30秒。"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，傷害+7%，持續30秒。"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，傷害+11%，持續30秒。"
+      },
+      {
+        "level": 4,
+        "effect": "屬性攻擊力+25，技能發動時，傷害+16%，持續30秒。"
+      }
+    ]
+  },
+  {
+    "id": "demonic-strength",
+    "name": "鬼人修羅",
+    "nameEn": "Demonic Strength",
+    "description": "鬼人化期間，造成的傷害提升。",
+    "maxLevel": 4,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 3,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，傷害+4%。"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，傷害+8%。"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，傷害+13%。"
+      },
+      {
+        "level": 4,
+        "effect": "屬性攻擊力+25，技能發動時，傷害+20%。"
+      }
+    ]
+  },
+  {
+    "id": "piercing-strike",
+    "name": "一擊洞穿",
+    "nameEn": "Piercing Strike",
+    "description": "單次貫通攻擊造成至少3次傷害時傷害提升。",
+    "maxLevel": 7,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 6,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，傷害+5%。"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，傷害+9%。"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，傷害+14%。"
+      },
+      {
+        "level": 4,
+        "effect": "技能發動時，傷害+19%。"
+      },
+      {
+        "level": 5,
+        "effect": "技能發動時，傷害+24%。"
+      },
+      {
+        "level": 6,
+        "effect": "技能發動時，傷害+29%。"
+      },
+      {
+        "level": 7,
+        "effect": "屬性攻擊力+50，技能發動時，傷害+37%。"
+      }
+    ]
+  },
+  {
+    "id": "charged-power-shot",
+    "name": "蓄勢強射",
+    "nameEn": "Charged Power Shot",
+    "description": "遠程武器保持蓄力階段時，造成的傷害提升。",
+    "maxLevel": 7,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 5,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，傷害+5%。"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，傷害+9%。"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，傷害+14%。"
+      },
+      {
+        "level": 4,
+        "effect": "技能發動時，傷害+19%。"
+      },
+      {
+        "level": 5,
+        "effect": "技能發動時，傷害+24%。"
+      },
+      {
+        "level": 6,
+        "effect": "技能發動時，傷害+29%。"
+      },
+      {
+        "level": 7,
+        "effect": "屬性攻擊力+50，技能發動時，傷害+37%。"
+      }
+    ]
+  },
+  {
+    "id": "immovable-stance",
+    "name": "剛勢",
+    "nameEn": "Immovable Stance",
+    "description": "觸發剛猛後，傷害提升一段時間。",
+    "maxLevel": 7,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 6,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "觸發剛猛後，傷害+4%，持續30秒。"
+      },
+      {
+        "level": 2,
+        "effect": "觸發剛猛後，傷害+8%，持續30秒。"
+      },
+      {
+        "level": 3,
+        "effect": "觸發剛猛後，傷害+12%，持續30秒。"
+      },
+      {
+        "level": 4,
+        "effect": "觸發剛猛後，傷害+16%，持續30秒。"
+      },
+      {
+        "level": 5,
+        "effect": "觸發剛猛後，傷害+20%，持續30秒。"
+      },
+      {
+        "level": 6,
+        "effect": "觸發剛猛後，傷害+24%，持續30秒。"
+      },
+      {
+        "level": 7,
+        "effect": "屬性攻擊力+50，觸發剛猛後，傷害+31%，持續30秒。"
+      }
+    ]
+  },
+  {
+    "id": "stamina-conversion",
+    "name": "氣力轉化",
+    "nameEn": "Stamina Conversion",
+    "description": "使用消耗耐力的攻擊招式，會提升此次攻擊的傷害。",
+    "maxLevel": 7,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 7,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，此次攻擊傷害+5%。"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，此次攻擊傷害+9%。"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，此次攻擊傷害+14%。"
+      },
+      {
+        "level": 4,
+        "effect": "技能發動時，此次攻擊傷害+19%。"
+      },
+      {
+        "level": 5,
+        "effect": "技能發動時，此次攻擊傷害+24%。"
+      },
+      {
+        "level": 6,
+        "effect": "技能發動時，此次攻擊傷害+29%。"
+      },
+      {
+        "level": 7,
+        "effect": "屬性攻擊力+50，技能發動時，此次攻擊傷害+37%。"
+      }
+    ]
+  },
+  {
+    "id": "capacity-boost",
+    "name": "裝填強化",
+    "nameEn": "Capacity Boost",
+    "description": "裝填彈藥後，傷害提升一段時間。",
+    "maxLevel": 7,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 6,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "裝填後，傷害+4%，持續30秒。"
+      },
+      {
+        "level": 2,
+        "effect": "裝填後，傷害+8%，持續30秒。"
+      },
+      {
+        "level": 3,
+        "effect": "裝填後，傷害+12%，持續30秒。"
+      },
+      {
+        "level": 4,
+        "effect": "裝填後，傷害+16%，持續30秒。"
+      },
+      {
+        "level": 5,
+        "effect": "裝填後，傷害+20%，持續30秒。"
+      },
+      {
+        "level": 6,
+        "effect": "裝填後，傷害+24%，持續30秒。"
+      },
+      {
+        "level": 7,
+        "effect": "屬性攻擊力+50，裝填後，傷害+31%，持續30秒。"
+      }
+    ]
+  },
+  {
+    "id": "wrecker",
+    "name": "破擊",
+    "nameEn": "Wrecker",
+    "description": "使用大劍對魔物造成膽怯或部位破壞後，傷害提升一段時間。",
+    "maxLevel": 4,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 4,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，傷害+3%，持續60秒。"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，傷害+7%，持續60秒。"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，傷害+11%，持續60秒。"
+      },
+      {
+        "level": 4,
+        "effect": "技能發動時，傷害+16%，屬性攻擊力+25，持續60秒。"
+      }
+    ]
+  },
+  {
+    "id": "pierce",
+    "name": "貫突",
+    "nameEn": "Pierce",
+    "description": "使用長槍連續命中魔物同一部位後，傷害提升一段時間。",
+    "maxLevel": 4,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 3,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "8秒內命中同一部位3次時，傷害+3%，持續30秒。"
+      },
+      {
+        "level": 2,
+        "effect": "8秒內命中同一部位3次時，傷害+7%，持續30秒。"
+      },
+      {
+        "level": 3,
+        "effect": "8秒內命中同一部位3次時，傷害+11%，持續30秒。"
+      },
+      {
+        "level": 4,
+        "effect": "屬性攻擊力+25，8秒內命中同一部位3次時，傷害+16%，持續30秒。"
+      }
+    ]
+  },
+  {
+    "id": "intimidation",
+    "name": "震懾",
+    "nameEn": "Intimidation",
+    "description": "使用打擊類武器使魔物的昏厥值累積時，傷害提升一段時間。",
+    "maxLevel": 4,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 3,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，傷害+3%，持續15秒。"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，傷害+7%，持續15秒。"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，傷害+11%，持續15秒。"
+      },
+      {
+        "level": 4,
+        "effect": "屬性攻擊力+25，技能發動時，傷害+16%，持續15秒。"
+      }
+    ]
+  },
+  {
+    "id": "ammo-enhancement",
+    "name": "弩彈強化",
+    "nameEn": "Ammo Enhancement",
+    "description": "提升弩砲通常彈、散彈和貫通彈的傷害。",
+    "maxLevel": 4,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 5,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "通常彈、散彈和貫通彈的傷害+3%。"
+      },
+      {
+        "level": 2,
+        "effect": "通常彈、散彈和貫通彈的傷害+7%。"
+      },
+      {
+        "level": 3,
+        "effect": "通常彈、散彈和貫通彈的傷害+11%。"
+      },
+      {
+        "level": 4,
+        "effect": "屬性攻擊力+25，通常彈、散彈和貫通彈的傷害+16%。"
+      }
+    ]
+  },
+  {
+    "id": "grace-under-pressure",
+    "name": "高壓防禦",
+    "nameEn": "Grace Under Pressure",
+    "description": "融光種魔物處於狂暴狀態時，冒險者防禦力提升。",
+    "maxLevel": 3,
+    "sources": [
+      "armor",
+      "set"
+    ],
+    "armorCount": 5,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，防禦力提升20"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，防禦力提升40"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，防禦力提升60"
+      }
+    ]
+  },
+  {
+    "id": "suppression-recovery",
+    "name": "壓制回復",
+    "nameEn": "Suppression Recovery",
+    "description": "對被壓制的魔物造成傷害會回復體力。",
+    "maxLevel": 3,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 6,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，回復體力5，最小間隔3秒"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，回復體力10，最小間隔3秒"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，回復體力15，最小間隔3秒"
+      }
+    ]
+  },
+  {
+    "id": "morph-boost",
+    "name": "變形強化",
+    "nameEn": "Morph Boost",
+    "description": "武器變形時，傷害提升一段時間。",
+    "maxLevel": 4,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 4,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，傷害+3%，持續60秒。"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，傷害+7%，持續60秒。"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，傷害+11%，持續60秒。"
+      },
+      {
+        "level": 4,
+        "effect": "技能發動時，傷害+16%，屬性攻擊力+25，持續60秒。"
+      }
+    ]
+  },
+  {
+    "id": "guild-might-weapon",
+    "name": "冒險團之力・武器",
+    "nameEn": "Guild Might - Weapon",
+    "description": "赤翎冒險團統一發放的裝備，稀有度會隨著冒險等級的提升而同步提升。",
+    "maxLevel": 8,
+    "sources": [
+      "weapon"
+    ],
+    "armorCount": 0,
+    "weaponCount": 48,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度1。"
+      },
+      {
+        "level": 2,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度2。"
+      },
+      {
+        "level": 3,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度3。"
+      },
+      {
+        "level": 4,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度4。"
+      },
+      {
+        "level": 5,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度5。"
+      },
+      {
+        "level": 6,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度6。"
+      },
+      {
+        "level": 7,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度7。"
+      },
+      {
+        "level": 8,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度8。"
+      }
+    ]
+  },
+  {
+    "id": "guild-might-helm",
+    "name": "冒險團之力・頭盔",
+    "nameEn": "Guild Might - Helm",
+    "description": null,
+    "maxLevel": 8,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 1,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度1。"
+      },
+      {
+        "level": 2,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度2。"
+      },
+      {
+        "level": 3,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度3。"
+      },
+      {
+        "level": 4,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度4。"
+      },
+      {
+        "level": 5,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度5。"
+      },
+      {
+        "level": 6,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度6。"
+      },
+      {
+        "level": 7,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度7。"
+      },
+      {
+        "level": 8,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度8。"
+      }
+    ]
+  },
+  {
+    "id": "guild-might-mail",
+    "name": "冒險團之力・鎧甲",
+    "nameEn": "Guild Might - Mail",
+    "description": null,
+    "maxLevel": 8,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 1,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度1。"
+      },
+      {
+        "level": 2,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度2。"
+      },
+      {
+        "level": 3,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度3。"
+      },
+      {
+        "level": 4,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度4。"
+      },
+      {
+        "level": 5,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度5。"
+      },
+      {
+        "level": 6,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度6。"
+      },
+      {
+        "level": 7,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度7。"
+      },
+      {
+        "level": 8,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度8。"
+      }
+    ]
+  },
+  {
+    "id": "guild-might-gauntlets",
+    "name": "冒險團之力・手甲",
+    "nameEn": "Guild Might - Gauntlets",
+    "description": null,
+    "maxLevel": 8,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 1,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度1。"
+      },
+      {
+        "level": 2,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度2。"
+      },
+      {
+        "level": 3,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度3。"
+      },
+      {
+        "level": 4,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度4。"
+      },
+      {
+        "level": 5,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度5。"
+      },
+      {
+        "level": 6,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度6。"
+      },
+      {
+        "level": 7,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度7。"
+      },
+      {
+        "level": 8,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度8。"
+      }
+    ]
+  },
+  {
+    "id": "guild-might-coil",
+    "name": "冒險團之力・腰甲",
+    "nameEn": "Guild Might - Coil",
+    "description": null,
+    "maxLevel": 8,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 1,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度1。"
+      },
+      {
+        "level": 2,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度2。"
+      },
+      {
+        "level": 3,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度3。"
+      },
+      {
+        "level": 4,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度4。"
+      },
+      {
+        "level": 5,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度5。"
+      },
+      {
+        "level": 6,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度6。"
+      },
+      {
+        "level": 7,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度7。"
+      },
+      {
+        "level": 8,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度8。"
+      }
+    ]
+  },
+  {
+    "id": "guild-might-greaves",
+    "name": "冒險團之力・腿甲",
+    "nameEn": "Guild Might - Greaves",
+    "description": null,
+    "maxLevel": 8,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 1,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度1。"
+      },
+      {
+        "level": 2,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度2。"
+      },
+      {
+        "level": 3,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度3。"
+      },
+      {
+        "level": 4,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度4。"
+      },
+      {
+        "level": 5,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度5。"
+      },
+      {
+        "level": 6,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度6。"
+      },
+      {
+        "level": 7,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度7。"
+      },
+      {
+        "level": 8,
+        "effect": "達到對應冒險等級時，該裝備提升至稀有度8。"
+      }
+    ]
+  }
+]

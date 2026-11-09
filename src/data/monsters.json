@@ -1,0 +1,3881 @@
+[
+  {
+    "id": "great-jagras",
+    "name": "大凶豺龍",
+    "nameEn": "Great Jagras",
+    "image": "https://img.gamewith.jp/img/933892cb3bd5410e7054225bc26b2e0b.png",
+    "size": "大型",
+    "species": "牙龍種",
+    "habitats": [
+      "邊野",
+      "沉積泥湖"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 3
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 2
+      },
+      {
+        "element": "冰",
+        "stars": 2
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 3
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 3
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 3
+      },
+      {
+        "ailment": "爆破",
+        "stars": 3
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 3
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      },
+      {
+        "label": "前肢",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      },
+      {
+        "label": "腹部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      }
+    ]
+  },
+  {
+    "id": "tobi-kadachi",
+    "name": "飛雷龍",
+    "nameEn": "Tobi-Kadachi",
+    "image": "https://img.gamewith.jp/img/efeced448c247c58ceaaa9d9bfa1d8b2.png",
+    "size": "大型",
+    "species": "牙龍種",
+    "habitats": [
+      "邊野",
+      "雲煙林地"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 2
+      },
+      {
+        "element": "水",
+        "stars": 2
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 2
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 3
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 2
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      },
+      {
+        "label": "尾巴",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      }
+    ]
+  },
+  {
+    "id": "great-girros",
+    "name": "大凶顎龍",
+    "nameEn": "Great Girros",
+    "image": "https://img.gamewith.jp/img/5ec726da0ea4078dd5d468f28828ae58.png",
+    "size": "大型",
+    "species": "牙龍種",
+    "habitats": [
+      "沉積泥湖"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 2
+      },
+      {
+        "element": "水",
+        "stars": 3
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 2
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 2
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 3
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 1
+      },
+      {
+        "ailment": "爆破",
+        "stars": 2
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      },
+      {
+        "label": "前肢",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      },
+      {
+        "label": "尾巴",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 1
+      }
+    ]
+  },
+  {
+    "id": "odogaron",
+    "name": "慘爪龍",
+    "nameEn": "Odogaron",
+    "image": "https://img.gamewith.jp/img/2cf75d1609cf8770e1c857d5f0401d07.png",
+    "size": "大型",
+    "species": "牙龍種",
+    "habitats": [],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 2
+      },
+      {
+        "element": "冰",
+        "stars": 3
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 1
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 3
+      },
+      {
+        "ailment": "爆破",
+        "stars": 2
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      },
+      {
+        "label": "前肢",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      },
+      {
+        "label": "尾巴",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      }
+    ]
+  },
+  {
+    "id": "kulu-ya-ku",
+    "name": "搔鳥",
+    "nameEn": "Kulu-Ya-Ku",
+    "image": "https://img.gamewith.jp/img/0b9ae35920d0019b8fb6857965bf6474.png",
+    "size": "大型",
+    "species": "鳥龍種",
+    "habitats": [
+      "沙嵐綠洲",
+      "大沙海",
+      "邊野",
+      "沉積泥湖"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 2
+      },
+      {
+        "element": "水",
+        "stars": 3
+      },
+      {
+        "element": "雷",
+        "stars": 2
+      },
+      {
+        "element": "冰",
+        "stars": 2
+      },
+      {
+        "element": "龍",
+        "stars": 2
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 2
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 2
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      }
+    ]
+  },
+  {
+    "id": "pukei-pukei",
+    "name": "毒妖鳥",
+    "nameEn": "Pukei-Pukei",
+    "image": "https://img.gamewith.jp/img/aedd86f3f3c65d5d98149334db9e3741.png",
+    "size": "大型",
+    "species": "鳥龍種",
+    "habitats": [
+      "沙嵐綠洲",
+      "大沙海",
+      "邊野",
+      "沉積泥湖",
+      "雲煙林地"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 2
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 3
+      },
+      {
+        "element": "冰",
+        "stars": 2
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 1
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 3
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 3
+      },
+      {
+        "ailment": "爆破",
+        "stars": 2
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      },
+      {
+        "label": "翅膀",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      },
+      {
+        "label": "尾巴",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      }
+    ]
+  },
+  {
+    "id": "tzitzi-ya-ku",
+    "name": "眩鳥",
+    "nameEn": "Tzitzi-Ya-Ku",
+    "image": "https://img.gamewith.jp/img/f582c9cd7bc77ef70a8e9188d90915dc.png",
+    "size": "大型",
+    "species": "鳥龍種",
+    "habitats": [
+      "沉積泥湖"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 2
+      },
+      {
+        "element": "水",
+        "stars": 2
+      },
+      {
+        "element": "雷",
+        "stars": 3
+      },
+      {
+        "element": "冰",
+        "stars": 3
+      },
+      {
+        "element": "龍",
+        "stars": 2
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 2
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 2
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "發光器官",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      }
+    ]
+  },
+  {
+    "id": "barroth",
+    "name": "土砂龍",
+    "nameEn": "Barroth",
+    "image": "https://img.gamewith.jp/img/ee7031e18ae8a4adbc4b6ac626919dfd.png",
+    "size": "大型",
+    "species": "獸龍種",
+    "habitats": [
+      "沙嵐綠洲",
+      "大沙海"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 3
+      },
+      {
+        "element": "水",
+        "stars": 3
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 2
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 3
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 3
+      },
+      {
+        "ailment": "爆破",
+        "stars": 3
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 1
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "前肢 (通常)",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      },
+      {
+        "label": "前肢 (泥)",
+        "cut": 1,
+        "blunt": 1,
+        "ammo": 1
+      },
+      {
+        "label": "尾巴 (通常)",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      },
+      {
+        "label": "尾巴 (泥)",
+        "cut": 1,
+        "blunt": 1,
+        "ammo": 1
+      }
+    ]
+  },
+  {
+    "id": "anjanath",
+    "name": "蠻顎龍",
+    "nameEn": "Anjanath",
+    "image": "https://img.gamewith.jp/img/fb51757171a4e145e385a85ffcfc41fc.png",
+    "size": "大型",
+    "species": "獸龍種",
+    "habitats": [
+      "沙嵐綠洲",
+      "大沙海",
+      "邊野",
+      "沉積泥湖",
+      "雲煙林地"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 3
+      },
+      {
+        "element": "雷",
+        "stars": 2
+      },
+      {
+        "element": "冰",
+        "stars": 2
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 2
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 1
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      },
+      {
+        "label": "尾巴",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      }
+    ]
+  },
+  {
+    "id": "radobaan",
+    "name": "骨鎚龍",
+    "nameEn": "Radobaan",
+    "image": "https://img.gamewith.jp/img/201dfd8be009f621246dcc232d497515.png",
+    "size": "大型",
+    "species": "獸龍種",
+    "habitats": [
+      "沙嵐綠洲"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 2
+      },
+      {
+        "element": "水",
+        "stars": 2
+      },
+      {
+        "element": "雷",
+        "stars": 2
+      },
+      {
+        "element": "冰",
+        "stars": 2
+      },
+      {
+        "element": "龍",
+        "stars": 3
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 2
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 1
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 3
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      },
+      {
+        "label": "後肢",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      }
+    ]
+  },
+  {
+    "id": "rathian",
+    "name": "雌火龍",
+    "nameEn": "Rathian",
+    "image": "https://img.gamewith.jp/img/c181cfb4d399611f2392b32b2479ce0f.png",
+    "size": "大型",
+    "species": "飛龍種",
+    "habitats": [
+      "沙嵐綠洲",
+      "大沙海",
+      "邊野",
+      "沉積泥湖",
+      "雲煙林地"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 2
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 3
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 1
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 1
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 3
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      },
+      {
+        "label": "左翼",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      },
+      {
+        "label": "右翼",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      },
+      {
+        "label": "尾巴",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      }
+    ]
+  },
+  {
+    "id": "pink-rathian",
+    "name": "櫻火龍",
+    "nameEn": "Pink Rathian",
+    "image": "https://img.gamewith.jp/img/f52ef283758e7d93345e8f851010b17d.png",
+    "size": "大型",
+    "species": "飛龍種",
+    "habitats": [
+      "沙嵐綠洲",
+      "大沙海",
+      "邊野",
+      "沉積泥湖",
+      "雲煙林地"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 2
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 3
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 1
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 1
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 3
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      },
+      {
+        "label": "左翼",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      },
+      {
+        "label": "右翼",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      },
+      {
+        "label": "尾巴",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      }
+    ]
+  },
+  {
+    "id": "rathalos",
+    "name": "火龍",
+    "nameEn": "Rathalos",
+    "image": "https://img.gamewith.jp/img/99d8b7061586cb045b5bff9105442686.png",
+    "size": "大型",
+    "species": "飛龍種",
+    "habitats": [
+      "沙嵐綠洲",
+      "大沙海",
+      "邊野",
+      "沉積泥湖",
+      "雲煙林地"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 2
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 3
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 1
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 1
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      },
+      {
+        "label": "左翼",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      },
+      {
+        "label": "右翼",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      },
+      {
+        "label": "尾巴",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      }
+    ]
+  },
+  {
+    "id": "diablos",
+    "name": "角龍",
+    "nameEn": "Diablos",
+    "image": "https://img.gamewith.jp/img/fe5dda51045458c91f774ec54ae9e13e.png",
+    "size": "大型",
+    "species": "飛龍種",
+    "habitats": [
+      "沙嵐綠洲"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 2
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 3
+      },
+      {
+        "element": "龍",
+        "stars": 2
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 2
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 3
+      },
+      {
+        "ailment": "爆破",
+        "stars": 2
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 1
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 2,
+        "blunt": 3,
+        "ammo": 2
+      },
+      {
+        "label": "腹部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 2
+      },
+      {
+        "label": "左翼",
+        "cut": 2,
+        "blunt": 1,
+        "ammo": 3
+      },
+      {
+        "label": "右翼",
+        "cut": 2,
+        "blunt": 1,
+        "ammo": 3
+      }
+    ]
+  },
+  {
+    "id": "black-diablos",
+    "name": "黑角龍",
+    "nameEn": "Black Diablos",
+    "image": "https://img.gamewith.jp/img/75a0aac92f7a67f1c7ac76e598ff549b.png",
+    "size": "大型",
+    "species": "飛龍種",
+    "habitats": [
+      "沙嵐綠洲"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 2
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 3
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 2
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 3
+      },
+      {
+        "ailment": "爆破",
+        "stars": 2
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 1
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 2,
+        "blunt": 3,
+        "ammo": 2
+      },
+      {
+        "label": "腹部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 2
+      },
+      {
+        "label": "左翼",
+        "cut": 2,
+        "blunt": 1,
+        "ammo": 3
+      },
+      {
+        "label": "右翼",
+        "cut": 2,
+        "blunt": 1,
+        "ammo": 3
+      }
+    ]
+  },
+  {
+    "id": "paolumu",
+    "name": "浮空龍",
+    "nameEn": "Paolumu",
+    "image": "https://img.gamewith.jp/img/c4084a6f1532e4a0b4d372763efb9b39.png",
+    "size": "大型",
+    "species": "飛龍種",
+    "habitats": [
+      "沉積泥湖",
+      "雲煙林地"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 3
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 2
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 2
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 3
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 3
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      },
+      {
+        "label": "頸袋",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      }
+    ]
+  },
+  {
+    "id": "legiana",
+    "name": "風漂龍",
+    "nameEn": "Legiana",
+    "image": "https://img.gamewith.jp/img/6c6f2cbf11c3f8255b96dcb4b7e3ecf0.png",
+    "size": "大型",
+    "species": "飛龍種",
+    "habitats": [
+      "沉積泥湖",
+      "雲煙林地"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 2
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 3
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 3
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 2
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      },
+      {
+        "label": "左翼",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      },
+      {
+        "label": "右翼",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      },
+      {
+        "label": "尾巴",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      }
+    ]
+  },
+  {
+    "id": "jyuratodus",
+    "name": "泥魚龍",
+    "nameEn": "Jyuratodus",
+    "image": "https://img.gamewith.jp/img/4f48ca5f3fe38ee36f725a408597260a.png",
+    "size": "大型",
+    "species": "魚龍種",
+    "habitats": [
+      "沙嵐綠洲",
+      "大沙海",
+      "邊野"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 3
+      },
+      {
+        "element": "雷",
+        "stars": 3
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 2
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 1
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 1
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 3
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部 (通常)",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      },
+      {
+        "label": "頭部 (泥)",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 2
+      },
+      {
+        "label": "尾巴",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 2
+      }
+    ]
+  },
+  {
+    "id": "radiant-great-jagras",
+    "name": "融光種大凶豺龍",
+    "nameEn": "Radiant Great Jagras",
+    "image": "https://img.gamewith.jp/img/bf23c1d250ecf8c6205c6fbd68b9de7e.png",
+    "size": "大型",
+    "species": "融光種",
+    "habitats": [
+      "邊野",
+      "沉積泥湖",
+      "雲煙林地"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 3
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 3
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 3
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 3
+      },
+      {
+        "ailment": "爆破",
+        "stars": 3
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 3
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "腹部",
+        "cut": 2,
+        "blunt": 3,
+        "ammo": 1
+      }
+    ]
+  },
+  {
+    "id": "radiant-kulu-ya-ku",
+    "name": "融光種搔鳥",
+    "nameEn": "Radiant Kulu-Ya-Ku",
+    "image": "https://img.gamewith.jp/img/d9c161c9e58b87d89928b9baf958272c.png",
+    "size": "大型",
+    "species": "融光種",
+    "habitats": [
+      "沙嵐綠洲",
+      "大沙海",
+      "邊野",
+      "沉積泥湖"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 3
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 2
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 2
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      },
+      {
+        "label": "前肢",
+        "cut": 2,
+        "blunt": 3,
+        "ammo": 1
+      }
+    ]
+  },
+  {
+    "id": "radiant-pukei-pukei",
+    "name": "融光種毒妖鳥",
+    "nameEn": "Radiant Pukei-Pukei",
+    "image": "https://img.gamewith.jp/img/f01a0dbe86454a03be3b9fd3d9b0e03e.png",
+    "size": "大型",
+    "species": "融光種",
+    "habitats": [
+      "沙嵐綠洲",
+      "大沙海",
+      "邊野",
+      "沉積泥湖"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 3
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 1
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 3
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 3
+      },
+      {
+        "ailment": "爆破",
+        "stars": 2
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 2,
+        "ammo": 1
+      }
+    ]
+  },
+  {
+    "id": "radiant-jyuratodus",
+    "name": "融光種泥魚龍",
+    "nameEn": "Radiant Jyuratodus",
+    "image": "https://img.gamewith.jp/img/a48e8c74f856265a5fd05b36fd91889a.png",
+    "size": "大型",
+    "species": "融光種",
+    "habitats": [
+      "沙嵐綠洲"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 3
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 2
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 1
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 1
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 3
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部 (通常)",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      },
+      {
+        "label": "頭部 (泥)",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 2
+      },
+      {
+        "label": "身體",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 2
+      }
+    ]
+  },
+  {
+    "id": "radiant-barroth",
+    "name": "融光種土砂龍",
+    "nameEn": "Radiant Barroth",
+    "image": "https://img.gamewith.jp/img/cdab4f0ce9d8b64f50ff06c5a4f179e5.png",
+    "size": "大型",
+    "species": "融光種",
+    "habitats": [
+      "沙嵐綠洲",
+      "大沙海"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 3
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 3
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 3
+      },
+      {
+        "ailment": "爆破",
+        "stars": 3
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 1
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部 (通常)",
+        "cut": 2,
+        "blunt": 3,
+        "ammo": 1
+      },
+      {
+        "label": "頭部 (泥)",
+        "cut": 1,
+        "blunt": 1,
+        "ammo": 1
+      },
+      {
+        "label": "前肢 (通常)",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      },
+      {
+        "label": "前肢 (泥)",
+        "cut": 1,
+        "blunt": 1,
+        "ammo": 1
+      }
+    ]
+  },
+  {
+    "id": "radiant-anjanath",
+    "name": "融光種蠻顎龍",
+    "nameEn": "Radiant Anjanath",
+    "image": "https://img.gamewith.jp/img/f84e839dabbbc51852f3edbfee657384.png",
+    "size": "大型",
+    "species": "融光種",
+    "habitats": [
+      "沙嵐綠洲",
+      "大沙海",
+      "邊野",
+      "沉積泥湖",
+      "雲煙林地"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 3
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 2
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 1
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 2
+      }
+    ]
+  },
+  {
+    "id": "radiant-rathian",
+    "name": "融光種雌火龍",
+    "nameEn": "Radiant Rathian",
+    "image": "https://img.gamewith.jp/img/aaf503af19df42ec602745bb1cb93757.png",
+    "size": "大型",
+    "species": "融光種",
+    "habitats": [
+      "沙嵐綠洲",
+      "大沙海",
+      "沉積泥湖",
+      "雲煙林地"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 3
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 1
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 1
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 3
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      },
+      {
+        "label": "尾巴",
+        "cut": 3,
+        "blunt": 2,
+        "ammo": 1
+      }
+    ]
+  },
+  {
+    "id": "radiant-diablos",
+    "name": "融光種角龍",
+    "nameEn": "Radiant Diablos",
+    "image": "https://img.gamewith.jp/img/1ab2f0b1d4f71e3bcea6c9c09ca7e3ac.png",
+    "size": "大型",
+    "species": "融光種",
+    "habitats": [
+      "沙嵐綠洲"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 3
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 2
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 3
+      },
+      {
+        "ailment": "爆破",
+        "stars": 2
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 1
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 2,
+        "blunt": 3,
+        "ammo": 1
+      },
+      {
+        "label": "腹部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 2
+      }
+    ]
+  },
+  {
+    "id": "radiant-legiana",
+    "name": "融光種風漂龍",
+    "nameEn": "Radiant Legiana",
+    "image": "https://img.gamewith.jp/img/ca287a1e378e5921b02385da288e0ded.png",
+    "size": "大型",
+    "species": "融光種",
+    "habitats": [
+      "沉積泥湖",
+      "雲煙林地"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 3
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 3
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 2
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      },
+      {
+        "label": "左翼",
+        "cut": 3,
+        "blunt": 2,
+        "ammo": 1
+      },
+      {
+        "label": "右翼",
+        "cut": 3,
+        "blunt": 2,
+        "ammo": 1
+      }
+    ]
+  },
+  {
+    "id": "radiant-paolumu",
+    "name": "融光種浮空龍",
+    "nameEn": "Radiant Paolumu",
+    "image": "https://img.gamewith.jp/img/18fba630975addd843c9a029212f3995.png",
+    "size": "大型",
+    "species": "融光種",
+    "habitats": [
+      "沉積泥湖",
+      "雲煙林地"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 3
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 2
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 3
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 3
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 2
+      },
+      {
+        "label": "頸袋",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 2
+      }
+    ]
+  },
+  {
+    "id": "radiant-rathalos",
+    "name": "融光種火龍",
+    "nameEn": "Radiant Rathalos",
+    "image": "https://img.gamewith.jp/img/396f8e4799e9c621ee15519dd71d13c1.png",
+    "size": "大型",
+    "species": "融光種",
+    "habitats": [
+      "沙嵐綠洲",
+      "大沙海",
+      "邊野",
+      "沉積泥湖",
+      "雲煙林地"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 3
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 1
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 1
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 2,
+        "blunt": 3,
+        "ammo": 1
+      }
+    ]
+  },
+  {
+    "id": "kushala-daora",
+    "name": "鋼龍",
+    "nameEn": "Kushala Daora",
+    "image": "https://img.gamewith.jp/img/bfd88409bd51edcea25856f6a12177dd.png",
+    "size": "大型",
+    "species": "古龍種",
+    "habitats": [
+      "大沙海",
+      "邊野",
+      "沉積泥湖"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 3
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 2
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 3
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 1
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 1
+      },
+      {
+        "ailment": "爆破",
+        "stars": 3
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 2
+      },
+      {
+        "label": "前肢",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      },
+      {
+        "label": "尾巴",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 3
+      }
+    ]
+  },
+  {
+    "id": "radiant-pink-rathian",
+    "name": "融光種櫻火龍",
+    "nameEn": "Radiant Pink Rathian",
+    "image": "https://img.gamewith.jp/img/6336a1379d6b39d97045ccb649a782c8.png",
+    "size": "大型",
+    "species": "融光種",
+    "habitats": [
+      "沙嵐綠洲",
+      "大沙海",
+      "邊野",
+      "沉積泥湖"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 3
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 1
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 1
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 3
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      },
+      {
+        "label": "尾巴",
+        "cut": 3,
+        "blunt": 2,
+        "ammo": 1
+      }
+    ]
+  },
+  {
+    "id": "radiant-black-diablos",
+    "name": "融光種黑角龍",
+    "nameEn": "Radiant Black Diablos",
+    "image": "https://img.gamewith.jp/img/fc22d40597ba7afd11508dc69b1fcd56.png",
+    "size": "大型",
+    "species": "融光種",
+    "habitats": [
+      "沙嵐綠洲"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 3
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 2
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 3
+      },
+      {
+        "ailment": "爆破",
+        "stars": 2
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 1
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 2,
+        "blunt": 3,
+        "ammo": 1
+      },
+      {
+        "label": "腹部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 2
+      }
+    ]
+  },
+  {
+    "id": "radiant-radobaan",
+    "name": "融光種骨鎚龍",
+    "nameEn": "Radiant Radobaan",
+    "image": "https://img.gamewith.jp/img/ace9cab7c4b601d3e7a1f8dacd3b8f21.png",
+    "size": "大型",
+    "species": "融光種",
+    "habitats": [
+      "沙嵐綠洲"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 3
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 2
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 1
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 3
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      },
+      {
+        "label": "身體",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      }
+    ]
+  },
+  {
+    "id": "radiant-great-girros",
+    "name": "融光種大凶顎龍",
+    "nameEn": "Radiant Great Girros",
+    "image": "https://img.gamewith.jp/img/ee1302e677fe4a836c49ba2dfc644fe9.png",
+    "size": "大型",
+    "species": "融光種",
+    "habitats": [
+      "沉積泥湖"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 3
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 2
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 3
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 1
+      },
+      {
+        "ailment": "爆破",
+        "stars": 2
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 2,
+        "blunt": 3,
+        "ammo": 1
+      }
+    ]
+  },
+  {
+    "id": "radiant-tobi-kadachi",
+    "name": "融光種飛雷龍",
+    "nameEn": "Radiant Tobi-Kadachi",
+    "image": "https://img.gamewith.jp/img/97f1689733072f40f21d886ff736aa87.png",
+    "size": "大型",
+    "species": "融光種",
+    "habitats": [
+      "邊野",
+      "雲煙林地"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 3
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 3
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 2
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "尾巴",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 2
+      }
+    ]
+  },
+  {
+    "id": "radiant-tzitzi-ya-ku",
+    "name": "融光種眩鳥",
+    "nameEn": "Radiant Tzitzi-Ya-Ku",
+    "image": "https://img.gamewith.jp/img/f05a1cfc709749794772b3f962c08a78.png",
+    "size": "大型",
+    "species": "融光種",
+    "habitats": [
+      "沉積泥湖"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 1
+      },
+      {
+        "element": "龍",
+        "stars": 3
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 2
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 2
+      },
+      {
+        "ailment": "爆破",
+        "stars": 2
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "發光器官",
+        "cut": 3,
+        "blunt": 1,
+        "ammo": 2
+      }
+    ]
+  },
+  {
+    "id": "radiant-odogaron",
+    "name": "融光種慘爪龍",
+    "nameEn": "Radiant Odogaron",
+    "image": "https://img.gamewith.jp/img/27f007cb20f6b6e6e77b0b4bc3f369ef.png",
+    "size": "大型",
+    "species": "融光種",
+    "habitats": [],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 1
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 3
+      },
+      {
+        "element": "龍",
+        "stars": 1
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 1
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 2
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 3
+      },
+      {
+        "ailment": "爆破",
+        "stars": 2
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 2
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 3,
+        "blunt": 3,
+        "ammo": 3
+      },
+      {
+        "label": "前肢",
+        "cut": 3,
+        "blunt": 2,
+        "ammo": 1
+      }
+    ]
+  },
+  {
+    "id": "jagras",
+    "name": "凶豺龍",
+    "nameEn": "Jagras",
+    "image": "https://img.gamewith.jp/img/87a97b5e8e0f553064f561771589d254.png",
+    "size": "小型",
+    "species": "牙龍種",
+    "habitats": [
+      "邊野",
+      "沉積泥湖",
+      "雲煙林地"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 0
+      },
+      {
+        "element": "水",
+        "stars": 0
+      },
+      {
+        "element": "雷",
+        "stars": 0
+      },
+      {
+        "element": "冰",
+        "stars": 0
+      },
+      {
+        "element": "龍",
+        "stars": 0
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 0
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 0
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 0
+      },
+      {
+        "ailment": "爆破",
+        "stars": 0
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 0
+      }
+    ],
+    "hitzones": []
+  },
+  {
+    "id": "kestodon",
+    "name": "冠突龍",
+    "nameEn": "Kestodon",
+    "image": "https://img.gamewith.jp/img/1b68700c14f007d7911a5cc76479a523.png",
+    "size": "小型",
+    "species": "草食種",
+    "habitats": [
+      "邊野",
+      "沉積泥湖",
+      "雲煙林地",
+      "沙嵐綠洲",
+      "大沙海"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 0
+      },
+      {
+        "element": "水",
+        "stars": 0
+      },
+      {
+        "element": "雷",
+        "stars": 0
+      },
+      {
+        "element": "冰",
+        "stars": 0
+      },
+      {
+        "element": "龍",
+        "stars": 0
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 0
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 0
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 0
+      },
+      {
+        "ailment": "爆破",
+        "stars": 0
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 0
+      }
+    ],
+    "hitzones": []
+  },
+  {
+    "id": "vespoid",
+    "name": "巨蜂",
+    "nameEn": "Vespoid",
+    "image": "https://img.gamewith.jp/img/077a0dd83007a4b0c0af4a029c8f8313.png",
+    "size": "小型",
+    "species": "甲蟲種",
+    "habitats": [
+      "邊野",
+      "沉積泥湖",
+      "沙嵐綠洲",
+      "大沙海"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 0
+      },
+      {
+        "element": "水",
+        "stars": 0
+      },
+      {
+        "element": "雷",
+        "stars": 0
+      },
+      {
+        "element": "冰",
+        "stars": 0
+      },
+      {
+        "element": "龍",
+        "stars": 0
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 0
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 0
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 0
+      },
+      {
+        "ailment": "爆破",
+        "stars": 0
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 0
+      }
+    ],
+    "hitzones": []
+  },
+  {
+    "id": "aptonoth",
+    "name": "草食龍",
+    "nameEn": "Aptonoth",
+    "image": "https://img.gamewith.jp/img/28ab8d5b29bbb74547313843fcd057b8.png",
+    "size": "小型",
+    "species": "草食種",
+    "habitats": [
+      "邊野",
+      "沉積泥湖",
+      "雲煙林地"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 0
+      },
+      {
+        "element": "水",
+        "stars": 0
+      },
+      {
+        "element": "雷",
+        "stars": 0
+      },
+      {
+        "element": "冰",
+        "stars": 0
+      },
+      {
+        "element": "龍",
+        "stars": 0
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 0
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 0
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 0
+      },
+      {
+        "ailment": "爆破",
+        "stars": 0
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 0
+      }
+    ],
+    "hitzones": []
+  },
+  {
+    "id": "gajau",
+    "name": "咬魚",
+    "nameEn": "Gajau",
+    "image": "https://img.gamewith.jp/img/8304d4f10239d482c4eefe8dae54a00d.png",
+    "size": "小型",
+    "species": "魚類",
+    "habitats": [
+      "邊野",
+      "沉積泥湖",
+      "雲煙林地",
+      "沙嵐綠洲",
+      "大沙海"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 0
+      },
+      {
+        "element": "水",
+        "stars": 0
+      },
+      {
+        "element": "雷",
+        "stars": 0
+      },
+      {
+        "element": "冰",
+        "stars": 0
+      },
+      {
+        "element": "龍",
+        "stars": 0
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 0
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 0
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 0
+      },
+      {
+        "ailment": "爆破",
+        "stars": 0
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 0
+      }
+    ],
+    "hitzones": []
+  },
+  {
+    "id": "mernos",
+    "name": "行翼龍",
+    "nameEn": "Mernos",
+    "image": "https://img.gamewith.jp/img/0adae22289e8af5c9729cc40532a38e6.png",
+    "size": "小型",
+    "species": "翼龍種",
+    "habitats": [
+      "邊野",
+      "沉積泥湖",
+      "雲煙林地"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 0
+      },
+      {
+        "element": "水",
+        "stars": 0
+      },
+      {
+        "element": "雷",
+        "stars": 0
+      },
+      {
+        "element": "冰",
+        "stars": 0
+      },
+      {
+        "element": "龍",
+        "stars": 0
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 0
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 0
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 0
+      },
+      {
+        "ailment": "爆破",
+        "stars": 0
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 0
+      }
+    ],
+    "hitzones": []
+  },
+  {
+    "id": "warrior-atecoli",
+    "name": "殼隱族戰士",
+    "nameEn": "Warrior Atecoli",
+    "image": "https://img.gamewith.jp/img/3097c16f3101a128828c134b3671719d.png",
+    "size": "小型",
+    "species": "獸人種",
+    "habitats": [
+      "邊野",
+      "沉積泥湖",
+      "雲煙林地",
+      "沙嵐綠洲",
+      "大沙海"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 0
+      },
+      {
+        "element": "水",
+        "stars": 0
+      },
+      {
+        "element": "雷",
+        "stars": 0
+      },
+      {
+        "element": "冰",
+        "stars": 0
+      },
+      {
+        "element": "龍",
+        "stars": 0
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 0
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 0
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 0
+      },
+      {
+        "ailment": "爆破",
+        "stars": 0
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 0
+      }
+    ],
+    "hitzones": []
+  },
+  {
+    "id": "radiant-jagras",
+    "name": "融光種凶豺龍",
+    "nameEn": "Radiant Jagras",
+    "image": "https://img.gamewith.jp/img/45887767af17af70c09cd7e4e444dcfa.png",
+    "size": "小型",
+    "species": "融光種",
+    "habitats": [
+      "邊野",
+      "沉積泥湖",
+      "雲煙林地"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 0
+      },
+      {
+        "element": "水",
+        "stars": 0
+      },
+      {
+        "element": "雷",
+        "stars": 0
+      },
+      {
+        "element": "冰",
+        "stars": 0
+      },
+      {
+        "element": "龍",
+        "stars": 0
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 0
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 0
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 0
+      },
+      {
+        "ailment": "爆破",
+        "stars": 0
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 0
+      }
+    ],
+    "hitzones": []
+  },
+  {
+    "id": "radiant-mernos",
+    "name": "融光種行翼龍",
+    "nameEn": "Radiant Mernos",
+    "image": "https://img.gamewith.jp/img/bd2106724646d8be93930d1d5e5e16a5.png",
+    "size": "小型",
+    "species": "融光種",
+    "habitats": [
+      "邊野",
+      "沉積泥湖",
+      "雲煙林地"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 0
+      },
+      {
+        "element": "水",
+        "stars": 0
+      },
+      {
+        "element": "雷",
+        "stars": 0
+      },
+      {
+        "element": "冰",
+        "stars": 0
+      },
+      {
+        "element": "龍",
+        "stars": 0
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 0
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 0
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 0
+      },
+      {
+        "ailment": "爆破",
+        "stars": 0
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 0
+      }
+    ],
+    "hitzones": []
+  },
+  {
+    "id": "radiant-kestodon",
+    "name": "融光種冠突龍",
+    "nameEn": "Radiant Kestodon",
+    "image": "https://img.gamewith.jp/img/f8f10251116af90b51c942a5d6719d55.png",
+    "size": "小型",
+    "species": "融光種",
+    "habitats": [
+      "邊野",
+      "沉積泥湖",
+      "雲煙林地",
+      "沙嵐綠洲",
+      "大沙海"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 0
+      },
+      {
+        "element": "水",
+        "stars": 0
+      },
+      {
+        "element": "雷",
+        "stars": 0
+      },
+      {
+        "element": "冰",
+        "stars": 0
+      },
+      {
+        "element": "龍",
+        "stars": 0
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 0
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 0
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 0
+      },
+      {
+        "ailment": "爆破",
+        "stars": 0
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 0
+      }
+    ],
+    "hitzones": []
+  },
+  {
+    "id": "radiant-gajau",
+    "name": "融光種咬魚",
+    "nameEn": "Radiant Gajau",
+    "image": "https://img.gamewith.jp/img/295d6175c952e95c86ffe1dc184c608a.png",
+    "size": "小型",
+    "species": "融光種",
+    "habitats": [
+      "邊野",
+      "沉積泥湖",
+      "雲煙林地",
+      "沙嵐綠洲"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 0
+      },
+      {
+        "element": "水",
+        "stars": 0
+      },
+      {
+        "element": "雷",
+        "stars": 0
+      },
+      {
+        "element": "冰",
+        "stars": 0
+      },
+      {
+        "element": "龍",
+        "stars": 0
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 0
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 0
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 0
+      },
+      {
+        "ailment": "爆破",
+        "stars": 0
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 0
+      }
+    ],
+    "hitzones": []
+  },
+  {
+    "id": "radiant-vespoid",
+    "name": "融光種巨蜂",
+    "nameEn": "Radiant Vespoid",
+    "image": "https://img.gamewith.jp/img/0b7266ad7350298f556f9e97dbdb21c5.png",
+    "size": "小型",
+    "species": "融光種",
+    "habitats": [
+      "邊野",
+      "沉積泥湖",
+      "沙嵐綠洲",
+      "大沙海"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 0
+      },
+      {
+        "element": "水",
+        "stars": 0
+      },
+      {
+        "element": "雷",
+        "stars": 0
+      },
+      {
+        "element": "冰",
+        "stars": 0
+      },
+      {
+        "element": "龍",
+        "stars": 0
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 0
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 0
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 0
+      },
+      {
+        "ailment": "爆破",
+        "stars": 0
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 0
+      }
+    ],
+    "hitzones": []
+  },
+  {
+    "id": "girros",
+    "name": "凶顎龍",
+    "nameEn": "Girros",
+    "image": "https://img.gamewith.jp/img/c1a6bd93f61fd34624b204621f13d3a1.png",
+    "size": "小型",
+    "species": "牙龍種",
+    "habitats": [
+      "沉積泥湖"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 0
+      },
+      {
+        "element": "水",
+        "stars": 0
+      },
+      {
+        "element": "雷",
+        "stars": 0
+      },
+      {
+        "element": "冰",
+        "stars": 0
+      },
+      {
+        "element": "龍",
+        "stars": 0
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 0
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 0
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 0
+      },
+      {
+        "ailment": "爆破",
+        "stars": 0
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 0
+      }
+    ],
+    "hitzones": []
+  },
+  {
+    "id": "apceros",
+    "name": "背甲龍",
+    "nameEn": "Apceros",
+    "image": "https://img.gamewith.jp/img/03d4e9f3453596bdcd66152cb344e6c8.png",
+    "size": "小型",
+    "species": "草食種",
+    "habitats": [
+      "沙嵐綠洲",
+      "大沙海"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 0
+      },
+      {
+        "element": "水",
+        "stars": 0
+      },
+      {
+        "element": "雷",
+        "stars": 0
+      },
+      {
+        "element": "冰",
+        "stars": 0
+      },
+      {
+        "element": "龍",
+        "stars": 0
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 0
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 0
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 0
+      },
+      {
+        "ailment": "爆破",
+        "stars": 0
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 0
+      }
+    ],
+    "hitzones": []
+  },
+  {
+    "id": "hornetaur",
+    "name": "巨甲蟲",
+    "nameEn": "Hornetaur",
+    "image": "https://img.gamewith.jp/img/713628b2183b33c23a00ace74e182dec.png",
+    "size": "小型",
+    "species": "甲蟲種",
+    "habitats": [
+      "沙嵐綠洲",
+      "大沙海"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 0
+      },
+      {
+        "element": "水",
+        "stars": 0
+      },
+      {
+        "element": "雷",
+        "stars": 0
+      },
+      {
+        "element": "冰",
+        "stars": 0
+      },
+      {
+        "element": "龍",
+        "stars": 0
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 0
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 0
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 0
+      },
+      {
+        "ailment": "爆破",
+        "stars": 0
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 0
+      }
+    ],
+    "hitzones": []
+  },
+  {
+    "id": "kelbi",
+    "name": "精靈鹿",
+    "nameEn": "Kelbi",
+    "image": "https://img.gamewith.jp/img/64bf7107a7e4a1ea5e3ba1f85a851211.png",
+    "size": "小型",
+    "species": "草食種",
+    "habitats": [
+      "沙嵐綠洲",
+      "大沙海"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 0
+      },
+      {
+        "element": "水",
+        "stars": 0
+      },
+      {
+        "element": "雷",
+        "stars": 0
+      },
+      {
+        "element": "冰",
+        "stars": 0
+      },
+      {
+        "element": "龍",
+        "stars": 0
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 0
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 0
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 0
+      },
+      {
+        "ailment": "爆破",
+        "stars": 0
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 0
+      }
+    ],
+    "hitzones": []
+  },
+  {
+    "id": "noios",
+    "name": "響翼龍",
+    "nameEn": "Noios",
+    "image": "https://img.gamewith.jp/img/b4714c90735e0d9092d6d1d99441d5de.png",
+    "size": "小型",
+    "species": "翼龍種",
+    "habitats": [
+      "沙嵐綠洲",
+      "大沙海"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 0
+      },
+      {
+        "element": "水",
+        "stars": 0
+      },
+      {
+        "element": "雷",
+        "stars": 0
+      },
+      {
+        "element": "冰",
+        "stars": 0
+      },
+      {
+        "element": "龍",
+        "stars": 0
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 0
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 0
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 0
+      },
+      {
+        "ailment": "爆破",
+        "stars": 0
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 0
+      }
+    ],
+    "hitzones": []
+  },
+  {
+    "id": "radiant-hornetaur",
+    "name": "融光種巨甲蟲",
+    "nameEn": "Radiant Hornetaur",
+    "image": "https://img.gamewith.jp/img/caa33150cfcdef0a54b19c5e5a05f0ed.png",
+    "size": "小型",
+    "species": "融光種",
+    "habitats": [
+      "沙嵐綠洲"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 0
+      },
+      {
+        "element": "水",
+        "stars": 0
+      },
+      {
+        "element": "雷",
+        "stars": 0
+      },
+      {
+        "element": "冰",
+        "stars": 0
+      },
+      {
+        "element": "龍",
+        "stars": 0
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 0
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 0
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 0
+      },
+      {
+        "ailment": "爆破",
+        "stars": 0
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 0
+      }
+    ],
+    "hitzones": []
+  },
+  {
+    "id": "radiant-girros",
+    "name": "融光種凶顎龍",
+    "nameEn": "Radiant Girros",
+    "image": "https://img.gamewith.jp/img/949f567fd0e7eb332e0c83c27f256783.png",
+    "size": "小型",
+    "species": "融光種",
+    "habitats": [
+      "沉積泥湖"
+    ],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 0
+      },
+      {
+        "element": "水",
+        "stars": 0
+      },
+      {
+        "element": "雷",
+        "stars": 0
+      },
+      {
+        "element": "冰",
+        "stars": 0
+      },
+      {
+        "element": "龍",
+        "stars": 0
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 0
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 0
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 0
+      },
+      {
+        "ailment": "爆破",
+        "stars": 0
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 0
+      }
+    ],
+    "hitzones": []
+  },
+  {
+    "id": "ruger-aidal",
+    "name": "光稜龍",
+    "nameEn": "Ruger Aidal",
+    "image": "https://img.gamewith.jp/img/32ec5fea3e2f8a3107735420290e708c.png",
+    "size": "大型",
+    "species": "古龍種",
+    "habitats": [],
+    "weakness": [
+      {
+        "element": "火",
+        "stars": 3
+      },
+      {
+        "element": "水",
+        "stars": 1
+      },
+      {
+        "element": "雷",
+        "stars": 1
+      },
+      {
+        "element": "冰",
+        "stars": 3
+      },
+      {
+        "element": "龍",
+        "stars": 2
+      }
+    ],
+    "ailments": [
+      {
+        "ailment": "毒",
+        "stars": 1
+      },
+      {
+        "ailment": "睡眠",
+        "stars": 1
+      },
+      {
+        "ailment": "麻痺",
+        "stars": 1
+      },
+      {
+        "ailment": "爆破",
+        "stars": 3
+      },
+      {
+        "ailment": "眩暈",
+        "stars": 1
+      }
+    ],
+    "hitzones": [
+      {
+        "label": "頭部",
+        "cut": 1,
+        "blunt": 2,
+        "ammo": 2
+      },
+      {
+        "label": "翅膀",
+        "cut": 2,
+        "blunt": 1,
+        "ammo": 2
+      },
+      {
+        "label": "前肢",
+        "cut": 2,
+        "blunt": 2,
+        "ammo": 2
+      },
+      {
+        "label": "尾巴",
+        "cut": 3,
+        "blunt": 1,
+        "ammo": 1
+      }
+    ]
+  }
+]
