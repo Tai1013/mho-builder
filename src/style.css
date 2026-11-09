@@ -63,14 +63,6 @@ html.modal-open body {
   overflow: hidden;
 }
 
-/* 手機上輸入框至少 16px，避免 iOS 點擊時自動放大 */
-@media (max-width: 720px) {
-  input,
-  select {
-    font-size: 16px;
-  }
-}
-
 input,
 select,
 button {
@@ -121,4 +113,17 @@ button.ghost:hover {
 
 .num {
   font-variant-numeric: tabular-nums;
+}
+
+/*
+ * iOS 點到字體小於 16px 的輸入框／下拉選單時會自動放大畫面。
+ * 觸控裝置（含手機橫向、平板）與窄螢幕一律 16px。
+ * 放在檔案最後並用 !important，避免被上面的 font: inherit 或元件內的小字設定蓋掉。
+ */
+@media (pointer: coarse), (max-width: 720px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
 }

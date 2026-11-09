@@ -439,6 +439,12 @@ onBeforeUnmount(() => {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+/* 跟旁邊的下拉選單同樣大小（觸控裝置上下拉選單是 16px） */
+@media (pointer: coarse), (max-width: 720px) {
+  .monster-btn {
+    font-size: 16px;
+  }
+}
 .monster-btn.set {
   border-color: var(--accent-border);
   color: var(--accent);
