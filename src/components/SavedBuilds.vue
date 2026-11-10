@@ -96,7 +96,7 @@ function onRemove(build: SavedBuild) {
   }
 }
 
-// ---------- 匯出（直接複製分享代碼） ----------
+// ---------- 複製代碼（分享給別人匯入） ----------
 // 先把每組的分享代碼算好：手機（尤其 iPhone）只允許在點按的當下複製，不能等壓縮做完才複製
 const shareCodes = reactive(new Map<string, string>())
 watch(
@@ -198,10 +198,13 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
           <div class="title-row">
             <h2 id="saved-title">配裝清單</h2>
             <span class="count">{{ builds.length }} 組</span>
-            <button type="button" class="link-btn" :aria-expanded="importOpen" @click="toggleImport">匯入</button>
+            <button type="button" class="link-btn" :aria-expanded="importOpen" @click="toggleImport">
+              {{ importOpen ? '取消匯入' : '匯入代碼' }}
+            </button>
             <button type="button" class="close-btn" aria-label="關閉" @click="close">×</button>
           </div>
-          <form class="save" @submit.prevent="save">
+          <!-- 匯入時先把「儲存目前配裝」藏起來，畫面只留匯入 -->
+          <form v-if="!importOpen" class="save" @submit.prevent="save">
             <CompactInput
               v-model="title"
               type="text"
@@ -214,8 +217,10 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
             />
             <button type="submit" class="primary" :disabled="!canSave">儲存目前配裝</button>
           </form>
-          <p v-if="!canSave" class="hint">目前沒有裝備，選好防具後再來儲存。</p>
-          <p v-else-if="savedAs" class="hint">目前配裝已存為「{{ savedAs.name }}」</p>
+          <template v-if="!importOpen">
+            <p v-if="!canSave" class="hint">目前沒有裝備，選好防具後再來儲存。</p>
+            <p v-else-if="savedAs" class="hint">目前配裝已存為「{{ savedAs.name }}」</p>
+          </template>
           <!-- 匯入：貼上別人給的分享代碼 -->
           <form v-if="importOpen" class="save" @submit.prevent="doImport">
             <CompactInput
@@ -324,7 +329,7 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
                     title="複製分享代碼，貼給別人就能在配裝清單匯入"
                     @click="onExport(r.build)"
                   >
-                    {{ copiedId === r.build.id ? '已複製' : '匯出' }}
+                    {{ copiedId === r.build.id ? '已複製' : '複製代碼' }}
                   </button>
                   <button type="button" class="ghost danger" @click="onRemove(r.build)">刪除</button>
                 </div>
@@ -344,7 +349,7 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
           </ul>
           <p v-else class="empty">
             還沒有儲存任何配裝。配好裝後，在上方取個標題儲存，之後點清單就能載入；<br />
-            也可以按右上角「匯入」，貼上別人給的分享代碼。
+            也可以按右上角「匯入代碼」，貼上別人給的分享代碼。
           </p>
         </div>
       </div>
