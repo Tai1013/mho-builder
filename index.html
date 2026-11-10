@@ -5,6 +5,16 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>MHO 自由配裝</title>
+    <!-- 加到手機主畫面後用獨立 App 模式開啟（不顯示瀏覽器的網址列和工具列） -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="MHO 配裝" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <!-- 手機狀態列的顏色跟著頂端列；手動指定主題時由 stores/uiPrefs.ts 改寫 -->
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1c1b20" media="(prefers-color-scheme: dark)" />
     <script>
       // 頁面一載入就套用使用者選的主題（淺色／深色），避免先用預設顏色閃一下；自動時不設定
       try {

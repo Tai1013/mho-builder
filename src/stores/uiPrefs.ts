@@ -18,11 +18,19 @@ function load(): SavedPrefs {
   }
 }
 
+/** 手機狀態列（index.html 的 theme-color）用的顏色，和 style.css 頂端列的 --surface 一樣 */
+const BAR_COLOR = { light: '#ffffff', dark: '#1c1b20' } as const
+
 /** 套用到 html 的 data-theme（自動時拿掉，交給 CSS 的 prefers-color-scheme） */
 function applyTheme(theme: Theme) {
   const el = document.documentElement
   if (theme === 'auto') el.removeAttribute('data-theme')
   else el.setAttribute('data-theme', theme)
+  // index.html 有淺色、深色各一個 theme-color；自動時各自用回原本的顏色，手動指定時兩個都改成指定的主題
+  document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]').forEach((m) => {
+    const own = m.media.includes('dark') ? BAR_COLOR.dark : BAR_COLOR.light
+    m.content = theme === 'auto' ? own : BAR_COLOR[theme]
+  })
 }
 
 /**
