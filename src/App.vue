@@ -1,16 +1,21 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { PARTS, RARITIES } from './data'
 import { useBuild } from './composables/useBuild'
 import { useUiPrefs } from './stores/uiPrefs'
+import { useSavedBuilds } from './stores/savedBuilds'
 import SlotCard from './components/SlotCard.vue'
 import ArmorPicker from './components/ArmorPicker.vue'
 import SkillSummary from './components/SkillSummary.vue'
 import BuildStats from './components/BuildStats.vue'
 import SelectChip from './components/SelectChip.vue'
+import SavedBuilds from './components/SavedBuilds.vue'
 
 const { targetRarity, setTargetRarity, clearAll, pickerOpen } = useBuild()
 const { compactSlots } = storeToRefs(useUiPrefs())
+const { builds } = storeToRefs(useSavedBuilds())
+const listOpen = ref(false)
 
 const targetOptions = [
   { value: 'max', label: '各部位最高' },
@@ -29,7 +34,9 @@ function onTarget(v: string) {
         <span class="label-text" aria-hidden="true">稀有度</span>
         <SelectChip class="target-chip" :value="targetRarity" :options="targetOptions" label="目標稀有度" @change="onTarget" />
       </span>
-      <button type="button" class="ghost" @click="clearAll">全部清除</button>
+      <button type="button" class="ghost list-btn" @click="listOpen = true">
+        配裝清單<span v-if="builds.length" class="list-count">{{ builds.length }}</span>
+      </button>
     </div>
   </header>
 
@@ -49,6 +56,7 @@ function onTarget(v: string) {
           <span class="track" aria-hidden="true"><span class="knob" /></span>
           簡易排版
         </button>
+        <button type="button" class="ghost clear-btn" aria-label="清除全部裝備" @click="clearAll">清除</button>
       </div>
       <SlotCard v-for="p in PARTS" :key="p.id" :part="p.id" :label="p.label" :compact="compactSlots" />
     </section>
@@ -56,10 +64,11 @@ function onTarget(v: string) {
   </main>
 
   <footer class="foot">
-    資料來源：gamewith.ai《魔物獵人：旅人》。配裝會記錄在網址，可直接複製分享。
+    資料來源：gamewith.ai《魔物獵人：旅人》。目前配裝會自動存在這台裝置，也會記錄在網址，可直接複製分享。
   </footer>
 
   <ArmorPicker v-if="pickerOpen" />
+  <SavedBuilds v-if="listOpen" @close="listOpen = false" />
 </template>
 
 <style scoped>
@@ -92,7 +101,7 @@ h1 {
   align-items: center;
   gap: 6px;
 }
-/* 稀有度選單和「全部清除」按鈕同高、同字重 */
+/* 稀有度選單和「配裝清單」按鈕同高、同字重 */
 .target .target-chip,
 .controls .ghost {
   height: 32px;
@@ -105,6 +114,22 @@ h1 {
 .controls .ghost {
   display: inline-flex;
   align-items: center;
+  white-space: nowrap;
+}
+.list-btn {
+  gap: 5px;
+}
+.list-count {
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
 }
 .layout {
   display: grid;
@@ -129,7 +154,13 @@ h1 {
 .slots-bar {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+}
+.clear-btn {
+  height: 28px;
+  padding: 0 10px;
+  font-size: 13px;
+  line-height: 1;
 }
 .slots-bar h2 {
   margin: 0 auto 0 0;
@@ -184,6 +215,10 @@ h1 {
 @media (max-width: 420px) {
   .label-text {
     display: none;
+  }
+  .topbar {
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 .foot {

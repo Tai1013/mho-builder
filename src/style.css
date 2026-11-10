@@ -15,6 +15,9 @@
   --good-bg: rgba(31, 122, 69, 0.12);
   --good-border: rgba(31, 122, 69, 0.5);
   --warn: #b26b00;
+  /* 技能超過最高等級時，格子右邊的紅色 ✕ 方塊 */
+  --over: #e0001b;
+  --on-over: #ffffff;
 
   font-family: system-ui, -apple-system, 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
   font-size: 14px;
@@ -43,6 +46,8 @@
     --good-bg: rgba(95, 208, 143, 0.14);
     --good-border: rgba(95, 208, 143, 0.5);
     --warn: #f0b04a;
+    --over: #ff4d5e;
+    --on-over: #ffffff;
   }
 }
 
@@ -125,6 +130,7 @@ button.ghost {
 .num {
   font-variant-numeric: tabular-nums;
 }
+
 
 /*
  * iOS 點到字體小於 16px 的輸入框／下拉選單時會自動放大畫面。

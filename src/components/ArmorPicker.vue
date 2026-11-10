@@ -19,12 +19,13 @@ import {
   stageFor,
 } from '../data'
 import { useBuild } from '../composables/useBuild'
+import { useModalHistory } from '../composables/useModalHistory'
 import type { ArmorPiece, Stage } from '../types'
 import MonsterIcon from './MonsterIcon.vue'
 import SelectChip from './SelectChip.vue'
 import SearchInput from './SearchInput.vue'
 
-const { slots, activePart, targetRarity, equip, equipSeries, closePicker, suppressHashRead } = useBuild()
+const { slots, activePart, targetRarity, equip, equipSeries, closePicker } = useBuild()
 
 // 篩選條件放在 Pinia：關掉視窗或換部位都會保留
 const filters = usePickerFilters()
@@ -189,7 +190,6 @@ watch(activePart, () => nextTick(() => listEl.value?.scrollTo({ top: 0 })))
 // ---------- 視窗行為：點外面收合面板、Esc、返回鍵、鎖住背景捲動 ----------
 const filterWrap = ref<HTMLElement | null>(null)
 const sheetEl = ref<HTMLElement | null>(null)
-let closedByHistory = false
 
 function onPointerDown(e: PointerEvent) {
   const t = e.target as Element
@@ -202,29 +202,16 @@ function onKeydown(e: KeyboardEvent) {
   if (openPanel.value) openPanel.value = null
   else closePicker()
 }
-function onPopState() {
-  closedByHistory = true
-  suppressHashRead()
-  closePicker()
-}
+// 手機返回鍵關閉視窗、鎖背景捲動
+useModalHistory(closePicker)
 onMounted(() => {
   document.addEventListener('pointerdown', onPointerDown)
   document.addEventListener('keydown', onKeydown)
-  // 多推一筆歷史紀錄，手機按返回鍵時是關閉視窗而不是離開頁面
-  history.pushState({ ...(history.state ?? {}), mhoPicker: true }, '')
-  window.addEventListener('popstate', onPopState)
-  document.documentElement.classList.add('modal-open')
   nextTick(() => sheetEl.value?.focus({ preventScroll: true }))
 })
 onBeforeUnmount(() => {
   document.removeEventListener('pointerdown', onPointerDown)
   document.removeEventListener('keydown', onKeydown)
-  window.removeEventListener('popstate', onPopState)
-  document.documentElement.classList.remove('modal-open')
-  if (!closedByHistory && history.state?.mhoPicker) {
-    suppressHashRead()
-    history.back()
-  }
 })
 </script>
 
