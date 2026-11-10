@@ -1,22 +1,31 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useBuild } from '../composables/useBuild'
 
-defineProps<{ compact?: boolean }>()
+const props = defineProps<{ compact?: boolean }>()
 const { setStatuses, aggregatedSkills } = useBuild()
+
+/** 簡易排版只列出已發動的套裝技能 */
+const activeSets = computed(() => setStatuses.value.filter((s) => s.active))
 </script>
 
 <template>
   <section class="summary">
+    <!-- 簡易排版：只顯示已發動的套裝（名稱、加成、件數），一個都沒發動就整段不顯示 -->
+    <template v-if="props.compact">
+      <template v-if="activeSets.length">
+        <h3>套裝技能</h3>
+        <ul class="compact-list sets-compact">
+          <li v-for="s in activeSets" :key="s.set.id" class="on">
+            <span class="set-name">{{ s.set.name }}<small>{{ s.set.bonusLabel }}</small></span>
+            <span class="set-count">{{ s.count }}/{{ s.set.requiredPieces }}</span>
+          </li>
+        </ul>
+      </template>
+    </template>
+    <template v-else>
     <h3>套裝技能</h3>
-    <!-- 簡易排版：套裝名稱、加成、件數、是否發動 -->
-    <ul v-if="setStatuses.length && compact" class="compact-list sets-compact">
-      <li v-for="s in setStatuses" :key="s.set.id" :class="{ on: s.active }">
-        <span class="set-name">{{ s.set.name }}<small>{{ s.set.bonusLabel }}</small></span>
-        <span class="set-count">{{ s.count }}/{{ s.set.requiredPieces }}</span>
-        <span class="state">{{ s.active ? '發動' : '未發動' }}</span>
-      </li>
-    </ul>
-    <ul v-else-if="setStatuses.length" class="sets">
+    <ul v-if="setStatuses.length" class="sets">
       <li v-for="s in setStatuses" :key="s.set.id" :class="{ on: s.active }">
         <div class="set-top">
           <span class="set-name">{{ s.set.name }}</span>
@@ -29,6 +38,7 @@ const { setStatuses, aggregatedSkills } = useBuild()
       </li>
     </ul>
     <p v-else class="muted">尚未裝備任何防具</p>
+    </template>
 
     <h3>技能合計</h3>
     <!-- 簡易排版：只顯示技能名稱、格子、等級 -->
@@ -209,9 +219,6 @@ h3:first-child {
 .compact-list .sk-name,
 .compact-list .set-name {
   min-width: 0;
-}
-.sets-compact li:not(.on) {
-  opacity: 0.65;
 }
 .sets-compact .set-name small {
   margin-left: 6px;

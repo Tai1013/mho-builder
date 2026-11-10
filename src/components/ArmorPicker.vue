@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
-import { usePickerFilters } from '../stores/pickerFilters'
+import { usePickerFilters, type SortKey } from '../stores/pickerFilters'
 import {
   NO_MONSTER,
   PARTS,
@@ -21,6 +21,8 @@ import {
 import { useBuild } from '../composables/useBuild'
 import type { ArmorPiece, Stage } from '../types'
 import MonsterIcon from './MonsterIcon.vue'
+import SelectChip from './SelectChip.vue'
+import SearchInput from './SearchInput.vue'
 
 const { slots, activePart, targetRarity, equip, equipSeries, closePicker, suppressHashRead } = useBuild()
 
@@ -34,6 +36,15 @@ const {
   sort: sortKey,
   hasFilters,
 } = storeToRefs(filters)
+
+const sortOptions: { value: SortKey; label: string }[] = [
+  { value: 'default', label: '預設排序' },
+  { value: 'defense', label: '防禦力高→低' },
+  { value: 'rarity', label: '稀有度高→低' },
+]
+function onSort(v: string) {
+  sortKey.value = v as SortKey
+}
 
 /** 目前展開的下拉面板（魔物／技能），一次只開一個 */
 type Panel = 'monster' | 'skill'
@@ -244,7 +255,7 @@ onBeforeUnmount(() => {
           </div>
 
           <div ref="filterWrap" class="filter-wrap">
-            <input v-model="query" type="search" placeholder="搜尋防具／魔物／技能名稱" aria-label="搜尋" />
+            <SearchInput v-model="query" placeholder="搜尋防具／魔物／技能名稱" label="搜尋" />
 
             <div class="filters">
               <button
@@ -259,7 +270,7 @@ onBeforeUnmount(() => {
                   <MonsterIcon v-for="m in selectedMonsters.slice(0, 2)" :key="m.id" :monster="m.monster" :size="20" />
                 </span>
                 <span class="lbl">{{ monsterBtnLabel }}</span>
-                <span class="caret" aria-hidden="true">{{ openPanel === 'monster' ? '▴' : '▾' }}</span>
+                <span class="caret" aria-hidden="true" />
               </button>
               <button
                 type="button"
@@ -270,13 +281,9 @@ onBeforeUnmount(() => {
                 @click="togglePanel('skill')"
               >
                 <span class="lbl">{{ skillBtnLabel }}</span>
-                <span class="caret" aria-hidden="true">{{ openPanel === 'skill' ? '▴' : '▾' }}</span>
+                <span class="caret" aria-hidden="true" />
               </button>
-              <select v-model="sortKey" aria-label="排序">
-                <option value="default">預設排序</option>
-                <option value="defense">防禦力高→低</option>
-                <option value="rarity">稀有度高→低</option>
-              </select>
+              <SelectChip class="sort-chip" :value="sortKey" :options="sortOptions" label="排序" @change="onSort" />
 
               <!-- 魔物面板：可多選，符合任一隻就列出 -->
               <div v-if="openPanel === 'monster'" id="monster-panel" class="panel">
@@ -339,7 +346,7 @@ onBeforeUnmount(() => {
               <div v-if="openPanel === 'skill'" id="skill-panel" class="panel">
                 <div class="panel-body">
                   <div class="panel-top">
-                    <input v-model="skillQuery" type="search" class="skill-search" placeholder="搜尋技能" aria-label="搜尋技能" />
+                    <SearchInput v-model="skillQuery" class="skill-search" placeholder="搜尋技能" label="搜尋技能" />
                     <button v-if="skillFilter.length" type="button" class="link-btn" @click="skillFilter = []">清除技能</button>
                   </div>
                   <div v-if="skillFilter.length > 1" class="mode" role="group" aria-label="多個技能的比對方式">
@@ -574,17 +581,22 @@ onBeforeUnmount(() => {
   flex-direction: column;
   gap: 6px;
 }
-.filter-wrap > input {
-  min-width: 0;
-}
 .filters {
   position: relative;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 6px;
 }
-.filters select {
+/* 魔物、技能、排序三顆一樣大，字級跟主畫面的稀有度選單一致（13px） */
+.fbtn,
+.filters .sort-chip {
+  height: 32px;
   min-width: 0;
+  padding: 0 8px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
 }
 .fbtn {
   display: inline-flex;
@@ -593,22 +605,23 @@ onBeforeUnmount(() => {
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--text);
-  border-radius: 8px;
-  padding: 3px 8px;
-  min-height: 32px;
   cursor: pointer;
   white-space: nowrap;
-  min-width: 0;
 }
 .fbtn .lbl {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* 跟旁邊的下拉選單同樣大小（觸控裝置上下拉選單是 16px） */
-@media (pointer: coarse), (max-width: 720px) {
-  .fbtn {
-    font-size: 16px;
-  }
+.sort-chip :deep(.face) {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+}
+.sort-chip :deep(.caret) {
+  margin-left: auto;
 }
 .fbtn.set {
   border-color: var(--accent-border);
@@ -625,10 +638,17 @@ onBeforeUnmount(() => {
 .stack > * + * {
   margin-left: -8px;
 }
+/* 跟稀有度選單同一個三角形，展開時翻轉 */
 .caret {
-  font-size: 10px;
-  color: var(--muted);
+  flex-shrink: 0;
   margin-left: auto;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid var(--muted);
+  transition: transform 0.15s;
+}
+.fbtn.open .caret {
+  transform: rotate(180deg);
 }
 .panel {
   position: absolute;
