@@ -31514,7 +31514,7 @@
           {
             "skillId": "hunting-instinct",
             "name": "獵手直覺",
-            "level": null
+            "level": 1
           }
         ],
         "setSkill": "jyuratodus-flowmend",
@@ -31661,7 +31661,7 @@
               {
                 "skillId": "hunting-instinct",
                 "name": "獵手直覺",
-                "level": null
+                "level": 1
               }
             ],
             "materials": {

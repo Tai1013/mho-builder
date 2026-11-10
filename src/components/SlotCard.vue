@@ -4,8 +4,9 @@ import { monsterLabel, pieceMap, seriesMap, seriesMonster, setSkillMap, stageFor
 import { useBuild } from '../composables/useBuild'
 import type { PartId } from '../types'
 import MonsterIcon from './MonsterIcon.vue'
+import SelectChip from './SelectChip.vue'
 
-const props = defineProps<{ part: PartId; label: string }>()
+const props = defineProps<{ part: PartId; label: string; compact?: boolean }>()
 const { slots, openPicker, unequip, setRarity } = useBuild()
 
 const piece = computed(() => {
@@ -16,27 +17,42 @@ const stage = computed(() => (piece.value ? stageFor(piece.value, slots[props.pa
 const series = computed(() => (piece.value ? seriesMap.get(piece.value.series) : undefined))
 const setSkill = computed(() => (piece.value?.setSkill ? setSkillMap.get(piece.value.setSkill) : undefined))
 
-function onRarity(e: Event) {
-  setRarity(props.part, Number((e.target as HTMLSelectElement).value))
+const rarityOptions = computed(() => piece.value?.stages.map((st) => ({ value: st.rarity, label: `R${st.rarity}` })) ?? [])
+function onRarity(v: string) {
+  setRarity(props.part, Number(v))
 }
 </script>
 
 <template>
   <div
     class="slot"
-    :class="{ empty: !piece }"
+    :class="{ empty: !piece, compact }"
     role="button"
     tabindex="0"
     :aria-label="piece ? `更換${label}：${stage?.name}` : `選擇${label}`"
     @click="openPicker(part)"
     @keydown.enter.self="openPicker(part)"
   >
+    <!-- 簡易排版：魔物圖、稀有度、技能（套裝看下方「套裝技能」） -->
+    <template v-if="compact">
+      <template v-if="piece && stage">
+        <MonsterIcon class="c-icon" :monster="seriesMonster(series)" :size="36" />
+        <div class="c-line">
+          <SelectChip :value="stage.rarity" :options="rarityOptions" :label="`${label}稀有度`" @change="onRarity" />
+          <span v-for="sk in stage.skills" :key="sk.skillId" class="c-skill">
+            {{ sk.name }}<span class="lv">{{ sk.level ?? '?' }}</span>
+          </span>
+          <span v-if="!stage.skills.length" class="muted">無技能</span>
+        </div>
+      </template>
+      <div v-else class="placeholder c-placeholder"><span class="plus" aria-hidden="true">＋</span>{{ label }}</div>
+    </template>
+
+    <template v-else>
     <div class="slot-head">
       <span class="part">{{ label }}</span>
       <template v-if="piece && stage">
-        <select class="rarity" :value="stage.rarity" aria-label="稀有度" @click.stop @change="onRarity">
-          <option v-for="st in piece.stages" :key="st.rarity" :value="st.rarity">R{{ st.rarity }}</option>
-        </select>
+        <SelectChip :value="stage.rarity" :options="rarityOptions" :label="`${label}稀有度`" @change="onRarity" />
         <button class="icon-btn" type="button" title="移除" aria-label="移除" @click.stop="unequip(part)">×</button>
       </template>
     </div>
@@ -62,6 +78,7 @@ function onRarity(e: Event) {
       <div v-if="setSkill" class="set">套裝：{{ setSkill.name }}</div>
     </template>
     <div v-else class="placeholder"><span class="plus" aria-hidden="true">＋</span>選擇{{ label }}防具</div>
+    </template>
   </div>
 </template>
 
@@ -75,12 +92,10 @@ function onRarity(e: Event) {
   transition: border-color 0.15s, box-shadow 0.15s;
   min-width: 0;
 }
-.slot:hover {
-  border-color: var(--accent-border);
-}
-.slot:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 1px;
+@media (hover: hover) {
+  .slot:hover {
+    border-color: var(--accent-border);
+  }
 }
 .slot.empty {
   border-style: dashed;
@@ -96,10 +111,6 @@ function onRarity(e: Event) {
   color: var(--accent);
   letter-spacing: 0.08em;
   margin-right: auto;
-}
-.rarity {
-  font-size: 12px;
-  padding: 1px 4px;
 }
 .ident {
   display: flex;
@@ -170,5 +181,41 @@ function onRarity(e: Event) {
 .plus {
   color: var(--accent);
   font-weight: 700;
+}
+
+/* ---------- 簡易排版 ---------- */
+.slot.compact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+}
+.c-icon {
+  flex-shrink: 0;
+}
+.c-line {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+}
+.c-skill {
+  background: var(--chip);
+  border-radius: 6px;
+  padding: 1px 6px;
+  white-space: nowrap;
+}
+.c-skill .lv {
+  margin-left: 3px;
+}
+.c-placeholder {
+  padding: 4px 0;
+}
+.muted {
+  font-size: 12px;
+  color: var(--muted);
 }
 </style>

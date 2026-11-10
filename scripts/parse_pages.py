@@ -101,6 +101,10 @@ set_by_name = {s['name']: s for s in set_skills}
 
 # ---------- armor ----------
 armor_list = raw_rows('armor.html', '"seriesSlug"')
+# 來源網站沒標等級的技能，用遊戲內實際確認過的等級補上：(防具 id, 稀有度, 技能 id) → 等級
+SKILL_LEVEL_OVERRIDES = {
+    ('radiant-jyuratodus/arms', 10, 'hunting-instinct'): 1,  # 融光・泥魚龍腕甲Ⅳ 獵手直覺，遊戲內為 Lv1
+}
 series = {}
 for r in armor_list:
     part = r['href'].split('/')[-1]
@@ -109,15 +113,20 @@ for r in armor_list:
     head = re.search(r'<h1.*?aria-label="toc"', h, flags=re.S).group(0)
     mon = re.search(r'href="/monster-hunter-outlanders/zh-hant/monsters/([a-z0-9-]+)"[^>]*>(.*?)</a>', head, flags=re.S)
     stages = []
+    no_level_in_source = set()  # 來源沒標等級的技能（和列表頁比對時用）
     for cells in rows(section(h, 'stages')):
+        rarity = int(clean(cells[0]))
         sks = []
         for m in re.finditer(SKILL_LINK, cells[3], flags=re.S):
             t = clean(m.group(2)); mm = re.match(r'(.+?)\s*Lv(\d+)$', t)
             if mm: sks.append({'skillId': m.group(1), 'name': mm.group(1), 'level': int(mm.group(2))})
             else:
-                print('NOTE skill without level', sid, part, t)
-                sks.append({'skillId': m.group(1), 'name': t, 'level': None})
-        stages.append({'rarity': int(clean(cells[0])), 'name': clean(cells[1]),
+                no_level_in_source.add((rarity, m.group(1)))
+                lv = SKILL_LEVEL_OVERRIDES.get(('%s/%s' % (sid, part), rarity, m.group(1)))
+                if lv is None: print('NOTE skill without level', sid, part, t)
+                else: print('NOTE skill level override', sid, part, rarity, t, '-> Lv%d' % lv)
+                sks.append({'skillId': m.group(1), 'name': t, 'level': lv})
+        stages.append({'rarity': rarity, 'name': clean(cells[1]),
                        'defense': int(clean(cells[2])), 'skills': sks})
     mats = {}
     for cells in rows(section(h, 'materials')):
@@ -141,7 +150,8 @@ for r in armor_list:
         'image': r['image'], 'stages': stages,
     }
     # cross-check list page vs detail page
-    lbl = [('%s Lv%d' % (s['name'], s['level'])) if s['level'] else s['name'] for s in piece['skills']]
+    lbl = [s['name'] if s['level'] is None or (top['rarity'], s['skillId']) in no_level_in_source
+           else '%s Lv%d' % (s['name'], s['level']) for s in piece['skills']]
     if lbl != r['skillLabels'] or (top and top['defense'] != r['defense']) or (top and top['rarity'] != r['maxRarity']):
         print('WARN mismatch', piece['id'], lbl, r['skillLabels'], top and top['defense'], r['defense'])
     s = series.setdefault(sid, {

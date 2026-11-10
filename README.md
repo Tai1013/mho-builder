@@ -112,7 +112,7 @@ npm run dev
 ### 已知的來源資料缺漏
 
 - 「融光種大凶顎龍套裝」在來源網站的魔物連結指向小型的「融光種凶顎龍」，但素材全是「融光種大凶顎龍的…」，所以 `parse_pages.py` 的 `MONSTER_OVERRIDES` 把它修正為 `radiant-great-girros`。
-- `radiant-jyuratodus/arms` 稀有度 10 的「獵手直覺」來源網站沒有標等級 → `level: null`（配裝頁暫以 Lv1 計算並標「?」）。
+- `radiant-jyuratodus/arms` 稀有度 10 的「獵手直覺」來源網站沒有標等級，遊戲內確認是 Lv1，由 `parse_pages.py` 的 `SKILL_LEVEL_OVERRIDES` 補上。之後若再遇到沒標等級又沒補的技能，會存成 `level: null`（配裝頁暫以 Lv1 計算並標「?」）。
 - 套裝「土砂龍的泥障」加成「泥耐性+1」，但來源網站沒有「泥耐性」技能頁 → `grants[0].skillId: null`。
 - 套裝「搔鳥的閃擊」標籤寫「全力+1」，實際加成的是技能「極力」（`instinct`）。
 - `carving-pro`（剝取鐵人）與 5 個「冒險團之力」技能沒有總說明（`description: null`），但各等級效果有資料。

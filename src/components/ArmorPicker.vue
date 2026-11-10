@@ -15,6 +15,7 @@ import {
   seriesMatchesMonster,
   seriesMonster,
   setSkillMap,
+  skillMap,
   stageFor,
 } from '../data'
 import { useBuild } from '../composables/useBuild'
@@ -25,26 +26,69 @@ const { slots, activePart, targetRarity, equip, equipSeries, closePicker, suppre
 
 // 篩選條件放在 Pinia：關掉視窗或換部位都會保留
 const filters = usePickerFilters()
-const { query, skill: skillFilter, monster: monsterFilter, sort: sortKey, hasFilters } = storeToRefs(filters)
-const monsterOpen = ref(false)
+const {
+  query,
+  skills: skillFilter,
+  skillMode,
+  monsters: monsterFilter,
+  sort: sortKey,
+  hasFilters,
+} = storeToRefs(filters)
+
+/** 目前展開的下拉面板（魔物／技能），一次只開一個 */
+type Panel = 'monster' | 'skill'
+const openPanel = ref<Panel | null>(null)
+function togglePanel(p: Panel) {
+  openPanel.value = openPanel.value === p ? null : p
+}
 
 const partLabel = computed(() => PARTS.find((p) => p.id === activePart.value)?.label ?? '')
-const selectedMonster = computed(() =>
-  monsterFilter.value && monsterFilter.value !== NO_MONSTER ? monsterMap.get(monsterFilter.value) : undefined,
+
+// ---------- 魔物 ----------
+const selectedMonsters = computed(() =>
+  monsterFilter.value.map((id) =>
+    id === NO_MONSTER
+      ? { id, monster: undefined, name: '無魔物素材' }
+      : { id, monster: monsterMap.get(id), name: monsterMap.get(id)?.name ?? id },
+  ),
 )
-const monsterFilterLabel = computed(() => {
-  if (!monsterFilter.value) return '全部魔物'
-  if (monsterFilter.value === NO_MONSTER) return '無魔物素材'
-  return selectedMonster.value?.name ?? ''
+const monsterBtnLabel = computed(() => {
+  const n = selectedMonsters.value.length
+  if (!n) return '全部魔物'
+  return n === 1 ? selectedMonsters.value[0].name : `${n} 隻`
 })
 const largeOptions = monsterOptions.filter((o) => o.monster.size === '大型')
 const smallOptions = monsterOptions.filter((o) => o.monster.size !== '大型')
 
-function pickMonster(id: string) {
-  monsterFilter.value = monsterFilter.value === id ? '' : id
-  monsterOpen.value = false
+// ---------- 技能 ----------
+const selectedSkillSet = computed(() => new Set(skillFilter.value))
+const skillBtnLabel = computed(() => {
+  const n = skillFilter.value.length
+  if (!n) return '全部技能'
+  return n === 1 ? (skillMap.get(skillFilter.value[0])?.name ?? '') : `技能 ×${n}`
+})
+
+/** 每件防具在任一稀有度或套裝效果中可取得的技能 */
+const pieceSkillIds = new Map<string, Set<string>>()
+function skillIdsOf(piece: ArmorPiece): Set<string> {
+  let ids = pieceSkillIds.get(piece.id)
+  if (!ids) {
+    ids = new Set(piece.stages.flatMap((st) => st.skills.map((k) => k.skillId)))
+    const set = piece.setSkill ? setSkillMap.get(piece.setSkill) : undefined
+    set?.grants.forEach((g) => g.skillId && ids!.add(g.skillId))
+    pieceSkillIds.set(piece.id, ids)
+  }
+  return ids
 }
 
+/** 技能面板的選項（可用面板內的搜尋框過濾） */
+const skillQuery = ref('')
+const skillOptions = computed(() => {
+  const q = skillQuery.value.trim().toLowerCase()
+  return armorSkills.filter((s) => !q || s.name.toLowerCase().includes(q) || (s.nameEn ?? '').toLowerCase().includes(q))
+})
+
+// ---------- 清單 ----------
 function searchText(p: ArmorPiece): string {
   const s = seriesMap.get(p.series)
   const set = p.setSkill ? setSkillMap.get(p.setSkill) : undefined
@@ -62,31 +106,50 @@ function searchText(p: ArmorPiece): string {
 }
 
 /** 篩選的技能不在目前稀有度時，提示從哪個稀有度開始才有 */
-function filterNote(piece: ArmorPiece, stage: Stage): string | null {
-  const id = skillFilter.value
-  if (!id || stage.skills.some((k) => k.skillId === id)) return null
-  const other = piece.stages.find((st) => st.skills.some((k) => k.skillId === id))
-  if (!other) return null
-  const k = other.skills.find((x) => x.skillId === id)!
-  return `${k.name} Lv${k.level ?? '?'}：R${other.rarity} 起`
+function filterNotes(piece: ArmorPiece, stage: Stage): string[] {
+  const notes: string[] = []
+  for (const id of skillFilter.value) {
+    if (stage.skills.some((k) => k.skillId === id)) continue
+    const other = piece.stages.find((st) => st.skills.some((k) => k.skillId === id))
+    if (!other) continue
+    const k = other.skills.find((x) => x.skillId === id)!
+    notes.push(`${k.name} Lv${k.level ?? '?'}：R${other.rarity} 起`)
+  }
+  return notes
 }
 
 const rows = computed(() => {
   const q = query.value.trim().toLowerCase()
+  const wanted = skillFilter.value
   let list = piecesByPart[activePart.value].map((piece) => {
     const stage = stageFor(piece, targetRarity.value)
     const series = seriesMap.get(piece.series)
     const set = piece.setSkill ? setSkillMap.get(piece.setSkill) : undefined
-    return { piece, stage, series, set, monster: seriesMonster(series), note: filterNote(piece, stage) }
+    const ids = skillIdsOf(piece)
+    return {
+      piece,
+      stage,
+      series,
+      set,
+      monster: seriesMonster(series),
+      notes: filterNotes(piece, stage),
+      /** 符合幾個篩選技能（含其他稀有度、套裝） */
+      matched: wanted.filter((id) => ids.has(id)).length,
+      /** 目前稀有度下，篩選技能的等級合計 */
+      matchedLevels: stage.skills.reduce((n, k) => n + (selectedSkillSet.value.has(k.skillId) ? (k.level ?? 1) : 0), 0),
+      setHit: !!set?.grants.some((g) => g.skillId && selectedSkillSet.value.has(g.skillId)),
+    }
   })
-  if (monsterFilter.value) list = list.filter((r) => seriesMatchesMonster(r.series, monsterFilter.value))
+  if (monsterFilter.value.length) {
+    list = list.filter((r) => monsterFilter.value.some((id) => seriesMatchesMonster(r.series, id)))
+  }
   if (q) list = list.filter((r) => searchText(r.piece).includes(q))
-  if (skillFilter.value) {
-    list = list.filter(
-      (r) =>
-        r.piece.stages.some((st) => st.skills.some((k) => k.skillId === skillFilter.value)) ||
-        r.set?.grants.some((g) => g.skillId === skillFilter.value),
-    )
+  if (wanted.length) {
+    list = list.filter((r) => (skillMode.value === 'all' ? r.matched === wanted.length : r.matched > 0))
+    // 預設排序時，符合越多技能、等級越高的排越前面
+    if (sortKey.value === 'default') {
+      list = [...list].sort((a, b) => b.matched - a.matched || b.matchedLevels - a.matchedLevels)
+    }
   }
   if (sortKey.value === 'defense') list = [...list].sort((a, b) => b.stage.defense - a.stage.defense)
   if (sortKey.value === 'rarity') list = [...list].sort((a, b) => b.piece.rarityMax - a.piece.rarityMax || b.stage.defense - a.stage.defense)
@@ -96,7 +159,7 @@ const rows = computed(() => {
 const equippedId = computed(() => slots[activePart.value].pieceId)
 function resetFilters() {
   filters.reset()
-  monsterOpen.value = false
+  openPanel.value = null
 }
 
 function choose(pieceId: string) {
@@ -112,17 +175,20 @@ function chooseSeries(seriesId: string) {
 const listEl = ref<HTMLElement | null>(null)
 watch(activePart, () => nextTick(() => listEl.value?.scrollTo({ top: 0 })))
 
-// ---------- 視窗行為：點外面收合魔物選單、Esc、返回鍵、鎖住背景捲動 ----------
+// ---------- 視窗行為：點外面收合面板、Esc、返回鍵、鎖住背景捲動 ----------
 const filterWrap = ref<HTMLElement | null>(null)
 const sheetEl = ref<HTMLElement | null>(null)
 let closedByHistory = false
 
 function onPointerDown(e: PointerEvent) {
-  if (monsterOpen.value && filterWrap.value && !filterWrap.value.contains(e.target as Node)) monsterOpen.value = false
+  const t = e.target as Element
+  // 清單上的遮罩自己處理 click，避免收合面板的同時點到底下的防具
+  if (!openPanel.value || t.closest?.('.scrim')) return
+  if (filterWrap.value && !filterWrap.value.contains(t)) openPanel.value = null
 }
 function onKeydown(e: KeyboardEvent) {
   if (e.key !== 'Escape') return
-  if (monsterOpen.value) monsterOpen.value = false
+  if (openPanel.value) openPanel.value = null
   else closePicker()
 }
 function onPopState() {
@@ -178,79 +244,172 @@ onBeforeUnmount(() => {
           </div>
 
           <div ref="filterWrap" class="filter-wrap">
+            <input v-model="query" type="search" placeholder="搜尋防具／魔物／技能名稱" aria-label="搜尋" />
+
             <div class="filters">
-              <input v-model="query" type="search" placeholder="搜尋防具／魔物／技能名稱" aria-label="搜尋" />
               <button
                 type="button"
-                class="monster-btn"
-                :class="{ set: monsterFilter }"
-                :aria-expanded="monsterOpen"
-                aria-controls="monster-grid"
-                @click="monsterOpen = !monsterOpen"
+                class="fbtn"
+                :class="{ set: monsterFilter.length, open: openPanel === 'monster' }"
+                :aria-expanded="openPanel === 'monster'"
+                aria-controls="monster-panel"
+                @click="togglePanel('monster')"
               >
-                <MonsterIcon v-if="selectedMonster" :monster="selectedMonster" :size="20" />
-                <span>{{ monsterFilterLabel }}</span>
-                <span class="caret" aria-hidden="true">{{ monsterOpen ? '▴' : '▾' }}</span>
+                <span v-if="selectedMonsters.length" class="stack">
+                  <MonsterIcon v-for="m in selectedMonsters.slice(0, 2)" :key="m.id" :monster="m.monster" :size="20" />
+                </span>
+                <span class="lbl">{{ monsterBtnLabel }}</span>
+                <span class="caret" aria-hidden="true">{{ openPanel === 'monster' ? '▴' : '▾' }}</span>
               </button>
-              <select v-model="skillFilter" aria-label="依技能篩選">
-                <option value="">全部技能</option>
-                <option v-for="s in armorSkills" :key="s.id" :value="s.id">{{ s.name }}</option>
-              </select>
+              <button
+                type="button"
+                class="fbtn"
+                :class="{ set: skillFilter.length, open: openPanel === 'skill' }"
+                :aria-expanded="openPanel === 'skill'"
+                aria-controls="skill-panel"
+                @click="togglePanel('skill')"
+              >
+                <span class="lbl">{{ skillBtnLabel }}</span>
+                <span class="caret" aria-hidden="true">{{ openPanel === 'skill' ? '▴' : '▾' }}</span>
+              </button>
               <select v-model="sortKey" aria-label="排序">
                 <option value="default">預設排序</option>
                 <option value="defense">防禦力高→低</option>
                 <option value="rarity">稀有度高→低</option>
               </select>
+
+              <!-- 魔物面板：可多選，符合任一隻就列出 -->
+              <div v-if="openPanel === 'monster'" id="monster-panel" class="panel">
+                <div class="panel-body">
+                  <div class="panel-top">
+                    <span class="hint">可多選，符合任一隻就列出</span>
+                    <button v-if="monsterFilter.length" type="button" class="link-btn" @click="monsterFilter = []">
+                      清除魔物
+                    </button>
+                  </div>
+                  <h4>大型魔物</h4>
+                  <div class="mp-grid">
+                    <button
+                      v-for="o in largeOptions"
+                      :key="o.monster.id"
+                      type="button"
+                      class="mchip"
+                      :class="{ on: monsterFilter.includes(o.monster.id) }"
+                      :aria-pressed="monsterFilter.includes(o.monster.id)"
+                      :title="o.monster.nameEn ?? o.monster.name"
+                      @click="filters.toggleMonster(o.monster.id)"
+                    >
+                      <MonsterIcon :monster="o.monster" :size="28" />
+                      <span class="mchip-name">{{ o.monster.name }}</span>
+                    </button>
+                  </div>
+                  <h4>小型魔物素材</h4>
+                  <div class="mp-grid">
+                    <button
+                      v-for="o in smallOptions"
+                      :key="o.monster.id"
+                      type="button"
+                      class="mchip"
+                      :class="{ on: monsterFilter.includes(o.monster.id) }"
+                      :aria-pressed="monsterFilter.includes(o.monster.id)"
+                      @click="filters.toggleMonster(o.monster.id)"
+                    >
+                      <MonsterIcon :monster="o.monster" :size="28" />
+                      <span class="mchip-name">{{ o.monster.name }}<small> ×{{ o.seriesCount }}套</small></span>
+                    </button>
+                    <button
+                      v-if="noMonsterSeriesCount"
+                      type="button"
+                      class="mchip"
+                      :class="{ on: monsterFilter.includes(NO_MONSTER) }"
+                      :aria-pressed="monsterFilter.includes(NO_MONSTER)"
+                      @click="filters.toggleMonster(NO_MONSTER)"
+                    >
+                      <MonsterIcon :size="28" />
+                      <span class="mchip-name">無魔物素材<small> ×{{ noMonsterSeriesCount }}套</small></span>
+                    </button>
+                  </div>
+                </div>
+                <div class="panel-foot">
+                  <button type="button" class="done-btn" @click="openPanel = null">完成（{{ rows.length }} 件）</button>
+                </div>
+              </div>
+
+              <!-- 技能面板：可多選，可切換「任一／全部」 -->
+              <div v-if="openPanel === 'skill'" id="skill-panel" class="panel">
+                <div class="panel-body">
+                  <div class="panel-top">
+                    <input v-model="skillQuery" type="search" class="skill-search" placeholder="搜尋技能" aria-label="搜尋技能" />
+                    <button v-if="skillFilter.length" type="button" class="link-btn" @click="skillFilter = []">清除技能</button>
+                  </div>
+                  <div v-if="skillFilter.length > 1" class="mode" role="group" aria-label="多個技能的比對方式">
+                    <span>比對方式</span>
+                    <button type="button" :class="{ on: skillMode === 'any' }" :aria-pressed="skillMode === 'any'" @click="skillMode = 'any'">
+                      有任一個
+                    </button>
+                    <button type="button" :class="{ on: skillMode === 'all' }" :aria-pressed="skillMode === 'all'" @click="skillMode = 'all'">
+                      全部都有
+                    </button>
+                  </div>
+                  <div class="sk-grid">
+                    <button
+                      v-for="s in skillOptions"
+                      :key="s.id"
+                      type="button"
+                      class="schip"
+                      :class="{ on: selectedSkillSet.has(s.id) }"
+                      :aria-pressed="selectedSkillSet.has(s.id)"
+                      @click="filters.toggleSkill(s.id)"
+                    >
+                      {{ s.name }}
+                    </button>
+                    <p v-if="!skillOptions.length" class="hint">找不到技能</p>
+                  </div>
+                </div>
+                <div class="panel-foot">
+                  <button type="button" class="done-btn" @click="openPanel = null">完成（{{ rows.length }} 件）</button>
+                </div>
+              </div>
             </div>
 
-            <div v-if="monsterOpen" id="monster-grid" class="monster-panel">
-              <div>
-                <button type="button" class="mchip" :class="{ on: !monsterFilter }" @click="pickMonster('')">
-                  <span class="mchip-name">全部魔物</span>
-                </button>
-              </div>
-              <h4>大型魔物</h4>
-              <div class="mp-grid">
-                <button
-                  v-for="o in largeOptions"
-                  :key="o.monster.id"
-                  type="button"
-                  class="mchip"
-                  :class="{ on: monsterFilter === o.monster.id }"
-                  :title="o.monster.nameEn ?? o.monster.name"
-                  @click="pickMonster(o.monster.id)"
-                >
-                  <MonsterIcon :monster="o.monster" :size="28" />
-                  <span class="mchip-name">{{ o.monster.name }}</span>
-                </button>
-              </div>
-              <h4>小型魔物素材</h4>
-              <div class="mp-grid">
-                <button
-                  v-for="o in smallOptions"
-                  :key="o.monster.id"
-                  type="button"
-                  class="mchip"
-                  :class="{ on: monsterFilter === o.monster.id }"
-                  @click="pickMonster(o.monster.id)"
-                >
-                  <MonsterIcon :monster="o.monster" :size="28" />
-                  <span class="mchip-name">{{ o.monster.name }}<small> ×{{ o.seriesCount }}套</small></span>
-                </button>
-                <button
-                  v-if="noMonsterSeriesCount"
-                  type="button"
-                  class="mchip"
-                  :class="{ on: monsterFilter === NO_MONSTER }"
-                  @click="pickMonster(NO_MONSTER)"
-                >
-                  <MonsterIcon :size="28" />
-                  <span class="mchip-name">無魔物素材<small> ×{{ noMonsterSeriesCount }}套</small></span>
-                </button>
-              </div>
+            <!-- 已選的魔物／技能，點一下移除 -->
+            <div v-if="selectedMonsters.length || skillFilter.length" class="active-row">
+              <button
+                v-for="m in selectedMonsters"
+                :key="m.id"
+                type="button"
+                class="achip"
+                :aria-label="`移除魔物 ${m.name}`"
+                @click="filters.toggleMonster(m.id)"
+              >
+                <MonsterIcon :monster="m.monster" :size="18" />
+                {{ m.name }}<span class="x" aria-hidden="true">×</span>
+              </button>
+              <button
+                v-for="id in skillFilter"
+                :key="id"
+                type="button"
+                class="achip skill"
+                :aria-label="`移除技能 ${skillMap.get(id)?.name}`"
+                @click="filters.toggleSkill(id)"
+              >
+                {{ skillMap.get(id)?.name }}<span class="x" aria-hidden="true">×</span>
+              </button>
+              <button
+                v-if="skillFilter.length > 1"
+                type="button"
+                class="achip mode-chip"
+                :title="skillMode === 'all' ? '目前：技能全部都要有' : '目前：有任一個技能就列出'"
+                @click="skillMode = skillMode === 'all' ? 'any' : 'all'"
+              >
+                {{ skillMode === 'all' ? '技能：全部都有' : '技能：有任一個' }} ⇄
+              </button>
             </div>
           </div>
         </header>
+
+        <!-- 面板打開時蓋住清單：點一下只收合面板，不會誤選到防具 -->
+        <div v-if="openPanel" class="scrim" @click="openPanel = null" />
 
         <ul ref="listEl" class="list">
           <li
@@ -278,14 +437,14 @@ onBeforeUnmount(() => {
                     v-for="k in r.stage.skills"
                     :key="k.skillId"
                     class="chip"
-                    :class="{ hit: k.skillId === skillFilter }"
+                    :class="{ hit: selectedSkillSet.has(k.skillId) }"
                   >
                     {{ k.name }} Lv{{ k.level ?? '?' }}
                   </span>
                   <span v-if="!r.stage.skills.length" class="muted">此稀有度無技能</span>
-                  <span v-if="r.note" class="chip hit later">{{ r.note }}</span>
+                  <span v-for="n in r.notes" :key="n" class="chip hit later">{{ n }}</span>
                 </div>
-                <div v-if="r.set" class="row-set" :class="{ hit: r.set.grants.some((g) => g.skillId === skillFilter) }">
+                <div v-if="r.set" class="row-set" :class="{ hit: r.setHit }">
                   套裝 {{ r.set.name }}（{{ r.set.requiredPieces }} 件：{{ r.set.bonusLabel }}）
                 </div>
               </div>
@@ -311,6 +470,7 @@ onBeforeUnmount(() => {
   padding: 24px;
 }
 .sheet {
+  position: relative;
   width: min(760px, 100%);
   height: min(88vh, 920px);
   background: var(--bg);
@@ -365,6 +525,7 @@ onBeforeUnmount(() => {
   font-size: 13px;
   cursor: pointer;
   padding: 4px;
+  white-space: nowrap;
 }
 .close-btn {
   margin-left: auto;
@@ -382,8 +543,10 @@ onBeforeUnmount(() => {
 .link-btn + .close-btn {
   margin-left: 4px;
 }
-.close-btn:hover {
-  color: var(--accent);
+@media (hover: hover) {
+  .close-btn:hover {
+    color: var(--accent);
+  }
 }
 .tabs {
   display: flex;
@@ -407,75 +570,132 @@ onBeforeUnmount(() => {
   color: var(--on-accent);
 }
 .filter-wrap {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.filter-wrap > input {
+  min-width: 0;
 }
 .filters {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 6px;
 }
-.filters input {
-  min-width: 0;
-  grid-column: 1 / -1;
-}
 .filters select {
   min-width: 0;
 }
-.monster-btn {
+.fbtn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   border: 1px solid var(--border);
   background: var(--surface);
+  color: var(--text);
   border-radius: 8px;
   padding: 3px 8px;
+  min-height: 32px;
   cursor: pointer;
   white-space: nowrap;
   min-width: 0;
 }
-.monster-btn span:not(.caret) {
+.fbtn .lbl {
   overflow: hidden;
   text-overflow: ellipsis;
 }
 /* 跟旁邊的下拉選單同樣大小（觸控裝置上下拉選單是 16px） */
 @media (pointer: coarse), (max-width: 720px) {
-  .monster-btn {
+  .fbtn {
     font-size: 16px;
   }
 }
-.monster-btn.set {
+.fbtn.set {
   border-color: var(--accent-border);
   color: var(--accent);
   font-weight: 600;
+}
+.fbtn.open {
+  border-color: var(--accent);
+}
+.stack {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+.stack > * + * {
+  margin-left: -8px;
 }
 .caret {
   font-size: 10px;
   color: var(--muted);
   margin-left: auto;
 }
-.monster-panel {
+.panel {
   position: absolute;
   top: calc(100% + 4px);
   left: 0;
   right: 0;
   z-index: 20;
-  max-height: min(60vh, 420px);
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  max-height: min(62vh, 460px);
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--border);
   border-radius: 10px;
   background: var(--surface);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+}
+.panel-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
-.monster-panel h4 {
+.panel-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.panel-top .link-btn {
+  margin-left: auto;
+}
+.skill-search {
+  flex: 1;
+  min-width: 0;
+}
+.hint {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+}
+.panel h4 {
   margin: 4px 0 0;
   font-size: 12px;
   color: var(--muted);
   font-weight: 600;
+}
+.panel-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+.done-btn {
+  margin-left: auto;
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 700;
+  padding: 7px 16px;
+  cursor: pointer;
+  white-space: nowrap;
 }
 .mp-grid {
   display: grid;
@@ -488,6 +708,7 @@ onBeforeUnmount(() => {
   gap: 6px;
   border: 1px solid transparent;
   background: none;
+  color: var(--text);
   border-radius: 8px;
   padding: 3px 6px;
   cursor: pointer;
@@ -495,10 +716,14 @@ onBeforeUnmount(() => {
   font-size: 13px;
   min-width: 0;
 }
-.mchip:hover {
-  background: var(--hover);
+@media (hover: hover) {
+  .mchip:hover,
+  .schip:hover {
+    background: var(--hover);
+  }
 }
-.mchip.on {
+.mchip.on,
+.schip.on {
   border-color: var(--accent);
   background: var(--accent-bg);
   color: var(--accent);
@@ -511,6 +736,91 @@ onBeforeUnmount(() => {
 .mchip-name small {
   color: var(--muted);
   font-weight: 400;
+}
+.mode {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.mode span {
+  margin-right: 4px;
+}
+.mode button {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.mode button.on {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+.sk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+  gap: 4px;
+}
+.schip {
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text);
+  border-radius: 8px;
+  padding: 5px 8px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 13px;
+  line-height: 1.25;
+  word-break: break-all;
+  min-width: 0;
+}
+.active-row {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin: 0 -16px;
+  padding: 0 16px;
+}
+.achip {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 2px 10px 2px 4px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.achip.skill,
+.achip.mode-chip {
+  padding-left: 10px;
+}
+.achip.mode-chip {
+  background: none;
+  border-style: dashed;
+  font-weight: 500;
+}
+.achip .x {
+  font-size: 15px;
+  line-height: 1;
+  opacity: 0.7;
+}
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(12, 10, 16, 0.25);
 }
 .list {
   flex: 1;
@@ -550,8 +860,10 @@ onBeforeUnmount(() => {
   padding: 8px 10px;
   cursor: pointer;
 }
-.row-main:hover {
-  background: var(--hover);
+@media (hover: hover) {
+  .row-main:hover {
+    background: var(--hover);
+  }
 }
 .row-icon {
   margin-top: 2px;
@@ -648,9 +960,11 @@ onBeforeUnmount(() => {
   writing-mode: vertical-rl;
   letter-spacing: 0.2em;
 }
-.series-btn:hover {
-  background: var(--hover);
-  color: var(--accent);
+@media (hover: hover) {
+  .series-btn:hover {
+    background: var(--hover);
+    color: var(--accent);
+  }
 }
 .empty {
   color: var(--muted);

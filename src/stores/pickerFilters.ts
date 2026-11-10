@@ -2,6 +2,8 @@ import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 
 export type SortKey = 'default' | 'defense' | 'rarity'
+/** 多個技能時：any＝有其中任一個就列出，all＝全部都要有 */
+export type SkillMode = 'any' | 'all'
 
 /**
  * 防具選擇視窗的篩選條件。
@@ -9,19 +11,26 @@ export type SortKey = 'default' | 'defense' | 'rarity'
  */
 export const usePickerFilters = defineStore('pickerFilters', () => {
   const query = ref('')
-  /** 技能 id，空字串＝全部 */
-  const skill = ref('')
-  /** 魔物 id、NO_MONSTER，空字串＝全部 */
-  const monster = ref('')
+  /** 技能 id，可多選；空陣列＝全部 */
+  const skills = ref<string[]>([])
+  const skillMode = ref<SkillMode>('any')
+  /** 魔物 id 或 NO_MONSTER，可多選（符合任一隻就列出）；空陣列＝全部 */
+  const monsters = ref<string[]>([])
   const sort = ref<SortKey>('default')
 
-  const hasFilters = computed(() => !!(query.value || skill.value || monster.value))
+  const hasFilters = computed(() => !!(query.value || skills.value.length || monsters.value.length))
+
+  function toggle(list: typeof skills, id: string) {
+    list.value = list.value.includes(id) ? list.value.filter((x) => x !== id) : [...list.value, id]
+  }
+  const toggleSkill = (id: string) => toggle(skills, id)
+  const toggleMonster = (id: string) => toggle(monsters, id)
 
   function reset() {
     query.value = ''
-    skill.value = ''
-    monster.value = ''
+    skills.value = []
+    monsters.value = []
   }
 
-  return { query, skill, monster, sort, hasFilters, reset }
+  return { query, skills, skillMode, monsters, sort, hasFilters, toggleSkill, toggleMonster, reset }
 })

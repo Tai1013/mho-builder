@@ -1,28 +1,22 @@
 <script setup lang="ts">
 import { useBuild } from '../composables/useBuild'
 
-const { equipped, totalDefense, setStatuses, aggregatedSkills } = useBuild()
+defineProps<{ compact?: boolean }>()
+const { setStatuses, aggregatedSkills } = useBuild()
 </script>
 
 <template>
   <section class="summary">
-    <div class="stats">
-      <div class="stat">
-        <span class="stat-label">總防禦力</span>
-        <span class="stat-value">{{ totalDefense }}</span>
-      </div>
-      <div class="stat">
-        <span class="stat-label">已裝備</span>
-        <span class="stat-value">{{ equipped.length }}<small> / 5</small></span>
-      </div>
-      <div class="stat">
-        <span class="stat-label">技能數</span>
-        <span class="stat-value">{{ aggregatedSkills.length }}</span>
-      </div>
-    </div>
-
     <h3>套裝技能</h3>
-    <ul v-if="setStatuses.length" class="sets">
+    <!-- 簡易排版：套裝名稱、加成、件數、是否發動 -->
+    <ul v-if="setStatuses.length && compact" class="compact-list sets-compact">
+      <li v-for="s in setStatuses" :key="s.set.id" :class="{ on: s.active }">
+        <span class="set-name">{{ s.set.name }}<small>{{ s.set.bonusLabel }}</small></span>
+        <span class="set-count">{{ s.count }}/{{ s.set.requiredPieces }}</span>
+        <span class="state">{{ s.active ? '發動' : '未發動' }}</span>
+      </li>
+    </ul>
+    <ul v-else-if="setStatuses.length" class="sets">
       <li v-for="s in setStatuses" :key="s.set.id" :class="{ on: s.active }">
         <div class="set-top">
           <span class="set-name">{{ s.set.name }}</span>
@@ -37,7 +31,20 @@ const { equipped, totalDefense, setStatuses, aggregatedSkills } = useBuild()
     <p v-else class="muted">尚未裝備任何防具</p>
 
     <h3>技能合計</h3>
-    <ul v-if="aggregatedSkills.length" class="skills">
+    <!-- 簡易排版：只顯示技能名稱、格子、等級 -->
+    <ul v-if="aggregatedSkills.length && compact" class="compact-list skills-compact">
+      <li v-for="s in aggregatedSkills" :key="s.key">
+        <span class="sk-name">{{ s.name }}</span>
+        <span class="pips" :aria-label="`Lv${s.level} / ${s.maxLevel ?? '?'}`">
+          <i v-for="n in s.maxLevel ?? s.level" :key="n" :class="{ f: n <= s.level }" />
+        </span>
+        <span class="sk-lv">
+          Lv{{ s.level }}<template v-if="s.maxLevel">/{{ s.maxLevel }}</template>
+          <span v-if="s.uncertain" class="warn" title="來源資料未標示等級，暫以 Lv1 計算">?</span>
+        </span>
+      </li>
+    </ul>
+    <ul v-else-if="aggregatedSkills.length" class="skills">
       <li v-for="s in aggregatedSkills" :key="s.key">
         <div class="sk-top">
           <span class="sk-name">{{ s.name }}</span>
@@ -74,33 +81,8 @@ h3 {
   margin: 8px 0 0;
   font-size: 15px;
 }
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-}
-.stat {
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--surface);
-  padding: 8px 10px;
-  display: flex;
-  flex-direction: column;
-}
-.stat-label {
-  font-size: 12px;
-  color: var(--muted);
-}
-.stat-value {
-  font-size: 22px;
-  font-weight: 800;
-  font-variant-numeric: tabular-nums;
-  color: var(--text-strong);
-}
-.stat-value small {
-  font-size: 13px;
-  color: var(--muted);
-  font-weight: 600;
+h3:first-child {
+  margin-top: 0;
 }
 .sets,
 .skills {
@@ -203,5 +185,41 @@ h3 {
   color: var(--muted);
   font-size: 13px;
   margin: 0;
+}
+
+/* ---------- 簡易排版：一張卡片、一行一項 ---------- */
+.compact-list {
+  list-style: none;
+  margin: 0;
+  padding: 2px 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.compact-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 14px;
+}
+.compact-list li + li {
+  border-top: 1px solid var(--border);
+}
+.compact-list .sk-name,
+.compact-list .set-name {
+  min-width: 0;
+}
+.sets-compact li:not(.on) {
+  opacity: 0.65;
+}
+.sets-compact .set-name small {
+  margin-left: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.sets-compact .on .set-name small {
+  color: var(--good);
 }
 </style>

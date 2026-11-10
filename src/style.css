@@ -78,10 +78,17 @@ select {
   padding: 5px 8px;
 }
 
-input[type='search']:focus,
-select:focus {
+input[type='search']:focus {
   outline: 2px solid var(--accent-border);
   outline-offset: 0;
+}
+
+/* 按鈕、下拉選單不顯示 focus 外框（手機點過後外框會一直留著） */
+button,
+select,
+[role='button'],
+[role='switch'] {
+  outline: none;
 }
 
 button.ghost {
@@ -92,9 +99,11 @@ button.ghost {
   cursor: pointer;
 }
 
-button.ghost:hover {
-  border-color: var(--accent-border);
-  color: var(--accent);
+@media (hover: hover) {
+  button.ghost:hover {
+    border-color: var(--accent-border);
+    color: var(--accent);
+  }
 }
 
 .icon-btn {
@@ -107,8 +116,10 @@ button.ghost:hover {
   padding: 0 4px;
 }
 
-.icon-btn:hover {
-  color: var(--accent);
+@media (hover: hover) {
+  .icon-btn:hover {
+    color: var(--accent);
+  }
 }
 
 .num {
