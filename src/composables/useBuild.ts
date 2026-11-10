@@ -1,5 +1,5 @@
 import { computed, reactive, ref, watch } from 'vue'
-import { PART_IDS, isPieceSelectable, pieceMap, setSkillMap, seriesMap, skillMap, stageFor } from '../data'
+import { PART_IDS, fitsTarget, pieceMap, setSkillMap, seriesMap, skillMap, stageFor } from '../data'
 import type { ArmorPiece, PartId, SetSkill, Skill, Stage } from '../types'
 
 export interface SlotState {
@@ -64,16 +64,19 @@ export function encodeBuild(slots: BuildSlots, targetRarity: number | 'max'): st
 export function decodeBuild(code: string): { slots: BuildSlots; targetRarity: number | 'max' } {
   const params = new URLSearchParams(code)
   const t = params.get('r')
+  const target: number | 'max' = t && /^\d+$/.test(t) ? Number(t) : 'max'
   const slots = emptySlots()
   for (const part of PART_IDS) {
     const [seriesId, rarity] = (params.get(part) ?? '').split('.')
     const piece = seriesId ? pieceMap.get(`${seriesId}/${part}`) : undefined
-    // 技能等級還不確定（只有「?」的階）的部件不能配裝
-    if (!piece || !isPieceSelectable(piece)) continue
+    // 技能等級還不確定（只有「?」的階）、或超過目標稀有度上限的部件不能配裝
+    if (!piece || !fitsTarget(piece, target)) continue
+    const wanted = rarity && /^\d+$/.test(rarity) ? Number(rarity) : 'max'
     slots[part].pieceId = piece.id
-    slots[part].rarity = rarity && /^\d+$/.test(rarity) ? Number(rarity) : stageFor(piece, 'max').rarity
+    // 部位的稀有度也不能超過上限
+    slots[part].rarity = stageFor(piece, target === 'max' ? wanted : wanted === 'max' ? target : Math.min(wanted, target)).rarity
   }
-  return { slots, targetRarity: t && /^\d+$/.test(t) ? Number(t) : 'max' }
+  return { slots, targetRarity: target }
 }
 
 /** 代碼裡有沒有任何配裝資料（部位或目標稀有度） */
@@ -228,7 +231,8 @@ watch([slots, targetRarity], writeHash, { deep: true })
 // ---------- 動作 ----------
 function equip(pieceId: string) {
   const piece = pieceMap.get(pieceId)
-  if (!piece || !isPieceSelectable(piece)) return
+  // 技能等級不確定、或最低階就超過右上角的稀有度上限 → 不能裝
+  if (!piece || !fitsTarget(piece, targetRarity.value)) return
   slots[piece.part].pieceId = piece.id
   slots[piece.part].rarity = stageFor(piece, targetRarity.value).rarity
 }
@@ -240,6 +244,7 @@ function clearAll() {
   for (const part of PART_IDS) unequip(part)
 }
 function setRarity(part: PartId, rarity: number) {
+  if (targetRarity.value !== 'max' && rarity > targetRarity.value) return
   slots[part].rarity = rarity
 }
 function equipSeries(seriesId: string) {
@@ -261,7 +266,10 @@ function setTargetRarity(r: number | 'max') {
   targetRarity.value = r
   for (const part of PART_IDS) {
     const piece = slots[part].pieceId ? pieceMap.get(slots[part].pieceId!) : undefined
-    if (piece) slots[part].rarity = stageFor(piece, r).rarity
+    if (!piece) continue
+    // 降到這個稀有度裝不了的部件（例如只有 R12 的）直接卸下，配裝裡不會出現超過上限的階
+    if (!fitsTarget(piece, r)) unequip(part)
+    else slots[part].rarity = stageFor(piece, r).rarity
   }
 }
 /** 載入一組配裝代碼（配裝清單用） */

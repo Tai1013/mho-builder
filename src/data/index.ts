@@ -65,6 +65,19 @@ export function selectableStages(piece: ArmorPiece): Stage[] {
 export function isPieceSelectable(piece: ArmorPiece): boolean {
   return selectableStages(piece).length > 0
 }
+/**
+ * 右上角的目標稀有度是上限：部件要能在上限以內配裝（最低階不超過上限）。
+ * 目標是「各部位最高」時沒有上限。
+ */
+export function fitsTarget(piece: ArmorPiece, target: number | 'max'): boolean {
+  const known = selectableStages(piece)
+  return known.length > 0 && (target === 'max' || known[0].rarity <= target)
+}
+/** 在目標稀有度以內、可以配裝的階（裝備欄的稀有度選單用） */
+export function stagesWithin(piece: ArmorPiece, target: number | 'max'): Stage[] {
+  const known = selectableStages(piece)
+  return target === 'max' ? known : known.filter((st) => st.rarity <= target)
+}
 
 export const RARITIES = Array.from(
   new Set(seriesList.flatMap((s) => Object.values(s.pieces).flatMap((p) => selectableStages(p!).map((st) => st.rarity)))),

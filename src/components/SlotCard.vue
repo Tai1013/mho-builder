@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { monsterLabel, pieceMap, selectableStages, seriesMap, seriesMonster, setSkillMap, stageFor } from '../data'
+import { monsterLabel, pieceMap, seriesMap, seriesMonster, setSkillMap, stageFor, stagesWithin } from '../data'
 import { useBuild } from '../composables/useBuild'
 import type { PartId } from '../types'
 import MonsterIcon from './MonsterIcon.vue'
 import SelectChip from './SelectChip.vue'
 
 const props = defineProps<{ part: PartId; label: string; compact?: boolean }>()
-const { slots, openPicker, unequip, setRarity } = useBuild()
+const { slots, openPicker, unequip, setRarity, targetRarity } = useBuild()
 
 const piece = computed(() => {
   const id = slots[props.part].pieceId
@@ -17,9 +17,11 @@ const stage = computed(() => (piece.value ? stageFor(piece.value, slots[props.pa
 const series = computed(() => (piece.value ? seriesMap.get(piece.value.series) : undefined))
 const setSkill = computed(() => (piece.value?.setSkill ? setSkillMap.get(piece.value.setSkill) : undefined))
 
-// 只列技能等級都確定的階（有「?」的階不能拿來配裝）
+// 只列技能等級都確定、而且不超過右上角稀有度上限的階
 const rarityOptions = computed(() =>
-  piece.value ? selectableStages(piece.value).map((st) => ({ value: st.rarity, label: `R${st.rarity}` })) : [],
+  piece.value
+    ? stagesWithin(piece.value, targetRarity.value).map((st) => ({ value: st.rarity, label: `R${st.rarity}` }))
+    : [],
 )
 function onRarity(v: string) {
   setRarity(props.part, Number(v))

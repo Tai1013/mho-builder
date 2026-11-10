@@ -6,6 +6,7 @@ import {
   NO_MONSTER,
   PARTS,
   armorSkills,
+  fitsTarget,
   isPieceSelectable,
   monsterLabel,
   monsterMap,
@@ -148,8 +149,10 @@ const rows = computed(() => {
       notes: filterNotes(piece, stage),
       /** 技能等級還不確定（有「?」），不能拿來配裝，只能看 */
       locked: !isPieceSelectable(piece),
+      /** 最低階就超過右上角的稀有度上限（例如只有 R12，上限是 R10） */
+      tooHigh: isPieceSelectable(piece) && !fitsTarget(piece, targetRarity.value),
       /** 同系列至少有一件可以配裝，「整套」按鈕才有用 */
-      seriesUsable: Object.values(series?.pieces ?? {}).some((p) => p && isPieceSelectable(p)),
+      seriesUsable: Object.values(series?.pieces ?? {}).some((p) => p && fitsTarget(p, targetRarity.value)),
       /** 符合幾個篩選技能（含其他稀有度、套裝） */
       matched: wanted.filter((id) => ids.has(id)).length,
       /** 目前稀有度下，篩選技能的等級合計 */
@@ -180,7 +183,7 @@ function resetFilters() {
 
 function choose(pieceId: string) {
   const piece = pieceMap.get(pieceId)
-  if (piece && !isPieceSelectable(piece)) return
+  if (piece && !fitsTarget(piece, targetRarity.value)) return
   equip(pieceId)
   closePicker()
 }
@@ -416,9 +419,9 @@ onBeforeUnmount(() => {
             v-for="r in rows"
             :key="r.piece.id"
             class="row"
-            :class="{ equipped: equippedId === r.piece.id, locked: r.locked }"
+            :class="{ equipped: equippedId === r.piece.id, locked: r.locked || r.tooHigh }"
           >
-            <button type="button" class="row-main" :disabled="r.locked" @click="choose(r.piece.id)">
+            <button type="button" class="row-main" :disabled="r.locked || r.tooHigh" @click="choose(r.piece.id)">
               <MonsterIcon class="row-icon" :monster="r.monster" :size="40" />
               <div class="row-body">
                 <div class="row-top">
@@ -448,13 +451,16 @@ onBeforeUnmount(() => {
                   套裝 {{ r.set.name }}（{{ r.set.requiredPieces }} 件：{{ r.set.bonusLabel }}）
                 </div>
                 <div v-if="r.locked" class="row-locked">技能等級還不確定（?），暫時不能配裝</div>
+                <div v-else-if="r.tooHigh" class="row-locked">
+                  最低 R{{ r.stage.rarity }}，超過目前的稀有度 R{{ targetRarity }}
+                </div>
               </div>
             </button>
             <button
               type="button"
               class="series-btn"
               title="一次裝上整套（技能等級不確定的部件會略過）"
-              :disabled="r.locked || !r.seriesUsable"
+              :disabled="r.locked || r.tooHigh || !r.seriesUsable"
               @click="chooseSeries(r.piece.series)"
             >
               整套
