@@ -48,6 +48,8 @@ const rows = computed(() =>
       }),
       activeSets: sum.setStatuses.filter((s) => s.active),
       skills: sum.skills,
+      /** 這組配裝用到的最高稀有度＝最低要有幾階才配得出來 */
+      needRarity: sum.equipped.length ? Math.max(...sum.equipped.map((e) => e.stage.rarity)) : null,
     }
   }),
 )
@@ -159,9 +161,10 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
                   @click="onLoad(r.build)"
                 >
                   <span class="name">{{ r.build.name }}</span>
+                  <span v-if="r.needRarity" class="need" :title="`最低需要 R${r.needRarity}`">R{{ r.needRarity }}</span>
                   <span class="icons" aria-hidden="true">
                     <template v-for="ic in r.icons" :key="ic.part">
-                      <MonsterIcon v-if="ic.monster" :monster="ic.monster" :size="26" :title="ic.piece?.name" />
+                      <MonsterIcon v-if="ic.monster" :monster="ic.monster" :size="24" :title="ic.piece?.name" />
                       <span v-else-if="ic.piece" class="series-char" :title="ic.piece.name">{{ ic.seriesChar }}</span>
                       <span v-else class="no-piece" :title="`${ic.label}：未裝備`" />
                     </template>
@@ -386,10 +389,10 @@ input[type='text']:disabled {
   min-width: 0;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   border: 0;
   background: none;
-  padding: 6px 4px 6px 12px;
+  padding: 6px 2px 6px 12px;
   text-align: left;
   cursor: pointer;
 }
@@ -401,19 +404,34 @@ input[type='text']:disabled {
   font-weight: 700;
   color: var(--text-strong);
 }
+.need + .icons {
+  margin-left: 0;
+}
 .item.current .name {
   color: var(--accent);
+}
+.need {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 18px;
+  padding: 0 5px;
+  border-radius: 4px;
+  background: var(--chip);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
 }
 .icons {
   margin-left: auto;
   display: inline-flex;
-  gap: 3px;
+  gap: 2px;
   flex-shrink: 0;
 }
 .no-piece,
 .series-char {
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
   flex-shrink: 0;
   border-radius: 6px;
 }
