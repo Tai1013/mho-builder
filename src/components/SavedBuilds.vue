@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, onMounted, reactive, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { PARTS, pieceMap, seriesMap, seriesMonster } from '../data'
 import { summarizeBuild, useBuild } from '../composables/useBuild'
 import { useModalHistory } from '../composables/useModalHistory'
+import { fromShareCode, toShareCode } from '../composables/shareCode'
 import { useSavedBuilds, type SavedBuild } from '../stores/savedBuilds'
 import MonsterIcon from './MonsterIcon.vue'
 import OverCapIcon from './OverCapIcon.vue'
+import CompactInput from './CompactInput.vue'
 
 const emit = defineEmits<{ close: [] }>()
 const close = () => emit('close')
@@ -73,7 +75,7 @@ function onLoad(build: SavedBuild) {
 // ---------- 改名／覆蓋／刪除 ----------
 const editingId = ref<string | null>(null)
 const editName = ref('')
-const editInput = ref<HTMLInputElement[]>([])
+const editInput = ref<InstanceType<typeof CompactInput>[]>([])
 function startRename(build: SavedBuild) {
   editingId.value = build.id
   editName.value = build.name
@@ -92,6 +94,86 @@ function onRemove(build: SavedBuild) {
     saved.remove(build.id)
     expanded.delete(build.id)
   }
+}
+
+// ---------- 匯出（直接複製分享代碼） ----------
+// 先把每組的分享代碼算好：手機（尤其 iPhone）只允許在點按的當下複製，不能等壓縮做完才複製
+const shareCodes = reactive(new Map<string, string>())
+watch(
+  builds,
+  async (list) => {
+    for (const b of list) shareCodes.set(b.id, await toShareCode(b.name, b.code))
+  },
+  { immediate: true, deep: true },
+)
+/** 剛複製好的那一組（按鈕暫時顯示「已複製」） */
+const copiedId = ref<string | null>(null)
+/** 自動複製失敗時，才把代碼顯示出來讓人手動複製 */
+const manualCopy = ref<{ id: string; code: string } | null>(null)
+let copiedTimer = 0
+/** 舊瀏覽器沒有 navigator.clipboard 時的複製方法 */
+function legacyCopy(text: string): boolean {
+  const ta = document.createElement('textarea')
+  ta.value = text
+  ta.setAttribute('readonly', '')
+  ta.style.position = 'fixed'
+  ta.style.opacity = '0'
+  document.body.appendChild(ta)
+  ta.select()
+  let ok = false
+  try {
+    ok = document.execCommand('copy')
+  } catch {
+    ok = false
+  }
+  ta.remove()
+  return ok
+}
+function showCopied(id: string) {
+  manualCopy.value = null
+  copiedId.value = id
+  clearTimeout(copiedTimer)
+  copiedTimer = window.setTimeout(() => (copiedId.value = null), 2000)
+}
+async function onExport(build: SavedBuild) {
+  const code = shareCodes.get(build.id) ?? (await toShareCode(build.name, build.code))
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(code)
+      showCopied(build.id)
+      return
+    } catch {
+      // 沒有權限（例如不是 https）→ 下面改用舊方法或手動複製
+    }
+  }
+  if (legacyCopy(code)) showCopied(build.id)
+  else manualCopy.value = { id: build.id, code }
+}
+
+// ---------- 匯入（分享代碼） ----------
+const importOpen = ref(false)
+const importText = ref('')
+const importMsg = ref('')
+const importError = ref(false)
+const importInput = ref<InstanceType<typeof CompactInput> | null>(null)
+function toggleImport() {
+  importOpen.value = !importOpen.value
+  importMsg.value = ''
+  if (importOpen.value) nextTick(() => importInput.value?.focus())
+}
+async function doImport() {
+  const got = await fromShareCode(importText.value)
+  if (!got) {
+    importError.value = true
+    importMsg.value = '看不懂這個代碼，請確認有完整複製。'
+    return
+  }
+  const b = saved.add(got.name, got.code)
+  importError.value = false
+  importMsg.value =
+    `已匯入「${b.name}」` + (got.skipped ? `，有 ${got.skipped} 件目前不能配裝，已略過。` : '。')
+  importText.value = ''
+  importOpen.value = false
 }
 
 // ---------- 視窗 ----------
@@ -116,23 +198,38 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
           <div class="title-row">
             <h2 id="saved-title">配裝清單</h2>
             <span class="count">{{ builds.length }} 組</span>
+            <button type="button" class="link-btn" :aria-expanded="importOpen" @click="toggleImport">匯入</button>
             <button type="button" class="close-btn" aria-label="關閉" @click="close">×</button>
           </div>
           <form class="save" @submit.prevent="save">
-            <input
+            <CompactInput
               v-model="title"
               type="text"
-              class="title-input"
-              maxlength="30"
+              class="grow"
+              :maxlength="30"
               enterkeyhint="done"
               :placeholder="`標題（${saved.nextDefaultName()}）`"
-              aria-label="配裝標題"
+              label="配裝標題"
               :disabled="!canSave"
             />
             <button type="submit" class="primary" :disabled="!canSave">儲存目前配裝</button>
           </form>
           <p v-if="!canSave" class="hint">目前沒有裝備，選好防具後再來儲存。</p>
           <p v-else-if="savedAs" class="hint">目前配裝已存為「{{ savedAs.name }}」</p>
+          <!-- 匯入：貼上別人給的分享代碼 -->
+          <form v-if="importOpen" class="save" @submit.prevent="doImport">
+            <CompactInput
+              ref="importInput"
+              v-model="importText"
+              type="text"
+              class="grow"
+              enterkeyhint="done"
+              placeholder="貼上分享代碼"
+              label="分享代碼"
+            />
+            <button type="submit" class="primary" :disabled="!importText.trim()">匯入</button>
+          </form>
+          <p v-if="importMsg" class="hint" :class="{ error: importError }">{{ importMsg }}</p>
         </header>
 
         <div class="sheet-body">
@@ -141,13 +238,14 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
               <div class="item-head">
                 <!-- 改名中：標題換成輸入框 -->
                 <form v-if="editingId === r.build.id" class="rename" @submit.prevent="commitRename">
-                  <input
+                  <CompactInput
                     ref="editInput"
                     v-model="editName"
                     type="text"
-                    maxlength="30"
+                    class="grow"
+                    :maxlength="30"
                     enterkeyhint="done"
-                    aria-label="新的標題"
+                    label="新的標題"
                     @blur="commitRename"
                   />
                 </form>
@@ -219,12 +317,35 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
                   >
                     用目前配裝覆蓋
                   </button>
+                  <button
+                    type="button"
+                    class="ghost share"
+                    :class="{ ok: copiedId === r.build.id }"
+                    title="複製分享代碼，貼給別人就能在配裝清單匯入"
+                    @click="onExport(r.build)"
+                  >
+                    {{ copiedId === r.build.id ? '已複製' : '匯出' }}
+                  </button>
                   <button type="button" class="ghost danger" @click="onRemove(r.build)">刪除</button>
+                </div>
+                <!-- 只有自動複製失敗時才顯示代碼，讓人手動複製 -->
+                <div v-if="manualCopy?.id === r.build.id" class="share-box">
+                  <div class="share-head">無法自動複製，請全選下面的代碼複製</div>
+                  <textarea
+                    readonly
+                    rows="2"
+                    :value="manualCopy.code"
+                    aria-label="分享代碼"
+                    @focus="($event.target as HTMLTextAreaElement).select()"
+                  />
                 </div>
               </div>
             </li>
           </ul>
-          <p v-else class="empty">還沒有儲存任何配裝。配好裝後，在上方取個標題儲存，之後點清單就能載入。</p>
+          <p v-else class="empty">
+            還沒有儲存任何配裝。配好裝後，在上方取個標題儲存，之後點清單就能載入；<br />
+            也可以按右上角「匯入」，貼上別人給的分享代碼。
+          </p>
         </div>
       </div>
     </div>
@@ -312,27 +433,15 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
   display: flex;
   gap: 6px;
 }
-input[type='text'] {
+.grow {
   flex: 1;
   min-width: 0;
-  height: 36px;
-  padding: 0 10px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--bg);
-  font-size: 14px;
 }
-input[type='text']:focus {
-  outline: 2px solid var(--accent-border);
-  outline-offset: 0;
-}
-input[type='text']:disabled {
-  opacity: 0.55;
-}
+/* 跟選防具視窗的篩選按鈕一樣：高 32px、13px 字 */
 .primary {
   flex-shrink: 0;
-  height: 36px;
-  padding: 0 12px;
+  height: 32px;
+  padding: 0 10px;
   border: 0;
   border-radius: 8px;
   background: var(--accent);
@@ -350,6 +459,22 @@ input[type='text']:disabled {
   margin: -4px 0 0;
   font-size: 12px;
   color: var(--muted);
+}
+.hint.error {
+  color: var(--danger);
+}
+.link-btn {
+  margin-left: auto;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 8px;
+}
+.link-btn + .close-btn {
+  margin-left: 4px;
 }
 
 /* ---------- 清單 ---------- */
@@ -584,15 +709,39 @@ input[type='text']:disabled {
   opacity: 0.4;
   cursor: default;
 }
-.actions .danger {
+.actions .share {
   margin-left: auto;
-  color: #c0392b;
 }
-@media (prefers-color-scheme: dark) {
-  .actions .danger {
-    color: #ff7b6b;
-  }
+.actions .danger {
+  color: var(--danger);
 }
+.share-box {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.share-head {
+  font-size: 12px;
+  color: var(--warn);
+}
+.actions .share.ok {
+  border-color: var(--good-border);
+  color: var(--good);
+}
+.share-box textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 13px;
+  word-break: break-all;
+  resize: none;
+}
+
 .empty {
   margin: 24px 8px;
   text-align: center;

@@ -13,7 +13,9 @@ import SelectChip from './components/SelectChip.vue'
 import SavedBuilds from './components/SavedBuilds.vue'
 
 const { targetRarity, setTargetRarity, clearAll, pickerOpen } = useBuild()
-const { compactSlots } = storeToRefs(useUiPrefs())
+const uiPrefs = useUiPrefs()
+const { compactSlots, theme } = storeToRefs(uiPrefs)
+const THEME_LABEL = { auto: '自動', light: '淺色', dark: '深色' } as const
 const { builds } = storeToRefs(useSavedBuilds())
 const listOpen = ref(false)
 
@@ -36,6 +38,29 @@ function onTarget(v: string) {
       </span>
       <button type="button" class="ghost list-btn" @click="listOpen = true">
         配裝清單<span v-if="builds.length" class="list-count">{{ builds.length }}</span>
+      </button>
+      <!-- 主題：點一下在 自動 → 淺色 → 深色 之間輪流切換 -->
+      <button
+        type="button"
+        class="ghost theme-btn"
+        :aria-label="`主題：${THEME_LABEL[theme]}（點一下切換）`"
+        :title="`主題：${THEME_LABEL[theme]}`"
+        @click="uiPrefs.cycleTheme()"
+      >
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <!-- 自動：半黑半白的圓 -->
+          <g v-if="theme === 'auto'">
+            <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2" />
+            <path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor" />
+          </g>
+          <!-- 淺色：太陽 -->
+          <g v-else-if="theme === 'light'" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4" />
+          </g>
+          <!-- 深色：月亮 -->
+          <path v-else d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+        </svg>
       </button>
     </div>
   </header>
@@ -125,6 +150,12 @@ h1 {
 }
 .list-btn {
   gap: 5px;
+}
+.controls .theme-btn {
+  width: 32px;
+  padding: 0;
+  justify-content: center;
+  flex-shrink: 0;
 }
 .list-count {
   min-width: 18px;
@@ -223,9 +254,21 @@ h1 {
   .label-text {
     display: none;
   }
+  /* 手機寬度：標題、間距、按鈕內距縮一點，主題按鈕才放得下（稀有度選「各部位最高」時最寬） */
   .topbar {
     padding-left: 12px;
     padding-right: 12px;
+    gap: 8px;
+  }
+  h1 {
+    font-size: 16px;
+  }
+  .controls {
+    gap: 6px;
+  }
+  .target .target-chip,
+  .controls .list-btn {
+    padding: 0 8px;
   }
 }
 .foot {

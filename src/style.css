@@ -18,6 +18,8 @@
   /* 技能超過最高等級時，格子右邊的紅色 ✕ 方塊 */
   --over: #e0001b;
   --on-over: #ffffff;
+  /* 刪除之類的危險操作 */
+  --danger: #c0392b;
 
   font-family: system-ui, -apple-system, 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
   font-size: 14px;
@@ -28,8 +30,12 @@
   -webkit-font-smoothing: antialiased;
 }
 
+/*
+ * 深色：右上角的主題按鈕可以指定（html 的 data-theme），沒指定（自動）時跟著手機／電腦的設定。
+ * 下面兩段顏色要保持一樣。
+ */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --bg: #141317;
     --surface: #1c1b20;
     --text: #d9d7de;
@@ -48,7 +54,35 @@
     --warn: #f0b04a;
     --over: #ff4d5e;
     --on-over: #ffffff;
+    --danger: #ff7b6b;
   }
+}
+:root[data-theme='dark'] {
+  --bg: #141317;
+  --surface: #1c1b20;
+  --text: #d9d7de;
+  --text-strong: #f4f3f6;
+  --muted: #96939e;
+  --border: #2f2d35;
+  --chip: #2a2930;
+  --hover: #24232a;
+  --accent: #ff8a5c;
+  --on-accent: #1a0d07;
+  --accent-bg: rgba(255, 138, 92, 0.14);
+  --accent-border: rgba(255, 138, 92, 0.5);
+  --good: #5fd08f;
+  --good-bg: rgba(95, 208, 143, 0.14);
+  --good-border: rgba(95, 208, 143, 0.5);
+  --warn: #f0b04a;
+  --over: #ff4d5e;
+  --on-over: #ffffff;
+  --danger: #ff7b6b;
+}
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
 }
 
 * {

@@ -5,6 +5,13 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>MHO 自由配裝</title>
+    <script>
+      // 頁面一載入就套用使用者選的主題（淺色／深色），避免先用預設顏色閃一下；自動時不設定
+      try {
+        var t = JSON.parse(localStorage.getItem('mho-ui-prefs') || '{}').theme
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t)
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="app"></div>

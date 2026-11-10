@@ -23,10 +23,10 @@ import {
 } from '../data'
 import { useBuild } from '../composables/useBuild'
 import { useModalHistory } from '../composables/useModalHistory'
-import type { ArmorPiece, Stage } from '../types'
+import type { ArmorPiece, PartId, Stage } from '../types'
 import MonsterIcon from './MonsterIcon.vue'
 import SelectChip from './SelectChip.vue'
-import SearchInput from './SearchInput.vue'
+import CompactInput from './CompactInput.vue'
 
 const { slots, activePart, targetRarity, equip, equipSeries, closePicker } = useBuild()
 
@@ -132,10 +132,11 @@ function filterNotes(piece: ArmorPiece, stage: Stage): string[] {
   return notes
 }
 
-const rows = computed(() => {
+/** 某個部位套用目前篩選條件後的清單 */
+function buildRows(part: PartId) {
   const q = query.value.trim().toLowerCase()
   const wanted = skillFilter.value
-  let list = piecesByPart[activePart.value].map((piece) => {
+  let list = piecesByPart[part].map((piece) => {
     const stage = stageFor(piece, targetRarity.value)
     const series = seriesMap.get(piece.series)
     const set = piece.setSkill ? setSkillMap.get(piece.setSkill) : undefined
@@ -173,7 +174,19 @@ const rows = computed(() => {
   }
   if (sortKey.value === 'rarity') list = [...list].sort((a, b) => b.piece.rarityMax - a.piece.rarityMax)
   return list
-})
+}
+const rows = computed(() => buildRows(activePart.value))
+/**
+ * 這個部位篩不到東西時，看看其他部位有沒有（例如 Radiant Power Surge 只出現在胸、腰、腿），
+ * 讓人知道不是壞掉，點一下就能切過去
+ */
+const otherPartHits = computed(() =>
+  rows.value.length
+    ? []
+    : PARTS.filter((p) => p.id !== activePart.value)
+        .map((p) => ({ ...p, count: buildRows(p.id).length }))
+        .filter((p) => p.count > 0),
+)
 
 const equippedId = computed(() => slots[activePart.value].pieceId)
 function resetFilters() {
@@ -251,7 +264,7 @@ onBeforeUnmount(() => {
           </div>
 
           <div ref="filterWrap" class="filter-wrap">
-            <SearchInput v-model="query" placeholder="搜尋防具／魔物／技能名稱" label="搜尋" />
+            <CompactInput v-model="query" placeholder="搜尋防具／魔物／技能名稱" label="搜尋" />
 
             <div class="filters">
               <button
@@ -334,7 +347,7 @@ onBeforeUnmount(() => {
                   </div>
                 </div>
                 <div class="panel-foot">
-                  <button type="button" class="done-btn" @click="openPanel = null">完成（{{ rows.length }} 件）</button>
+                  <button type="button" class="done-btn" @click="openPanel = null">篩選出 {{ rows.length }} 件</button>
                 </div>
               </div>
 
@@ -342,7 +355,7 @@ onBeforeUnmount(() => {
               <div v-if="openPanel === 'skill'" id="skill-panel" class="panel">
                 <div class="panel-body">
                   <div class="panel-top">
-                    <SearchInput v-model="skillQuery" class="skill-search" placeholder="搜尋技能" label="搜尋技能" />
+                    <CompactInput v-model="skillQuery" class="skill-search" placeholder="搜尋技能" label="搜尋技能" />
                     <button v-if="skillFilter.length" type="button" class="link-btn" @click="skillFilter = []">清除技能</button>
                   </div>
                   <div v-if="skillFilter.length > 1" class="mode" role="group" aria-label="多個技能的比對方式">
@@ -370,7 +383,7 @@ onBeforeUnmount(() => {
                   </div>
                 </div>
                 <div class="panel-foot">
-                  <button type="button" class="done-btn" @click="openPanel = null">完成（{{ rows.length }} 件）</button>
+                  <button type="button" class="done-btn" @click="openPanel = null">篩選出 {{ rows.length }} 件</button>
                 </div>
               </div>
             </div>
@@ -466,7 +479,17 @@ onBeforeUnmount(() => {
               整套
             </button>
           </li>
-          <li v-if="!rows.length" class="empty">沒有符合條件的防具</li>
+          <li v-if="!rows.length" class="empty">
+            <template v-if="otherPartHits.length">
+              {{ partLabel }}沒有符合的防具，有的部位：
+              <span class="jump">
+                <button v-for="p in otherPartHits" :key="p.id" type="button" @click="activePart = p.id">
+                  {{ p.label }}（{{ p.count }}）
+                </button>
+              </span>
+            </template>
+            <template v-else>沒有符合條件的防具</template>
+          </li>
         </ul>
       </div>
     </div>
@@ -1013,5 +1036,22 @@ onBeforeUnmount(() => {
   font-size: 14px;
   padding: 16px;
   text-align: center;
+}
+.jump {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+}
+.jump button {
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
 }
 </style>
