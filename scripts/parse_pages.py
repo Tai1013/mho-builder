@@ -418,15 +418,28 @@ used_on_armor = {k['skillId'] for s in armor for p in s['pieces'].values() for s
 for sk in skills:
     if sk['id'] in used_on_armor and 'armor' not in sk['sources']: sk['sources'].append('armor')
 
-# 防禦力不再使用（2026-11-10 使用者決定移除），輸出時拿掉
+# 網站沒用到的欄位輸出時拿掉，手機要下載的資料少一半（2026-11-10）：
+# 防禦力（使用者決定移除）、製作素材、部件圖片網址、魔物的種族／棲息地／弱點／異常／肉質、技能出現次數。
+# 素材在上面推算 materialMonsters 時已經用過了。
 for s in armor:
     for p in s['pieces'].values():
-        p.pop('maxDefense', None)
+        for k in ('maxDefense', 'image'): p.pop(k, None)
         for st in p['stages']:
-            st.pop('defense', None); st.pop('source', None)
+            for k in ('defense', 'source', 'materials'): st.pop(k, None)
+for m in monsters:
+    for k in ('species', 'habitats', 'weakness', 'ailments', 'hitzones'): m.pop(k, None)
+for sk in skills:
+    for k in ('armorCount', 'weaponCount'): sk.pop(k, None)
 
-meta = {'source': 'https://gamewith.ai/monster-hunter-outlanders/zh-hant', 'locale': 'zh-hant',
+# 資料更新時間：快取裡最新一個檔案的下載時間（台灣時間），網站頁尾會顯示
+from datetime import datetime, timezone, timedelta
+latest = max(os.path.getmtime(os.path.join(d, f)) for d, _, fs in os.walk(RAW) for f in fs)
+updated_at = datetime.fromtimestamp(latest, timezone(timedelta(hours=8))).isoformat(timespec='seconds')
+meta = {'sources': [{'name': 'gamewith.ai', 'url': 'https://gamewith.ai/monster-hunter-outlanders/zh-hant'},
+                    {'name': 'mhohub.com', 'url': 'https://mhohub.com/zh-tw/'}],
+        'updatedAt': updated_at, 'locale': 'zh-hant',
         'parts': [{'id': p, 'label': PART_LABEL[p]} for p in PART_ORDER]}
+print('data updated at', updated_at)
 def dump(name, obj):
     with open(os.path.join(OUT, name), 'w', encoding='utf-8') as f:
         json.dump(obj, f, ensure_ascii=False, indent=2)

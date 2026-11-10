@@ -9,8 +9,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 14,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -35,8 +33,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 13,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -62,8 +58,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 16,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -88,8 +82,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 13,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -131,8 +123,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 12,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -174,8 +164,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 9,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -209,8 +197,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 6,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -235,8 +221,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 4,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -261,8 +245,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 8,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -296,8 +278,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 11,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -331,8 +311,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 5,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -349,8 +327,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 6,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -391,8 +367,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 8,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -426,8 +400,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 11,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -453,8 +425,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 11,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -479,8 +449,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 6,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -521,8 +489,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 4,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -547,8 +513,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 17,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -582,8 +546,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 4,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -609,8 +571,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 10,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -636,8 +596,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 1,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -663,8 +621,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 7,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -690,8 +646,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 7,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -717,8 +671,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 7,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -744,8 +696,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 2,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -771,8 +721,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 11,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -798,8 +746,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 4,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -825,8 +771,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 3,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -852,8 +796,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 5,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -895,8 +837,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 6,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -938,8 +878,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 6,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -981,8 +919,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 7,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1024,8 +960,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 5,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1066,8 +1000,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 8,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1093,8 +1025,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 13,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1120,8 +1050,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 7,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1147,8 +1075,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 5,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1174,8 +1100,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 5,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1201,8 +1125,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 2,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1228,8 +1150,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 1,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1246,8 +1166,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 4,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1264,8 +1182,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 5,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1294,8 +1210,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 8,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1320,8 +1234,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 6,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1346,8 +1258,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 9,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1372,8 +1282,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 10,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1398,8 +1306,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 2,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1416,8 +1322,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 9,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1443,8 +1347,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 4,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1469,8 +1371,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 3,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1487,8 +1387,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 1,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1505,8 +1403,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 1,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1539,8 +1435,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 1,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1558,8 +1452,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 3,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1585,8 +1477,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 10,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1620,8 +1510,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 9,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1646,8 +1534,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 8,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1689,8 +1575,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 7,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1723,8 +1607,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 5,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1749,8 +1631,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 5,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1792,8 +1672,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 1,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1810,8 +1688,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 7,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1852,8 +1728,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 3,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1870,8 +1744,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 7,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1912,8 +1784,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 11,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1938,8 +1808,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 6,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -1981,8 +1849,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 12,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2007,8 +1873,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 6,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2049,8 +1913,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 5,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2079,8 +1941,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 3,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2109,8 +1969,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 6,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2151,8 +2009,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 5,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2193,8 +2049,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 6,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2235,8 +2089,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 7,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2277,8 +2129,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 6,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2319,8 +2169,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 4,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2349,8 +2197,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 3,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2379,8 +2225,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 3,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2409,8 +2253,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 5,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2440,8 +2282,6 @@
       "armor",
       "set"
     ],
-    "armorCount": 5,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2466,8 +2306,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 6,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2492,8 +2330,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 4,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2522,8 +2358,6 @@
     "sources": [
       "weapon"
     ],
-    "armorCount": 0,
-    "weaponCount": 48,
     "levels": [
       {
         "level": 1,
@@ -2568,8 +2402,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 1,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2614,8 +2446,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 1,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2660,8 +2490,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 1,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2706,8 +2534,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 1,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2752,8 +2578,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 1,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2798,8 +2622,6 @@
     "sources": [
       "set"
     ],
-    "armorCount": 0,
-    "weaponCount": 0,
     "levels": []
   },
   {
@@ -2811,8 +2633,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 0,
-    "weaponCount": 0,
     "levels": []
   },
   {
@@ -2825,8 +2645,6 @@
       "set",
       "armor"
     ],
-    "armorCount": 0,
-    "weaponCount": 0,
     "levels": [
       {
         "level": 1,
@@ -2843,8 +2661,6 @@
     "sources": [
       "set"
     ],
-    "armorCount": 0,
-    "weaponCount": 0,
     "levels": []
   },
   {
@@ -2856,8 +2672,6 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 0,
-    "weaponCount": 0,
     "levels": []
   }
 ]

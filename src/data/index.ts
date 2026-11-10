@@ -2,6 +2,7 @@ import skillsJson from './skills.json'
 import setSkillsJson from './set-skills.json'
 import armorJson from './armor.json'
 import monstersJson from './monsters.json'
+import metaJson from './meta.json'
 import type { ArmorPiece, ArmorSeries, Monster, PartId, SetSkill, Skill, Stage } from '../types'
 
 export const PARTS: { id: PartId; label: string }[] = [
@@ -12,6 +13,11 @@ export const PARTS: { id: PartId; label: string }[] = [
   { id: 'legs', label: '腿部' },
 ]
 export const PART_IDS = PARTS.map((p) => p.id)
+
+/** 資料來源與更新時間（parse_pages.py 產生；時間是抓資料的時間，台灣時間） */
+export const DATA_SOURCES: { name: string; url: string }[] = metaJson.sources
+/** 例：2026/11/10 16:27:42 */
+export const DATA_UPDATED_AT = metaJson.updatedAt.slice(0, 19).replace('T', ' ').replace(/-/g, '/')
 
 export const skills = skillsJson as unknown as Skill[]
 export const setSkills = setSkillsJson as unknown as SetSkill[]

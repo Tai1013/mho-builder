@@ -12,8 +12,6 @@ export interface Skill {
   description: string | null
   maxLevel: number
   sources: ('armor' | 'weapon' | 'set')[]
-  armorCount: number
-  weaponCount: number
   levels: SkillLevel[]
 }
 
@@ -41,17 +39,10 @@ export interface StageSkill {
   level: number | null
 }
 
-export interface MaterialItem {
-  itemId: string
-  name: string
-  qty: number
-}
-
 export interface Stage {
   rarity: number
   name: string
   skills: StageSkill[]
-  materials: { type: 'craft' | 'upgrade'; items: MaterialItem[] } | null
 }
 
 export interface ArmorPiece {
@@ -66,7 +57,6 @@ export interface ArmorPiece {
   /** 最高稀有度時的技能 */
   skills: StageSkill[]
   setSkill: string | null
-  image: string
   stages: Stage[]
 }
 
@@ -78,11 +68,6 @@ export interface Monster {
   /** 繪影圖示：只有 image 是錯圖的魔物才有（例如融光種大凶豺龍），其他是 null */
   visage: string | null
   size: '大型' | '小型'
-  species: string
-  habitats: string[]
-  weakness: { element: string; stars: number }[]
-  ailments: { ailment: string; stars: number }[]
-  hitzones: { label: string; cut: number; blunt: number; ammo: number }[]
 }
 
 export interface ArmorSeries {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
-import { PARTS, RARITIES } from './data'
+import { DATA_SOURCES, DATA_UPDATED_AT, PARTS, RARITIES } from './data'
 import { useBuild } from './composables/useBuild'
 import { useUiPrefs } from './stores/uiPrefs'
 import { useSavedBuilds } from './stores/savedBuilds'
@@ -64,7 +64,14 @@ function onTarget(v: string) {
   </main>
 
   <footer class="foot">
-    資料來源：gamewith.ai《魔物獵人：旅人》。目前配裝會自動存在這台裝置，也會記錄在網址，可直接複製分享。
+    <p>
+      資料來源：<template v-for="(s, i) in DATA_SOURCES" :key="s.url"
+        ><template v-if="i">、</template><a :href="s.url" target="_blank" rel="noopener">{{ s.name }}</a></template
+      >《魔物獵人：旅人》
+    </p>
+    <p>資料更新：{{ DATA_UPDATED_AT }}</p>
+    <p>目前配裝會自動存在這台裝置，也會記錄在網址，可直接複製分享。</p>
+    <p class="notice">本站為非官方的配裝工具，僅供個人配裝使用，不放廣告、不做任何營利。</p>
   </footer>
 
   <ArmorPicker v-if="pickerOpen" />
@@ -227,5 +234,17 @@ h1 {
   font-size: 12px;
   color: var(--muted);
   text-align: center;
+}
+.foot p {
+  margin: 0;
+}
+.foot p + p {
+  margin-top: 2px;
+}
+.foot a {
+  color: inherit;
+}
+.foot .notice {
+  margin-top: 6px;
 }
 </style>
