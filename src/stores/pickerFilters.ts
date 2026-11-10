@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 
-export type SortKey = 'default' | 'defense' | 'rarity'
+export type SortKey = 'default' | 'rarity'
 /** 多個技能時：any＝有其中任一個就列出，all＝全部都要有 */
 export type SkillMode = 'any' | 'all'
 

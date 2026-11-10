@@ -41,7 +41,7 @@ function onTarget(v: string) {
   </header>
 
   <main class="layout">
-    <!-- 總防禦力／已裝備／技能數放最上面，讓下面的裝備和技能連在一起 -->
+    <!-- 已裝備／技能數放最上面，讓下面的裝備和技能連在一起 -->
     <BuildStats class="top-stats" />
     <section class="slots" :class="{ compact: compactSlots }" aria-label="裝備欄位">
       <div class="slots-bar">

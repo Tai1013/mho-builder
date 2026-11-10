@@ -7,8 +7,8 @@
     "size": "大型",
     "species": "牙龍種",
     "habitats": [
-      "邊野",
-      "沉積泥湖"
+      "巨木原野",
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -73,7 +73,8 @@
         "blunt": 3,
         "ammo": 3
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "tobi-kadachi",
@@ -83,8 +84,8 @@
     "size": "大型",
     "species": "牙龍種",
     "habitats": [
-      "邊野",
-      "雲煙林地"
+      "巨木原野",
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -143,7 +144,8 @@
         "blunt": 3,
         "ammo": 3
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "great-girros",
@@ -153,7 +155,8 @@
     "size": "大型",
     "species": "牙龍種",
     "habitats": [
-      "沉積泥湖"
+      "巨木原野",
+      "俱朽之淵"
     ],
     "weakness": [
       {
@@ -218,7 +221,8 @@
         "blunt": 2,
         "ammo": 1
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "odogaron",
@@ -227,7 +231,10 @@
     "image": "https://img.gamewith.jp/img/2cf75d1609cf8770e1c857d5f0401d07.png",
     "size": "大型",
     "species": "牙龍種",
-    "habitats": [],
+    "habitats": [
+      "俱朽之淵",
+      "瑰麗群島"
+    ],
     "weakness": [
       {
         "element": "火",
@@ -291,7 +298,8 @@
         "blunt": 2,
         "ammo": 2
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "kulu-ya-ku",
@@ -301,10 +309,8 @@
     "size": "大型",
     "species": "鳥龍種",
     "habitats": [
-      "沙嵐綠洲",
-      "大沙海",
-      "邊野",
-      "沉積泥湖"
+      "巨木原野",
+      "熱沙平原"
     ],
     "weakness": [
       {
@@ -357,7 +363,8 @@
         "blunt": 3,
         "ammo": 3
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "pukei-pukei",
@@ -367,11 +374,9 @@
     "size": "大型",
     "species": "鳥龍種",
     "habitats": [
-      "沙嵐綠洲",
-      "大沙海",
-      "邊野",
-      "沉積泥湖",
-      "雲煙林地"
+      "巨木原野",
+      "熱沙平原",
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -436,7 +441,8 @@
         "blunt": 2,
         "ammo": 2
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "tzitzi-ya-ku",
@@ -446,7 +452,7 @@
     "size": "大型",
     "species": "鳥龍種",
     "habitats": [
-      "沉積泥湖"
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -499,7 +505,8 @@
         "blunt": 3,
         "ammo": 3
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "barroth",
@@ -509,8 +516,7 @@
     "size": "大型",
     "species": "獸龍種",
     "habitats": [
-      "沙嵐綠洲",
-      "大沙海"
+      "熱沙平原"
     ],
     "weakness": [
       {
@@ -581,7 +587,8 @@
         "blunt": 1,
         "ammo": 1
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "anjanath",
@@ -591,11 +598,9 @@
     "size": "大型",
     "species": "獸龍種",
     "habitats": [
-      "沙嵐綠洲",
-      "大沙海",
-      "邊野",
-      "沉積泥湖",
-      "雲煙林地"
+      "巨木原野",
+      "熱沙平原",
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -654,7 +659,8 @@
         "blunt": 2,
         "ammo": 2
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "radobaan",
@@ -664,7 +670,7 @@
     "size": "大型",
     "species": "獸龍種",
     "habitats": [
-      "沙嵐綠洲"
+      "俱朽之淵"
     ],
     "weakness": [
       {
@@ -723,7 +729,8 @@
         "blunt": 2,
         "ammo": 2
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "rathian",
@@ -733,11 +740,8 @@
     "size": "大型",
     "species": "飛龍種",
     "habitats": [
-      "沙嵐綠洲",
-      "大沙海",
-      "邊野",
-      "沉積泥湖",
-      "雲煙林地"
+      "巨木原野",
+      "熱沙平原"
     ],
     "weakness": [
       {
@@ -808,7 +812,8 @@
         "blunt": 2,
         "ammo": 2
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "pink-rathian",
@@ -818,11 +823,9 @@
     "size": "大型",
     "species": "飛龍種",
     "habitats": [
-      "沙嵐綠洲",
-      "大沙海",
-      "邊野",
-      "沉積泥湖",
-      "雲煙林地"
+      "熱沙平原",
+      "俱朽之淵",
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -893,7 +896,8 @@
         "blunt": 2,
         "ammo": 2
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "rathalos",
@@ -903,11 +907,8 @@
     "size": "大型",
     "species": "飛龍種",
     "habitats": [
-      "沙嵐綠洲",
-      "大沙海",
-      "邊野",
-      "沉積泥湖",
-      "雲煙林地"
+      "巨木原野",
+      "熱沙平原"
     ],
     "weakness": [
       {
@@ -978,7 +979,8 @@
         "blunt": 2,
         "ammo": 2
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "diablos",
@@ -988,7 +990,8 @@
     "size": "大型",
     "species": "飛龍種",
     "habitats": [
-      "沙嵐綠洲"
+      "熱沙平原",
+      "俱朽之淵"
     ],
     "weakness": [
       {
@@ -1059,7 +1062,8 @@
         "blunt": 1,
         "ammo": 3
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "black-diablos",
@@ -1069,7 +1073,7 @@
     "size": "大型",
     "species": "飛龍種",
     "habitats": [
-      "沙嵐綠洲"
+      "熱沙平原"
     ],
     "weakness": [
       {
@@ -1140,7 +1144,8 @@
         "blunt": 1,
         "ammo": 3
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "paolumu",
@@ -1150,8 +1155,7 @@
     "size": "大型",
     "species": "飛龍種",
     "habitats": [
-      "沉積泥湖",
-      "雲煙林地"
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -1210,7 +1214,8 @@
         "blunt": 3,
         "ammo": 3
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "legiana",
@@ -1220,8 +1225,7 @@
     "size": "大型",
     "species": "飛龍種",
     "habitats": [
-      "沉積泥湖",
-      "雲煙林地"
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -1292,7 +1296,8 @@
         "blunt": 2,
         "ammo": 2
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "jyuratodus",
@@ -1302,9 +1307,7 @@
     "size": "大型",
     "species": "魚龍種",
     "habitats": [
-      "沙嵐綠洲",
-      "大沙海",
-      "邊野"
+      "熱沙平原"
     ],
     "weakness": [
       {
@@ -1369,19 +1372,20 @@
         "blunt": 3,
         "ammo": 2
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "radiant-great-jagras",
     "name": "融光種大凶豺龍",
     "nameEn": "Radiant Great Jagras",
-    "image": "https://img.gamewith.jp/img/bf23c1d250ecf8c6205c6fbd68b9de7e.png",
+    "image": "https://img.gamewith.jp/img/933892cb3bd5410e7054225bc26b2e0b.png",
     "size": "大型",
     "species": "融光種",
     "habitats": [
-      "邊野",
-      "沉積泥湖",
-      "雲煙林地"
+      "巨木原野",
+      "俱朽之淵",
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -1434,7 +1438,8 @@
         "blunt": 3,
         "ammo": 1
       }
-    ]
+    ],
+    "visage": "https://img.gamewith.jp/img/2d56e4f2a84343f1738ad0eab7dee365.png"
   },
   {
     "id": "radiant-kulu-ya-ku",
@@ -1444,10 +1449,9 @@
     "size": "大型",
     "species": "融光種",
     "habitats": [
-      "沙嵐綠洲",
-      "大沙海",
-      "邊野",
-      "沉積泥湖"
+      "巨木原野",
+      "熱沙平原",
+      "俱朽之淵"
     ],
     "weakness": [
       {
@@ -1506,7 +1510,8 @@
         "blunt": 3,
         "ammo": 1
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "radiant-pukei-pukei",
@@ -1516,10 +1521,10 @@
     "size": "大型",
     "species": "融光種",
     "habitats": [
-      "沙嵐綠洲",
-      "大沙海",
-      "邊野",
-      "沉積泥湖"
+      "巨木原野",
+      "熱沙平原",
+      "俱朽之淵",
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -1572,7 +1577,8 @@
         "blunt": 2,
         "ammo": 1
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "radiant-jyuratodus",
@@ -1582,7 +1588,7 @@
     "size": "大型",
     "species": "融光種",
     "habitats": [
-      "沙嵐綠洲"
+      "熱沙平原"
     ],
     "weakness": [
       {
@@ -1647,7 +1653,8 @@
         "blunt": 3,
         "ammo": 2
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "radiant-barroth",
@@ -1657,8 +1664,7 @@
     "size": "大型",
     "species": "融光種",
     "habitats": [
-      "沙嵐綠洲",
-      "大沙海"
+      "熱沙平原"
     ],
     "weakness": [
       {
@@ -1729,7 +1735,8 @@
         "blunt": 1,
         "ammo": 1
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "radiant-anjanath",
@@ -1739,11 +1746,10 @@
     "size": "大型",
     "species": "融光種",
     "habitats": [
-      "沙嵐綠洲",
-      "大沙海",
-      "邊野",
-      "沉積泥湖",
-      "雲煙林地"
+      "巨木原野",
+      "熱沙平原",
+      "俱朽之淵",
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -1796,7 +1802,8 @@
         "blunt": 3,
         "ammo": 2
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "radiant-rathian",
@@ -1806,10 +1813,9 @@
     "size": "大型",
     "species": "融光種",
     "habitats": [
-      "沙嵐綠洲",
-      "大沙海",
-      "沉積泥湖",
-      "雲煙林地"
+      "巨木原野",
+      "熱沙平原",
+      "俱朽之淵"
     ],
     "weakness": [
       {
@@ -1868,7 +1874,8 @@
         "blunt": 2,
         "ammo": 1
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "radiant-diablos",
@@ -1878,7 +1885,7 @@
     "size": "大型",
     "species": "融光種",
     "habitats": [
-      "沙嵐綠洲"
+      "熱沙平原"
     ],
     "weakness": [
       {
@@ -1937,7 +1944,8 @@
         "blunt": 3,
         "ammo": 2
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "radiant-legiana",
@@ -1947,8 +1955,7 @@
     "size": "大型",
     "species": "融光種",
     "habitats": [
-      "沉積泥湖",
-      "雲煙林地"
+      "巨木原野"
     ],
     "weakness": [
       {
@@ -2013,7 +2020,8 @@
         "blunt": 2,
         "ammo": 1
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "radiant-paolumu",
@@ -2023,8 +2031,7 @@
     "size": "大型",
     "species": "融光種",
     "habitats": [
-      "沉積泥湖",
-      "雲煙林地"
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -2083,7 +2090,8 @@
         "blunt": 3,
         "ammo": 2
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "radiant-rathalos",
@@ -2093,11 +2101,8 @@
     "size": "大型",
     "species": "融光種",
     "habitats": [
-      "沙嵐綠洲",
-      "大沙海",
-      "邊野",
-      "沉積泥湖",
-      "雲煙林地"
+      "巨木原野",
+      "熱沙平原"
     ],
     "weakness": [
       {
@@ -2150,7 +2155,8 @@
         "blunt": 3,
         "ammo": 1
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "kushala-daora",
@@ -2160,9 +2166,8 @@
     "size": "大型",
     "species": "古龍種",
     "habitats": [
-      "大沙海",
-      "邊野",
-      "沉積泥湖"
+      "巨木原野",
+      "熱沙平原"
     ],
     "weakness": [
       {
@@ -2227,7 +2232,8 @@
         "blunt": 2,
         "ammo": 3
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "radiant-pink-rathian",
@@ -2237,10 +2243,8 @@
     "size": "大型",
     "species": "融光種",
     "habitats": [
-      "沙嵐綠洲",
-      "大沙海",
-      "邊野",
-      "沉積泥湖"
+      "巨木原野",
+      "熱沙平原"
     ],
     "weakness": [
       {
@@ -2299,7 +2303,8 @@
         "blunt": 2,
         "ammo": 1
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "radiant-black-diablos",
@@ -2309,7 +2314,7 @@
     "size": "大型",
     "species": "融光種",
     "habitats": [
-      "沙嵐綠洲"
+      "熱沙平原"
     ],
     "weakness": [
       {
@@ -2368,7 +2373,8 @@
         "blunt": 3,
         "ammo": 2
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "radiant-radobaan",
@@ -2378,7 +2384,7 @@
     "size": "大型",
     "species": "融光種",
     "habitats": [
-      "沙嵐綠洲"
+      "熱沙平原"
     ],
     "weakness": [
       {
@@ -2437,7 +2443,8 @@
         "blunt": 3,
         "ammo": 3
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "radiant-great-girros",
@@ -2447,7 +2454,8 @@
     "size": "大型",
     "species": "融光種",
     "habitats": [
-      "沉積泥湖"
+      "巨木原野",
+      "俱朽之淵"
     ],
     "weakness": [
       {
@@ -2500,7 +2508,8 @@
         "blunt": 3,
         "ammo": 1
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "radiant-tobi-kadachi",
@@ -2510,8 +2519,8 @@
     "size": "大型",
     "species": "融光種",
     "habitats": [
-      "邊野",
-      "雲煙林地"
+      "巨木原野",
+      "俱朽之淵"
     ],
     "weakness": [
       {
@@ -2564,7 +2573,8 @@
         "blunt": 3,
         "ammo": 2
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "radiant-tzitzi-ya-ku",
@@ -2574,7 +2584,7 @@
     "size": "大型",
     "species": "融光種",
     "habitats": [
-      "沉積泥湖"
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -2627,7 +2637,8 @@
         "blunt": 1,
         "ammo": 2
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "radiant-odogaron",
@@ -2694,7 +2705,8 @@
         "blunt": 2,
         "ammo": 1
       }
-    ]
+    ],
+    "visage": null
   },
   {
     "id": "jagras",
@@ -2704,9 +2716,8 @@
     "size": "小型",
     "species": "牙龍種",
     "habitats": [
-      "邊野",
-      "沉積泥湖",
-      "雲煙林地"
+      "巨木原野",
+      "俱朽之淵"
     ],
     "weakness": [
       {
@@ -2752,7 +2763,8 @@
         "stars": 0
       }
     ],
-    "hitzones": []
+    "hitzones": [],
+    "visage": null
   },
   {
     "id": "kestodon",
@@ -2762,11 +2774,10 @@
     "size": "小型",
     "species": "草食種",
     "habitats": [
-      "邊野",
-      "沉積泥湖",
-      "雲煙林地",
-      "沙嵐綠洲",
-      "大沙海"
+      "巨木原野",
+      "熱沙平原",
+      "俱朽之淵",
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -2812,7 +2823,8 @@
         "stars": 0
       }
     ],
-    "hitzones": []
+    "hitzones": [],
+    "visage": null
   },
   {
     "id": "vespoid",
@@ -2822,10 +2834,10 @@
     "size": "小型",
     "species": "甲蟲種",
     "habitats": [
-      "邊野",
-      "沉積泥湖",
-      "沙嵐綠洲",
-      "大沙海"
+      "巨木原野",
+      "熱沙平原",
+      "俱朽之淵",
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -2871,7 +2883,8 @@
         "stars": 0
       }
     ],
-    "hitzones": []
+    "hitzones": [],
+    "visage": null
   },
   {
     "id": "aptonoth",
@@ -2881,9 +2894,9 @@
     "size": "小型",
     "species": "草食種",
     "habitats": [
-      "邊野",
-      "沉積泥湖",
-      "雲煙林地"
+      "巨木原野",
+      "俱朽之淵",
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -2929,7 +2942,8 @@
         "stars": 0
       }
     ],
-    "hitzones": []
+    "hitzones": [],
+    "visage": null
   },
   {
     "id": "gajau",
@@ -2939,11 +2953,9 @@
     "size": "小型",
     "species": "魚類",
     "habitats": [
-      "邊野",
-      "沉積泥湖",
-      "雲煙林地",
-      "沙嵐綠洲",
-      "大沙海"
+      "巨木原野",
+      "熱沙平原",
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -2989,7 +3001,8 @@
         "stars": 0
       }
     ],
-    "hitzones": []
+    "hitzones": [],
+    "visage": null
   },
   {
     "id": "mernos",
@@ -2999,9 +3012,7 @@
     "size": "小型",
     "species": "翼龍種",
     "habitats": [
-      "邊野",
-      "沉積泥湖",
-      "雲煙林地"
+      "巨木原野"
     ],
     "weakness": [
       {
@@ -3047,7 +3058,8 @@
         "stars": 0
       }
     ],
-    "hitzones": []
+    "hitzones": [],
+    "visage": null
   },
   {
     "id": "warrior-atecoli",
@@ -3057,11 +3069,10 @@
     "size": "小型",
     "species": "獸人種",
     "habitats": [
-      "邊野",
-      "沉積泥湖",
-      "雲煙林地",
-      "沙嵐綠洲",
-      "大沙海"
+      "巨木原野",
+      "熱沙平原",
+      "俱朽之淵",
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -3107,7 +3118,8 @@
         "stars": 0
       }
     ],
-    "hitzones": []
+    "hitzones": [],
+    "visage": null
   },
   {
     "id": "radiant-jagras",
@@ -3117,9 +3129,7 @@
     "size": "小型",
     "species": "融光種",
     "habitats": [
-      "邊野",
-      "沉積泥湖",
-      "雲煙林地"
+      "巨木原野"
     ],
     "weakness": [
       {
@@ -3165,7 +3175,8 @@
         "stars": 0
       }
     ],
-    "hitzones": []
+    "hitzones": [],
+    "visage": null
   },
   {
     "id": "radiant-mernos",
@@ -3175,9 +3186,7 @@
     "size": "小型",
     "species": "融光種",
     "habitats": [
-      "邊野",
-      "沉積泥湖",
-      "雲煙林地"
+      "巨木原野"
     ],
     "weakness": [
       {
@@ -3223,7 +3232,8 @@
         "stars": 0
       }
     ],
-    "hitzones": []
+    "hitzones": [],
+    "visage": null
   },
   {
     "id": "radiant-kestodon",
@@ -3233,11 +3243,8 @@
     "size": "小型",
     "species": "融光種",
     "habitats": [
-      "邊野",
-      "沉積泥湖",
-      "雲煙林地",
-      "沙嵐綠洲",
-      "大沙海"
+      "巨木原野",
+      "熱沙平原"
     ],
     "weakness": [
       {
@@ -3283,7 +3290,8 @@
         "stars": 0
       }
     ],
-    "hitzones": []
+    "hitzones": [],
+    "visage": null
   },
   {
     "id": "radiant-gajau",
@@ -3293,10 +3301,9 @@
     "size": "小型",
     "species": "融光種",
     "habitats": [
-      "邊野",
-      "沉積泥湖",
-      "雲煙林地",
-      "沙嵐綠洲"
+      "巨木原野",
+      "熱沙平原",
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -3342,7 +3349,8 @@
         "stars": 0
       }
     ],
-    "hitzones": []
+    "hitzones": [],
+    "visage": null
   },
   {
     "id": "radiant-vespoid",
@@ -3352,10 +3360,10 @@
     "size": "小型",
     "species": "融光種",
     "habitats": [
-      "邊野",
-      "沉積泥湖",
-      "沙嵐綠洲",
-      "大沙海"
+      "巨木原野",
+      "熱沙平原",
+      "俱朽之淵",
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -3401,7 +3409,8 @@
         "stars": 0
       }
     ],
-    "hitzones": []
+    "hitzones": [],
+    "visage": null
   },
   {
     "id": "girros",
@@ -3411,7 +3420,8 @@
     "size": "小型",
     "species": "牙龍種",
     "habitats": [
-      "沉積泥湖"
+      "巨木原野",
+      "俱朽之淵"
     ],
     "weakness": [
       {
@@ -3457,7 +3467,8 @@
         "stars": 0
       }
     ],
-    "hitzones": []
+    "hitzones": [],
+    "visage": null
   },
   {
     "id": "apceros",
@@ -3467,8 +3478,7 @@
     "size": "小型",
     "species": "草食種",
     "habitats": [
-      "沙嵐綠洲",
-      "大沙海"
+      "熱沙平原"
     ],
     "weakness": [
       {
@@ -3514,7 +3524,8 @@
         "stars": 0
       }
     ],
-    "hitzones": []
+    "hitzones": [],
+    "visage": null
   },
   {
     "id": "hornetaur",
@@ -3524,8 +3535,8 @@
     "size": "小型",
     "species": "甲蟲種",
     "habitats": [
-      "沙嵐綠洲",
-      "大沙海"
+      "熱沙平原",
+      "俱朽之淵"
     ],
     "weakness": [
       {
@@ -3571,7 +3582,8 @@
         "stars": 0
       }
     ],
-    "hitzones": []
+    "hitzones": [],
+    "visage": null
   },
   {
     "id": "kelbi",
@@ -3581,8 +3593,8 @@
     "size": "小型",
     "species": "草食種",
     "habitats": [
-      "沙嵐綠洲",
-      "大沙海"
+      "熱沙平原",
+      "瑰麗群島"
     ],
     "weakness": [
       {
@@ -3628,7 +3640,8 @@
         "stars": 0
       }
     ],
-    "hitzones": []
+    "hitzones": [],
+    "visage": null
   },
   {
     "id": "noios",
@@ -3638,8 +3651,7 @@
     "size": "小型",
     "species": "翼龍種",
     "habitats": [
-      "沙嵐綠洲",
-      "大沙海"
+      "熱沙平原"
     ],
     "weakness": [
       {
@@ -3685,7 +3697,8 @@
         "stars": 0
       }
     ],
-    "hitzones": []
+    "hitzones": [],
+    "visage": null
   },
   {
     "id": "radiant-hornetaur",
@@ -3695,7 +3708,8 @@
     "size": "小型",
     "species": "融光種",
     "habitats": [
-      "沙嵐綠洲"
+      "熱沙平原",
+      "俱朽之淵"
     ],
     "weakness": [
       {
@@ -3741,7 +3755,8 @@
         "stars": 0
       }
     ],
-    "hitzones": []
+    "hitzones": [],
+    "visage": null
   },
   {
     "id": "radiant-girros",
@@ -3751,7 +3766,8 @@
     "size": "小型",
     "species": "融光種",
     "habitats": [
-      "沉積泥湖"
+      "巨木原野",
+      "俱朽之淵"
     ],
     "weakness": [
       {
@@ -3797,7 +3813,8 @@
         "stars": 0
       }
     ],
-    "hitzones": []
+    "hitzones": [],
+    "visage": null
   },
   {
     "id": "ruger-aidal",
@@ -3876,6 +3893,7 @@
         "blunt": 1,
         "ammo": 1
       }
-    ]
+    ],
+    "visage": null
   }
 ]

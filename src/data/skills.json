@@ -88,7 +88,7 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 12,
+    "armorCount": 13,
     "weaponCount": 0,
     "levels": [
       {
@@ -296,7 +296,7 @@
       "armor",
       "set"
     ],
-    "armorCount": 10,
+    "armorCount": 11,
     "weaponCount": 0,
     "levels": [
       {
@@ -391,7 +391,7 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 7,
+    "armorCount": 8,
     "weaponCount": 0,
     "levels": [
       {
@@ -453,7 +453,7 @@
       "armor",
       "set"
     ],
-    "armorCount": 9,
+    "armorCount": 11,
     "weaponCount": 0,
     "levels": [
       {
@@ -609,7 +609,7 @@
       "armor",
       "set"
     ],
-    "armorCount": 9,
+    "armorCount": 10,
     "weaponCount": 0,
     "levels": [
       {
@@ -717,7 +717,7 @@
       "armor",
       "set"
     ],
-    "armorCount": 6,
+    "armorCount": 7,
     "weaponCount": 0,
     "levels": [
       {
@@ -1066,7 +1066,7 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 7,
+    "armorCount": 8,
     "weaponCount": 0,
     "levels": [
       {
@@ -1294,7 +1294,7 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 7,
+    "armorCount": 8,
     "weaponCount": 0,
     "levels": [
       {
@@ -1416,7 +1416,7 @@
     "sources": [
       "armor"
     ],
-    "armorCount": 8,
+    "armorCount": 9,
     "weaponCount": 0,
     "levels": [
       {
@@ -1585,7 +1585,7 @@
       "armor",
       "set"
     ],
-    "armorCount": 9,
+    "armorCount": 10,
     "weaponCount": 0,
     "levels": [
       {
@@ -1620,7 +1620,7 @@
       "armor",
       "set"
     ],
-    "armorCount": 6,
+    "armorCount": 9,
     "weaponCount": 0,
     "levels": [
       {
@@ -1689,7 +1689,7 @@
       "armor",
       "set"
     ],
-    "armorCount": 6,
+    "armorCount": 7,
     "weaponCount": 0,
     "levels": [
       {
@@ -1981,7 +1981,7 @@
       "armor",
       "set"
     ],
-    "armorCount": 10,
+    "armorCount": 12,
     "weaponCount": 0,
     "levels": [
       {
@@ -2788,5 +2788,76 @@
         "effect": "達到對應冒險等級時，該裝備提升至稀有度8。"
       }
     ]
+  },
+  {
+    "id": "mhohub-136",
+    "name": "融光活性",
+    "nameEn": null,
+    "description": "冒險者受融光影響傷害提升一段時間，但影響結束後傷害和耐力上限下降一段時間。",
+    "maxLevel": 1,
+    "sources": [
+      "set"
+    ],
+    "armorCount": 0,
+    "weaponCount": 0,
+    "levels": []
+  },
+  {
+    "id": "mhohub-164",
+    "name": "堅定意志",
+    "nameEn": null,
+    "description": "冒險者獲得狀態異常或融光活性時，傷害提升一段時間。並且減少融光活性的負面影響時間。",
+    "maxLevel": 3,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 0,
+    "weaponCount": 0,
+    "levels": []
+  },
+  {
+    "id": "mhohub-83",
+    "name": "鐵壁防禦",
+    "nameEn": null,
+    "description": null,
+    "maxLevel": 1,
+    "sources": [
+      "set",
+      "armor"
+    ],
+    "armorCount": 0,
+    "weaponCount": 0,
+    "levels": [
+      {
+        "level": 1,
+        "effect": "可以防禦一般無法防禦的攻擊。"
+      }
+    ]
+  },
+  {
+    "id": "mhohub-42",
+    "name": "火場怪力",
+    "nameEn": null,
+    "description": "體力在最大值的一定比例以下時，防禦力與造成的傷害會提升。",
+    "maxLevel": 1,
+    "sources": [
+      "set"
+    ],
+    "armorCount": 0,
+    "weaponCount": 0,
+    "levels": []
+  },
+  {
+    "id": "mhohub-110",
+    "name": "Radiant Power Surge",
+    "nameEn": null,
+    "description": "體力上限降低，同時造成的傷害提升。",
+    "maxLevel": 3,
+    "sources": [
+      "armor"
+    ],
+    "armorCount": 0,
+    "weaponCount": 0,
+    "levels": []
   }
 ]

@@ -678,5 +678,158 @@
     "series": [
       "paolumu"
     ]
+  },
+  {
+    "id": "radiant-tzitzi-ya-ku-set",
+    "name": "眩鳥之精準",
+    "requiredPieces": 2,
+    "bonusLabel": "彈道強化+1",
+    "bonusEffect": "縮短彈藥、箭矢達到最大威力時的距離。",
+    "grants": [
+      {
+        "skillId": "ballistics",
+        "skillName": "彈道強化",
+        "level": 1
+      }
+    ],
+    "series": [
+      "radiant-tzitzi-ya-ku"
+    ]
+  },
+  {
+    "id": "radiant-radobaan-set",
+    "name": "骨鎚龍之無畏",
+    "requiredPieces": 3,
+    "bonusLabel": "無懼+1",
+    "bonusEffect": "技能發動時，傷害+3%。",
+    "grants": [
+      {
+        "skillId": "fearless",
+        "skillName": "無懼",
+        "level": 1
+      }
+    ],
+    "series": [
+      "radiant-radobaan"
+    ]
+  },
+  {
+    "id": "radiant-legiana-set",
+    "name": "風漂龍之庇佑",
+    "requiredPieces": 2,
+    "bonusLabel": "庇佑+1",
+    "bonusEffect": "受到傷害時，有25%機率將此次傷害減輕15%。",
+    "grants": [
+      {
+        "skillId": "blessing",
+        "skillName": "庇佑",
+        "level": 1
+      }
+    ],
+    "series": [
+      "radiant-legiana"
+    ]
+  },
+  {
+    "id": "radiant-odogaron-set",
+    "name": "慘爪龍之湧動",
+    "requiredPieces": 2,
+    "bonusLabel": "超回復力+1",
+    "bonusEffect": "體力在達到75以前會持續自動回復。",
+    "grants": [
+      {
+        "skillId": "rejuvenation",
+        "skillName": "超回復力",
+        "level": 1
+      }
+    ],
+    "series": [
+      "radiant-odogaron"
+    ]
+  },
+  {
+    "id": "radiant-pink-rathian-set",
+    "name": "櫻火龍之暴走",
+    "requiredPieces": 2,
+    "bonusLabel": "融光活性+1",
+    "bonusEffect": null,
+    "grants": [
+      {
+        "skillId": "mhohub-136",
+        "skillName": "融光活性",
+        "level": 1
+      }
+    ],
+    "series": [
+      "radiant-pink-rathian"
+    ]
+  },
+  {
+    "id": "black-diablos-set",
+    "name": "黑角龍之堅壁",
+    "requiredPieces": 2,
+    "bonusLabel": "鐵壁防禦+1",
+    "bonusEffect": "可以防禦一般無法防禦的攻擊。",
+    "grants": [
+      {
+        "skillId": "mhohub-83",
+        "skillName": "鐵壁防禦",
+        "level": 1
+      }
+    ],
+    "series": [
+      "black-diablos"
+    ]
+  },
+  {
+    "id": "radiant-rathalos-set",
+    "name": "火龍之烈心",
+    "requiredPieces": 3,
+    "bonusLabel": "會心擊【屬性】+1",
+    "bonusEffect": "因攻擊而出現會心時，所造成的屬性傷害提高5%。",
+    "grants": [
+      {
+        "skillId": "critical-element",
+        "skillName": "會心擊【屬性】",
+        "level": 1
+      }
+    ],
+    "series": [
+      "radiant-rathalos"
+    ]
+  },
+  {
+    "id": "radiant-diablos-set",
+    "name": "角龍之屏障",
+    "requiredPieces": 3,
+    "bonusLabel": "鬥志+1",
+    "bonusEffect": "技能發動時，會心率+3%。",
+    "grants": [
+      {
+        "skillId": "battle-spirit",
+        "skillName": "鬥志",
+        "level": 1
+      }
+    ],
+    "series": [
+      "radiant-diablos"
+    ]
+  },
+  {
+    "id": "radiant-black-diablos-set",
+    "name": "黑角龍之火場怪力",
+    "requiredPieces": 2,
+    "bonusLabel": "火場怪力+1",
+    "bonusEffect": null,
+    "grants": [
+      {
+        "skillId": "mhohub-42",
+        "skillName": "火場怪力",
+        "level": 1
+      }
+    ],
+    "series": [
+      "radiant-black-diablos"
+    ]
   }
 ]

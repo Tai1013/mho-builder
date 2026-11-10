@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { monsterLabel, pieceMap, seriesMap, seriesMonster, setSkillMap, stageFor } from '../data'
+import { monsterLabel, pieceMap, selectableStages, seriesMap, seriesMonster, setSkillMap, stageFor } from '../data'
 import { useBuild } from '../composables/useBuild'
 import type { PartId } from '../types'
 import MonsterIcon from './MonsterIcon.vue'
@@ -17,7 +17,10 @@ const stage = computed(() => (piece.value ? stageFor(piece.value, slots[props.pa
 const series = computed(() => (piece.value ? seriesMap.get(piece.value.series) : undefined))
 const setSkill = computed(() => (piece.value?.setSkill ? setSkillMap.get(piece.value.setSkill) : undefined))
 
-const rarityOptions = computed(() => piece.value?.stages.map((st) => ({ value: st.rarity, label: `R${st.rarity}` })) ?? [])
+// 只列技能等級都確定的階（有「?」的階不能拿來配裝）
+const rarityOptions = computed(() =>
+  piece.value ? selectableStages(piece.value).map((st) => ({ value: st.rarity, label: `R${st.rarity}` })) : [],
+)
 function onRarity(v: string) {
   setRarity(props.part, Number(v))
 }
@@ -64,8 +67,6 @@ function onRarity(v: string) {
           <div class="name">{{ stage.name }}</div>
           <div class="meta">
             <span class="monster">{{ monsterLabel(series) }}</span>
-            <span class="dot">·</span>
-            <span>防禦 <b class="num">{{ stage.defense }}</b></span>
           </div>
         </div>
       </div>

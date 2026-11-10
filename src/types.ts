@@ -50,7 +50,6 @@ export interface MaterialItem {
 export interface Stage {
   rarity: number
   name: string
-  defense: number
   skills: StageSkill[]
   materials: { type: 'craft' | 'upgrade'; items: MaterialItem[] } | null
 }
@@ -64,7 +63,6 @@ export interface ArmorPiece {
   series: string
   rarityMin: number
   rarityMax: number
-  maxDefense: number
   /** 最高稀有度時的技能 */
   skills: StageSkill[]
   setSkill: string | null
@@ -77,6 +75,8 @@ export interface Monster {
   name: string
   nameEn: string | null
   image: string
+  /** 繪影圖示：只有 image 是錯圖的魔物才有（例如融光種大凶豺龍），其他是 null */
+  visage: string | null
   size: '大型' | '小型'
   species: string
   habitats: string[]

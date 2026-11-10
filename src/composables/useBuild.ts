@@ -1,5 +1,5 @@
 import { computed, reactive, ref, watch } from 'vue'
-import { PART_IDS, pieceMap, setSkillMap, seriesMap, skillMap, stageFor } from '../data'
+import { PART_IDS, isPieceSelectable, pieceMap, setSkillMap, seriesMap, skillMap, stageFor } from '../data'
 import type { ArmorPiece, PartId, SetSkill, Skill, Stage } from '../types'
 
 export interface SlotState {
@@ -68,7 +68,8 @@ export function decodeBuild(code: string): { slots: BuildSlots; targetRarity: nu
   for (const part of PART_IDS) {
     const [seriesId, rarity] = (params.get(part) ?? '').split('.')
     const piece = seriesId ? pieceMap.get(`${seriesId}/${part}`) : undefined
-    if (!piece) continue
+    // 技能等級還不確定（只有「?」的階）的部件不能配裝
+    if (!piece || !isPieceSelectable(piece)) continue
     slots[part].pieceId = piece.id
     slots[part].rarity = rarity && /^\d+$/.test(rarity) ? Number(rarity) : stageFor(piece, 'max').rarity
   }
@@ -163,7 +164,6 @@ export function summarizeBuild(code: string) {
   return {
     slots,
     equipped,
-    totalDefense: equipped.reduce((sum, e) => sum + e.stage.defense, 0),
     setStatuses,
     skills: computeSkills(equipped, setStatuses),
   }
@@ -228,7 +228,7 @@ watch([slots, targetRarity], writeHash, { deep: true })
 // ---------- 動作 ----------
 function equip(pieceId: string) {
   const piece = pieceMap.get(pieceId)
-  if (!piece) return
+  if (!piece || !isPieceSelectable(piece)) return
   slots[piece.part].pieceId = piece.id
   slots[piece.part].rarity = stageFor(piece, targetRarity.value).rarity
 }
@@ -271,7 +271,6 @@ function loadBuild(code: string) {
 
 // ---------- 計算 ----------
 const equipped = computed(() => computeEquipped(slots))
-const totalDefense = computed(() => equipped.value.reduce((sum, e) => sum + e.stage.defense, 0))
 const setStatuses = computed(() => computeSetStatuses(equipped.value))
 const aggregatedSkills = computed(() => computeSkills(equipped.value, setStatuses.value))
 /** 目前配裝的代碼（跟網址 # 後面一樣），用來比對清單裡哪一組是目前的配裝 */
@@ -287,7 +286,6 @@ export function useBuild() {
     closePicker,
     suppressHashRead,
     equipped,
-    totalDefense,
     setStatuses,
     aggregatedSkills,
     currentCode,

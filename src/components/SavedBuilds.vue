@@ -46,7 +46,6 @@ const rows = computed(() =>
           seriesChar: series?.name[0] ?? '',
         }
       }),
-      totalDefense: sum.totalDefense,
       activeSets: sum.setStatuses.filter((s) => s.active),
       skills: sum.skills,
     }
@@ -191,9 +190,7 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
                 </ul>
                 <p v-else class="d-empty">沒有發動的套裝技能</p>
 
-                <div class="d-title">
-                  技能合計<span class="d-def">防禦 <b class="num">{{ r.totalDefense }}</b></span>
-                </div>
+                <div class="d-title">技能合計</div>
                 <ul v-if="r.skills.length" class="d-list">
                   <li v-for="s in r.skills" :key="s.key">
                     <span class="d-name">{{ s.name }}</span>
@@ -484,13 +481,6 @@ input[type='text']:disabled {
 }
 .d-title:first-child {
   margin-top: 0;
-}
-.d-def {
-  margin-left: auto;
-  font-weight: 400;
-}
-.d-def b {
-  color: var(--text-strong);
 }
 .d-list {
   list-style: none;

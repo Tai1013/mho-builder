@@ -6,10 +6,12 @@ import {
   NO_MONSTER,
   PARTS,
   armorSkills,
+  isPieceSelectable,
   monsterLabel,
   monsterMap,
   monsterOptions,
   noMonsterSeriesCount,
+  pieceMap,
   piecesByPart,
   seriesMap,
   seriesMatchesMonster,
@@ -40,7 +42,6 @@ const {
 
 const sortOptions: { value: SortKey; label: string }[] = [
   { value: 'default', label: '預設排序' },
-  { value: 'defense', label: '防禦力高→低' },
   { value: 'rarity', label: '稀有度高→低' },
 ]
 function onSort(v: string) {
@@ -145,6 +146,10 @@ const rows = computed(() => {
       set,
       monster: seriesMonster(series),
       notes: filterNotes(piece, stage),
+      /** 技能等級還不確定（有「?」），不能拿來配裝，只能看 */
+      locked: !isPieceSelectable(piece),
+      /** 同系列至少有一件可以配裝，「整套」按鈕才有用 */
+      seriesUsable: Object.values(series?.pieces ?? {}).some((p) => p && isPieceSelectable(p)),
       /** 符合幾個篩選技能（含其他稀有度、套裝） */
       matched: wanted.filter((id) => ids.has(id)).length,
       /** 目前稀有度下，篩選技能的等級合計 */
@@ -163,8 +168,7 @@ const rows = computed(() => {
       list = [...list].sort((a, b) => b.matched - a.matched || b.matchedLevels - a.matchedLevels)
     }
   }
-  if (sortKey.value === 'defense') list = [...list].sort((a, b) => b.stage.defense - a.stage.defense)
-  if (sortKey.value === 'rarity') list = [...list].sort((a, b) => b.piece.rarityMax - a.piece.rarityMax || b.stage.defense - a.stage.defense)
+  if (sortKey.value === 'rarity') list = [...list].sort((a, b) => b.piece.rarityMax - a.piece.rarityMax)
   return list
 })
 
@@ -175,6 +179,8 @@ function resetFilters() {
 }
 
 function choose(pieceId: string) {
+  const piece = pieceMap.get(pieceId)
+  if (piece && !isPieceSelectable(piece)) return
   equip(pieceId)
   closePicker()
 }
@@ -410,21 +416,21 @@ onBeforeUnmount(() => {
             v-for="r in rows"
             :key="r.piece.id"
             class="row"
-            :class="{ equipped: equippedId === r.piece.id }"
+            :class="{ equipped: equippedId === r.piece.id, locked: r.locked }"
           >
-            <button type="button" class="row-main" @click="choose(r.piece.id)">
+            <button type="button" class="row-main" :disabled="r.locked" @click="choose(r.piece.id)">
               <MonsterIcon class="row-icon" :monster="r.monster" :size="40" />
               <div class="row-body">
                 <div class="row-top">
                   <span class="row-name">{{ r.stage.name }}</span>
                   <span v-if="equippedId === r.piece.id" class="now">裝備中</span>
                   <span class="badge">R{{ r.stage.rarity }}</span>
-                  <span class="def">防 {{ r.stage.defense }}</span>
                 </div>
                 <div class="row-sub">
                   <span class="monster">{{ monsterLabel(r.series) }}</span>
                   <span>{{ r.series?.name }}</span>
-                  <span>R{{ r.piece.rarityMin }}–{{ r.piece.rarityMax }}</span>
+                  <!-- 只有一個稀有度時（例如 R10–10）只寫 R10 -->
+                  <span>R{{ r.piece.rarityMin }}<template v-if="r.piece.rarityMax !== r.piece.rarityMin">–{{ r.piece.rarityMax }}</template></span>
                 </div>
                 <div class="row-skills">
                   <span
@@ -441,9 +447,18 @@ onBeforeUnmount(() => {
                 <div v-if="r.set" class="row-set" :class="{ hit: r.setHit }">
                   套裝 {{ r.set.name }}（{{ r.set.requiredPieces }} 件：{{ r.set.bonusLabel }}）
                 </div>
+                <div v-if="r.locked" class="row-locked">技能等級還不確定（?），暫時不能配裝</div>
               </div>
             </button>
-            <button type="button" class="series-btn" title="一次裝上整套" @click="chooseSeries(r.piece.series)">整套</button>
+            <button
+              type="button"
+              class="series-btn"
+              title="一次裝上整套（技能等級不確定的部件會略過）"
+              :disabled="r.locked || !r.seriesUsable"
+              @click="chooseSeries(r.piece.series)"
+            >
+              整套
+            </button>
           </li>
           <li v-if="!rows.length" class="empty">沒有符合條件的防具</li>
         </ul>
@@ -853,6 +868,26 @@ onBeforeUnmount(() => {
   border-color: var(--accent);
   box-shadow: 0 0 0 2px var(--accent-bg);
 }
+.row.locked {
+  border-style: dashed;
+}
+/* 不能配裝：灰掉但看得清楚，讓人知道有這件、有哪些技能 */
+.row.locked .row-main {
+  cursor: default;
+}
+.row.locked .row-icon,
+.row.locked .row-name {
+  opacity: 0.6;
+}
+.row-locked {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--warn);
+}
+.series-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
 .row-main {
   flex: 1;
   min-width: 0;
@@ -868,7 +903,7 @@ onBeforeUnmount(() => {
   cursor: pointer;
 }
 @media (hover: hover) {
-  .row-main:hover {
+  .row-main:not(:disabled):hover {
     background: var(--hover);
   }
 }
@@ -902,12 +937,6 @@ onBeforeUnmount(() => {
   border-radius: 4px;
   padding: 0 5px;
   background: var(--chip);
-}
-.def {
-  font-size: 12px;
-  font-variant-numeric: tabular-nums;
-  color: var(--muted);
-  white-space: nowrap;
 }
 .row-sub {
   display: flex;

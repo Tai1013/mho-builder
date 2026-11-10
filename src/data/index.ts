@@ -38,13 +38,39 @@ for (const series of seriesList) {
 /** 可在防具上出現的技能（給篩選用） */
 export const armorSkills = skills.filter((s) => s.sources.includes('armor'))
 
+/**
+ * 這一階的技能等級都確定。來源網站沒寫等級的技能是 null（畫面顯示「?」），
+ * 有「?」的階不能拿來配裝，只能在選防具清單裡看。
+ */
+export function isStageKnown(st: Stage): boolean {
+  return st.skills.every((k) => k.level != null)
+}
+const selectableCache = new Map<string, Stage[]>()
+/** 可以拿來配裝的階（技能等級都確定） */
+export function selectableStages(piece: ArmorPiece): Stage[] {
+  let list = selectableCache.get(piece.id)
+  if (!list) {
+    list = piece.stages.filter(isStageKnown)
+    selectableCache.set(piece.id, list)
+  }
+  return list
+}
+/** 至少有一階可以配裝 */
+export function isPieceSelectable(piece: ArmorPiece): boolean {
+  return selectableStages(piece).length > 0
+}
+
 export const RARITIES = Array.from(
-  new Set(seriesList.flatMap((s) => Object.values(s.pieces).flatMap((p) => p!.stages.map((st) => st.rarity)))),
+  new Set(seriesList.flatMap((s) => Object.values(s.pieces).flatMap((p) => selectableStages(p!).map((st) => st.rarity)))),
 ).sort((a, b) => a - b)
 
-/** 取得某稀有度的性能；沒有剛好的稀有度時取「不超過目標的最高稀有度」，再不行就取最低階。 */
+/**
+ * 取得某稀有度的技能；沒有剛好的稀有度時取「不超過目標的最高稀有度」，再不行就取最低階。
+ * 只從可以配裝的階裡選；整件都不能配裝時（只用來在清單顯示）才用全部的階。
+ */
 export function stageFor(piece: ArmorPiece, rarity: number | 'max'): Stage {
-  const stages = piece.stages
+  const known = selectableStages(piece)
+  const stages = known.length ? known : piece.stages
   if (rarity === 'max') return stages[stages.length - 1]
   let best: Stage | undefined
   for (const st of stages) if (st.rarity <= rarity) best = st
@@ -83,6 +109,18 @@ export const monsterOptions = monsters
   .filter((o) => o.seriesCount > 0)
   .sort((a, b) => Number(a.monster.size !== '大型') - Number(b.monster.size !== '大型') || a.order - b.order)
 export const noMonsterSeriesCount = seriesList.filter((s) => !seriesMonsterIds(s).length).length
+
+/** 系列在魔物下拉選單的位置（大型 → 小型），無魔物素材的系列排最後 */
+const monsterRank = new Map(monsterOptions.map((o, i) => [o.monster.id, i]))
+export function seriesRank(series: ArmorSeries | undefined): number {
+  const id = seriesMonsterIds(series)[0]
+  const rank = id ? monsterRank.get(id) : undefined
+  return rank ?? monsterOptions.length
+}
+// 選防具清單的預設排序跟魔物下拉選單一樣；同一隻魔物的多個系列維持來源網站的順序（sort 是穩定排序）
+for (const part of PART_IDS) {
+  piecesByPart[part].sort((a, b) => seriesRank(seriesMap.get(a.series)) - seriesRank(seriesMap.get(b.series)))
+}
 
 export function seriesMatchesMonster(series: ArmorSeries | undefined, filter: string): boolean {
   if (!filter) return true

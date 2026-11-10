@@ -1,0 +1,14 @@
+{
+  "_說明": [
+    "使用者在遊戲中確認、gamewith 和 mhohub 都推不出來的資料。parse_pages.py 會用這裡補上。",
+    "skillLevels：mhohub 有寫這個技能、但沒寫技能等級，gamewith 也沒有的時候才會用到。",
+    "armor 是系列 id（例如 radiant-tzitzi-ya-ku），part 是 head／chest／arms／waist／legs，skill 是技能中文名稱。",
+    "如果來源網站之後補上了等級，parse_pages.py 會印出「not needed」，就可以把那一筆刪掉。"
+  ],
+  "skillLevels": [
+    { "armor": "radiant-tzitzi-ya-ku", "part": "chest", "skill": "道具專家", "level": 2, "note": "2026-11-10 使用者提供" },
+    { "armor": "radiant-tzitzi-ya-ku", "part": "arms", "skill": "睡眠耐性", "level": 2, "note": "2026-11-10 使用者提供" },
+    { "armor": "radiant-tzitzi-ya-ku", "part": "waist", "skill": "一擊洞穿", "level": 3, "note": "2026-11-10 使用者提供" },
+    { "armor": "radiant-tzitzi-ya-ku", "part": "legs", "skill": "水屬性傷害提升", "level": 3, "note": "2026-11-10 使用者提供" }
+  ]
+}
