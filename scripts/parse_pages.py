@@ -252,6 +252,13 @@ manual = json.load(open(os.path.join(_here, 'manual_data.json'), encoding='utf-8
 # (系列 id, 部位, 技能名稱) → 等級；遊戲內確認、兩個網站都沒寫等級的技能
 level_patch = {(x['armor'], x['part'], x['skill']): x['level'] for x in manual.get('skillLevels', [])}
 level_patch_used = set()
+level_overrides = {(x['armor'], x['part'], x['skill']): x['level']
+                   for x in manual.get('skillLevelOverrides', [])}
+temporary_level_overrides = {
+    (x['armor'], x['part'], x['skill']): x
+    for x in manual.get('skillLevelOverrides', []) if x.get('temporary')
+}
+temporary_overrides_seen = set()
 
 def mh_parse_sets():
     out = []
@@ -412,6 +419,29 @@ if os.path.isdir(MH):
         print('NOTE manual skillLevels not needed (already known)', k)
 else:
     print('WARN mhohub cache not found, run fetch_pages.py')
+
+# 使用者在遊戲內確認的技能等級優先於來源頁面標示。
+for s in armor:
+    for part, p in s['pieces'].items():
+        for st in p['stages']:
+            for skill in st['skills']:
+                key = (s['id'], part, skill['name'])
+                override = level_overrides.get(key)
+                if override is not None:
+                    temporary = temporary_level_overrides.get(key)
+                    if temporary:
+                        temporary_overrides_seen.add(key)
+                        if skill['level'] == override:
+                            print('NOTE temporary skill override matches source; can remove', key)
+                            continue
+                        print('NOTE temporary skill override applied', key,
+                              skill['level'], '->', override)
+                    skill['level'] = override
+        if p['stages']:
+            p['skills'] = p['stages'][-1]['skills']
+
+for key in temporary_level_overrides.keys() - temporary_overrides_seen:
+    print('WARN temporary skill override not found in parsed armor', key)
 
 # 防具上出現的技能都要能在「技能篩選」選到（mhohub 補進來的技能可能先被當成套裝技能建立）
 used_on_armor = {k['skillId'] for s in armor for p in s['pieces'].values() for st in p['stages'] for k in st['skills']}

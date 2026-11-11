@@ -23749,7 +23749,7 @@
           {
             "skillId": "charge-up",
             "name": "精神抖擻",
-            "level": null
+            "level": 3
           },
           {
             "skillId": "rejuvenation",
@@ -23766,7 +23766,7 @@
               {
                 "skillId": "charge-up",
                 "name": "精神抖擻",
-                "level": null
+                "level": 3
               },
               {
                 "skillId": "rejuvenation",
@@ -23790,7 +23790,7 @@
           {
             "skillId": "combo-enhancement",
             "name": "連擊強化",
-            "level": null
+            "level": 3
           },
           {
             "skillId": "rejuvenation",
@@ -23807,7 +23807,7 @@
               {
                 "skillId": "combo-enhancement",
                 "name": "連擊強化",
-                "level": null
+                "level": 3
               },
               {
                 "skillId": "rejuvenation",
@@ -23831,12 +23831,12 @@
           {
             "skillId": "demonic-strength",
             "name": "鬼人修羅",
-            "level": 2
+            "level": 1
           },
           {
             "skillId": "health-cycle",
             "name": "血氣",
-            "level": 1
+            "level": 2
           },
           {
             "skillId": "instinct",
@@ -23853,12 +23853,12 @@
               {
                 "skillId": "demonic-strength",
                 "name": "鬼人修羅",
-                "level": 2
+                "level": 1
               },
               {
                 "skillId": "health-cycle",
                 "name": "血氣",
-                "level": 1
+                "level": 2
               },
               {
                 "skillId": "instinct",
@@ -23933,12 +23933,12 @@
           {
             "skillId": "rejuvenation",
             "name": "超回復力",
-            "level": 1
+            "level": 2
           },
           {
             "skillId": "health-boost",
             "name": "體力強化",
-            "level": null
+            "level": 1
           }
         ],
         "setSkill": "radiant-odogaron-set",
@@ -23950,12 +23950,12 @@
               {
                 "skillId": "rejuvenation",
                 "name": "超回復力",
-                "level": 1
+                "level": 2
               },
               {
                 "skillId": "health-boost",
                 "name": "體力強化",
-                "level": null
+                "level": 1
               }
             ]
           }

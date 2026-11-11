@@ -2,6 +2,7 @@
   "_說明": [
     "使用者在遊戲中確認、gamewith 和 mhohub 都推不出來的資料。parse_pages.py 會用這裡補上。",
     "skillLevels：mhohub 有寫這個技能、但沒寫技能等級，gamewith 也沒有的時候才會用到。",
+    "skillLevelOverrides：遊戲中確認的技能等級，優先於來源網站的標示；temporary=true 的項目在來源值一致後會提示可移除。",
     "armor 是系列 id（例如 radiant-tzitzi-ya-ku），part 是 head／chest／arms／waist／legs，skill 是技能中文名稱。",
     "如果來源網站之後補上了等級，parse_pages.py 會印出「not needed」，就可以把那一筆刪掉。"
   ],
@@ -10,5 +11,19 @@
     { "armor": "radiant-tzitzi-ya-ku", "part": "arms", "skill": "睡眠耐性", "level": 2, "note": "2026-11-10 使用者提供" },
     { "armor": "radiant-tzitzi-ya-ku", "part": "waist", "skill": "一擊洞穿", "level": 3, "note": "2026-11-10 使用者提供" },
     { "armor": "radiant-tzitzi-ya-ku", "part": "legs", "skill": "水屬性傷害提升", "level": 3, "note": "2026-11-10 使用者提供" }
+  ],
+  "skillLevelOverrides": [
+    { "armor": "radiant-odogaron", "part": "head", "skill": "精神抖擻", "level": 3, "temporary": true, "note": "2026-11-12 使用者提供" },
+    { "armor": "radiant-odogaron", "part": "head", "skill": "超回復力", "level": 1, "temporary": true, "note": "2026-11-12 使用者提供" },
+    { "armor": "radiant-odogaron", "part": "chest", "skill": "連擊強化", "level": 3, "temporary": true, "note": "2026-11-12 使用者提供" },
+    { "armor": "radiant-odogaron", "part": "chest", "skill": "超回復力", "level": 1, "temporary": true, "note": "2026-11-12 使用者提供" },
+    { "armor": "radiant-odogaron", "part": "arms", "skill": "鬼人修羅", "level": 1, "temporary": true, "note": "2026-11-12 使用者提供" },
+    { "armor": "radiant-odogaron", "part": "arms", "skill": "血氣", "level": 2, "temporary": true, "note": "2026-11-12 使用者提供" },
+    { "armor": "radiant-odogaron", "part": "arms", "skill": "極力", "level": 1, "temporary": true, "note": "2026-11-12 使用者提供" },
+    { "armor": "radiant-odogaron", "part": "waist", "skill": "鬼人修羅", "level": 2, "temporary": true, "note": "2026-11-12 使用者提供" },
+    { "armor": "radiant-odogaron", "part": "waist", "skill": "血氣", "level": 1, "temporary": true, "note": "2026-11-12 使用者提供" },
+    { "armor": "radiant-odogaron", "part": "waist", "skill": "窮追猛打", "level": 1, "temporary": true, "note": "2026-11-12 使用者提供" },
+    { "armor": "radiant-odogaron", "part": "legs", "skill": "超回復力", "level": 2, "temporary": true, "note": "2026-11-12 使用者提供" },
+    { "armor": "radiant-odogaron", "part": "legs", "skill": "體力強化", "level": 1, "temporary": true, "note": "2026-11-12 使用者提供" }
   ]
 }

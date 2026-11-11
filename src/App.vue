@@ -13,7 +13,6 @@ import SelectChip from './components/SelectChip.vue'
 import SavedBuilds from './components/SavedBuilds.vue'
 import CrewCard from './components/CrewCard.vue'
 import CrewPicker from './components/CrewPicker.vue'
-import { applyUpdate, dismissUpdate, updateReady } from './composables/appUpdate'
 
 const { targetRarity, setTargetRarity, clearAll, pickerOpen } = useBuild()
 const uiPrefs = useUiPrefs()
@@ -112,13 +111,6 @@ function onTarget(v: string) {
   <ArmorPicker v-if="pickerOpen" />
   <SavedBuilds v-if="listOpen" @close="listOpen = false" />
   <CrewPicker v-if="crewOpen" :kind="crewOpen" @close="crewOpen = null" />
-
-  <!-- 背景已下載好新版本時，從底部浮出 -->
-  <div v-if="updateReady" class="update-bar" role="status">
-    <span>有新版本</span>
-    <button type="button" class="update-btn" @click="applyUpdate">更新</button>
-    <button type="button" class="update-later" @click="dismissUpdate">稍後</button>
-  </div>
 </template>
 
 <style scoped>
@@ -312,47 +304,5 @@ h1 {
 }
 .foot .notice {
   margin-top: 6px;
-}
-
-/* 更新提示：在選擇視窗（z-index 100）底下，開著視窗時不會擋到 */
-.update-bar {
-  position: fixed;
-  left: 50%;
-  bottom: max(16px, env(safe-area-inset-bottom));
-  transform: translateX(-50%);
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 8px 8px 14px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--surface);
-  color: var(--text-strong);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
-  white-space: nowrap;
-}
-.update-bar span {
-  font-weight: 600;
-}
-.update-btn {
-  height: 32px;
-  padding: 0 14px;
-  border: 0;
-  border-radius: 8px;
-  background: var(--accent);
-  color: var(--on-accent);
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-}
-.update-later {
-  height: 32px;
-  padding: 0 8px;
-  border: 0;
-  background: none;
-  color: var(--muted);
-  font-size: 13px;
-  cursor: pointer;
 }
 </style>

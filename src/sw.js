@@ -4,8 +4,7 @@
  *
  * 作法：網站檔案全部先存在手機裡，打開時直接用存好的，不等網路。
  * 瀏覽器會在背景比對 sw.js 有沒有變（版本號由檔案內容算出，沒改東西就完全一樣）。
- * 有變就是新版本：先在背景把新檔案下載好，再由網頁跳出「有新版本」提示，按下才換成新版；
- * 沒按的話，下次重新打開 App 時就會是新版。
+ * 有變就是新版本：先在背景把新檔案下載好，再自動切換並重新載入已開啟的頁面。
  */
 
 const VERSION = __VERSION__
@@ -19,20 +18,33 @@ const INDEX = new URL('./', self.registration.scope).href
 self.addEventListener('install', (event) => {
   // cache: 'reload'：不用瀏覽器暫存的舊檔，一定向網站拿這一版的檔案
   event.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll(FILES.map((f) => new Request(f, { cache: 'reload' })))),
+    caches
+      .open(CACHE)
+      .then((cache) => cache.addAll(FILES.map((f) => new Request(f, { cache: 'reload' }))))
+      .then(() => self.skipWaiting()),
   )
 })
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches
-      .keys()
-      .then((keys) => Promise.all(keys.filter((k) => k.startsWith(PREFIX) && k !== CACHE).map((k) => caches.delete(k))))
-      .then(() => self.clients.claim()),
+    (async () => {
+      const keys = await caches.keys()
+      const hadPreviousVersion = keys.some((key) => key.startsWith(PREFIX) && key !== CACHE)
+      await Promise.all(keys.filter((key) => key.startsWith(PREFIX) && key !== CACHE).map((key) => caches.delete(key)))
+      await self.clients.claim()
+      if (hadPreviousVersion) {
+        const clients = await self.clients.matchAll({ type: 'window', includeUncontrolled: true })
+        await Promise.all(
+          clients
+            .filter((client) => client.url.startsWith(self.registration.scope))
+            .map((client) => client.navigate(client.url).catch(() => null)),
+        )
+      }
+    })(),
   )
 })
 
-// 網頁按下「更新」時送來，讓已經下載好的新版本馬上接手
+// 讓新版本立即接手，不等待舊版用戶端關閉。
 self.addEventListener('message', (event) => {
   if (event.data === 'skip-waiting') self.skipWaiting()
 })
