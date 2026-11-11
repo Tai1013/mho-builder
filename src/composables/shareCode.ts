@@ -4,7 +4,8 @@ import { decodeBuild, encodeBuild, isPlainCode } from './buildCode'
 /**
  * 配裝分享代碼：把標題和配裝內容轉成一串看起來像亂數的字（base64url），
  * 不需要伺服器，貼給別人就能在配裝清單匯入。
- * 內容：[版本, 標題, 目標稀有度, 頭, 胸, 腕, 腰, 腿]，部位寫成「系列.稀有度」，沒裝是空字串。
+ * 內容：[版本, 標題, 目標稀有度, 頭, 胸, 腕, 腰, 腿, 冒險者, 隨從]，部位寫成「系列.稀有度」，沒裝是空字串。
+ * 冒險者、隨從是後來加的：沒選時不寫（跟舊代碼一模一樣），舊版網站讀到也只會忽略。
  * 有支援的瀏覽器會先壓縮（代碼開頭是 z，長度大約少一半）；不支援時直接編碼（開頭一定是 W，因為 JSON 以「[」開頭）。
  */
 const VERSION = 1
@@ -29,7 +30,11 @@ const canZip = typeof CompressionStream !== 'undefined' && typeof DecompressionS
 /** 配裝（標題＋配裝代碼）→ 分享代碼 */
 export async function toShareCode(name: string, code: string): Promise<string> {
   const p = new URLSearchParams(code)
-  const json = JSON.stringify([VERSION, name, p.get('r') ?? '', ...PART_IDS.map((part) => p.get(part) ?? '')])
+  const arr = [VERSION, name, p.get('r') ?? '', ...PART_IDS.map((part) => p.get(part) ?? '')]
+  const crew = [p.get('a') ?? '', p.get('b') ?? '']
+  if (crew[1]) arr.push(...crew)
+  else if (crew[0]) arr.push(crew[0])
+  const json = JSON.stringify(arr)
   const bytes = new TextEncoder().encode(json)
   if (canZip) {
     try {
@@ -67,9 +72,13 @@ export async function fromShareCode(text: string, opts: { allowEmpty?: boolean }
     }
     const arr: unknown = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes))
     if (!Array.isArray(arr) || arr[0] !== VERSION) return null
-    const [, name, r, ...parts] = arr
+    const [, name, r, ...rest] = arr
+    const parts = rest.slice(0, PART_IDS.length)
+    const [a, b] = rest.slice(PART_IDS.length)
     const p = new URLSearchParams()
     if (typeof r === 'string' && r) p.set('r', r)
+    if (typeof a === 'string' && a) p.set('a', a)
+    if (typeof b === 'string' && b) p.set('b', b)
     PART_IDS.forEach((part, i) => {
       if (typeof parts[i] === 'string' && parts[i]) p.set(part, parts[i])
     })
@@ -82,12 +91,12 @@ export async function fromShareCode(text: string, opts: { allowEmpty?: boolean }
 /** 用網站目前的資料重新整理：不存在、技能等級不確定、超過稀有度上限的部件會被拿掉 */
 function normalize(name: string, code: string, opts: { allowEmpty?: boolean }): ImportedBuild | null {
   const p = new URLSearchParams(code)
-  const { slots, targetRarity } = decodeBuild(code)
+  const { slots, targetRarity, adventurer, buddy } = decodeBuild(code)
   const kept = PART_IDS.filter((part) => slots[part].pieceId).length
   if (!kept && !opts.allowEmpty) return null
   return {
     name: name.trim().slice(0, 30),
-    code: encodeBuild(slots, targetRarity),
+    code: encodeBuild(slots, targetRarity, { adventurer, buddy }),
     skipped: PART_IDS.filter((part) => p.has(part)).length - kept,
   }
 }

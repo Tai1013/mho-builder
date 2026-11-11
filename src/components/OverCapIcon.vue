@@ -1,10 +1,12 @@
 <script setup lang="ts">
-/** 技能合計超過最高等級時，接在格子右邊的紅色 ✕ 方塊，大小跟格子一樣（超出幾級看 Lv4/3） */
+/** 技能合計超過最高等級時，接在格子右邊的紅色 ✕ 方塊，大小跟格子一樣；超出幾級就畫幾個（Lv9/7 → 兩個） */
 defineProps<{ extra: number }>()
 </script>
 
 <template>
   <svg
+    v-for="n in extra"
+    :key="n"
     class="over-cap"
     viewBox="0 0 8 8"
     width="8"

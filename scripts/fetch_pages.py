@@ -18,6 +18,9 @@ ar=fetch_index('armor')
 fetch_index('monsters')
 # 繪影（visages）列表：魔物列表圖示錯的魔物（例如融光種大凶豺龍），parse_pages.py 改用這裡的圖
 fetch_index('visages')
+# 冒險者、隨從一覽：配裝頁最上面「冒險者／隨從」兩格的選單用
+fetch_index('adventurers')
+fetch_index('buddies')
 # the armor list page only renders page 1 as links; every row's href lives in the RSC payload
 ar+=''.join('href="/monster-hunter-outlanders/zh-hant%s"'%h for h in re.findall(r'\\"href\\":\\"(/armor/[a-z0-9-]+/[a-z]+)\\"',ar))
 paths=set()

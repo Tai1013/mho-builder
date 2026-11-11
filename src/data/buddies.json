@@ -1,0 +1,230 @@
+[
+  {
+    "id": "kojiro",
+    "name": "小次郎",
+    "image": "https://img.gamewith.jp/img/552d83423c43ff822c0244bce9852805.png",
+    "type": "進擊"
+  },
+  {
+    "id": "daisho",
+    "name": "大輔",
+    "image": "https://img.gamewith.jp/img/288e2a5a55b451c05de89539cce02d41.png",
+    "type": "進擊"
+  },
+  {
+    "id": "pipa",
+    "name": "劈啪",
+    "image": "https://img.gamewith.jp/img/7ca48d4ceee3807b4b14856362097da6.png",
+    "type": "進擊"
+  },
+  {
+    "id": "ro",
+    "name": "羅爾",
+    "image": "https://img.gamewith.jp/img/8e8ef0efb5eb27edcebb48c827d25ad5.png",
+    "type": "進擊"
+  },
+  {
+    "id": "hoppy",
+    "name": "跳跳",
+    "image": "https://img.gamewith.jp/img/fa274c306c98109aa0f9b0d0add82f44.png",
+    "type": "控場"
+  },
+  {
+    "id": "devu",
+    "name": "戴夫",
+    "image": "https://img.gamewith.jp/img/136db10131b3465d7846285b472a0480.png",
+    "type": "控場"
+  },
+  {
+    "id": "nailu",
+    "name": "納伊魯",
+    "image": "https://img.gamewith.jp/img/f0e7a7a4fe59deee770dea2d4d802df5.png",
+    "type": "輔助"
+  },
+  {
+    "id": "pheasant",
+    "name": "雉子",
+    "image": "https://img.gamewith.jp/img/6ead107c95a50cb5d6058c20adad1d33.png",
+    "type": "輔助"
+  },
+  {
+    "id": "icarus",
+    "name": "伊卡魯",
+    "image": "https://img.gamewith.jp/img/4d8609c13a393b357dab0e786b553c36.png",
+    "type": "進擊"
+  },
+  {
+    "id": "fortie",
+    "name": "托奇",
+    "image": "https://img.gamewith.jp/img/d903b914986fa47c64a9064bf7db023f.png",
+    "type": "進擊"
+  },
+  {
+    "id": "banako",
+    "name": "菇貓",
+    "image": "https://img.gamewith.jp/img/c0e5a90b3cd6a2cd414ed81c78d2c732.png",
+    "type": "進擊"
+  },
+  {
+    "id": "sand-velvet",
+    "name": "沙絨",
+    "image": "https://img.gamewith.jp/img/b8cff4d3311037bc142ca25ecd4290a8.png",
+    "type": "進擊"
+  },
+  {
+    "id": "tidal-claw",
+    "name": "汐爪",
+    "image": "https://img.gamewith.jp/img/1c253b40230e8191fa3e486bacbe7ca0.png",
+    "type": "進擊"
+  },
+  {
+    "id": "nako",
+    "name": "翠猿",
+    "image": "https://img.gamewith.jp/img/f6ed9419426e89be60a880c25926fc32.png",
+    "type": "控場"
+  },
+  {
+    "id": "barim",
+    "name": "巴里姆",
+    "image": "https://img.gamewith.jp/img/b222a6290cfe318aa2c5f7b26fb5b111.png",
+    "type": "控場"
+  },
+  {
+    "id": "falee-hendsom",
+    "name": "韓英俊",
+    "image": "https://img.gamewith.jp/img/eac09ded8cb660339f572e9fac64de1b.png",
+    "type": "控場"
+  },
+  {
+    "id": "sand-echo",
+    "name": "沙響",
+    "image": "https://img.gamewith.jp/img/974cb36600f1a25f1dc5b9704f7b08a7.png",
+    "type": "控場"
+  },
+  {
+    "id": "reefcore",
+    "name": "礁可",
+    "image": "https://img.gamewith.jp/img/dd76b480e1f08fb5d3c7c0e5b971d6af.png",
+    "type": "控場"
+  },
+  {
+    "id": "ravinge",
+    "name": "山竹",
+    "image": "https://img.gamewith.jp/img/49e9b995f5dd7c886cc9dcf0cb063e1e.png",
+    "type": "輔助"
+  },
+  {
+    "id": "ario",
+    "name": "青蕈",
+    "image": "https://img.gamewith.jp/img/0f35a744f2e74798047c7d4ec44ae6b8.png",
+    "type": "輔助"
+  },
+  {
+    "id": "golden-bell",
+    "name": "沙鈴",
+    "image": "https://img.gamewith.jp/img/e5d707259348ecf25b20f6ddf7df0844.png",
+    "type": "輔助"
+  },
+  {
+    "id": "tidal-sound",
+    "name": "潮音",
+    "image": "https://img.gamewith.jp/img/da3b671ed4f96d667057d0bfaad53cf3.png",
+    "type": "輔助"
+  },
+  {
+    "id": "blademaster",
+    "name": "刀禪",
+    "image": "https://img.gamewith.jp/img/ef81d523418269e2c19bd099d0e3f298.png",
+    "type": "輔助"
+  },
+  {
+    "id": "zira",
+    "name": "茲拉",
+    "image": "https://img.gamewith.jp/img/450277ddfc7f9f8f2d979734e1ff8930.png",
+    "type": "進擊"
+  },
+  {
+    "id": "aloo",
+    "name": "阿祿",
+    "image": "https://img.gamewith.jp/img/0ef1a9e83a27725923fb5e97652ba1bb.png",
+    "type": "進擊"
+  },
+  {
+    "id": "shadow",
+    "name": "影侍",
+    "image": "https://img.gamewith.jp/img/f58b9302bcf9ad18193eb5f773010604.png",
+    "type": "進擊"
+  },
+  {
+    "id": "ron",
+    "name": "羅恩",
+    "image": "https://img.gamewith.jp/img/9210fc6d23c6ee1f1a38ab53413d9649.png",
+    "type": "進擊"
+  },
+  {
+    "id": "alon",
+    "name": "阿龍",
+    "image": "https://img.gamewith.jp/img/3612bd431daa8d2fd455ebed73a93c4c.png",
+    "type": "進擊"
+  },
+  {
+    "id": "boomie",
+    "name": "嘭嘭",
+    "image": "https://img.gamewith.jp/img/5fb39efce005fad2cc46ea81dd66f414.png",
+    "type": "控場"
+  },
+  {
+    "id": "pupo",
+    "name": "蘭戈",
+    "image": "https://img.gamewith.jp/img/945003bc95f35ecd12883b83201c332e.png",
+    "type": "控場"
+  },
+  {
+    "id": "mac",
+    "name": "大麥",
+    "image": "https://img.gamewith.jp/img/40b43f07aee4f91aa05aad1e87ac512c.png",
+    "type": "控場"
+  },
+  {
+    "id": "wolfe",
+    "name": "沃爾夫",
+    "image": "https://img.gamewith.jp/img/046eadfe1a40542caa1cb77a84513951.png",
+    "type": "控場"
+  },
+  {
+    "id": "aku",
+    "name": "阿庫",
+    "image": "https://img.gamewith.jp/img/8fb80fdb946438aeafec9eeb5c53ffd1.png",
+    "type": "控場"
+  },
+  {
+    "id": "viper",
+    "name": "九重葛",
+    "image": "https://img.gamewith.jp/img/b29e1611f06a61750bbfb7195aa851b3.png",
+    "type": "輔助"
+  },
+  {
+    "id": "bladey",
+    "name": "刀吉",
+    "image": "https://img.gamewith.jp/img/016624225ba4a71183a56b67cd7fc9f4.png",
+    "type": "輔助"
+  },
+  {
+    "id": "horn",
+    "name": "角角",
+    "image": "https://img.gamewith.jp/img/ea466966174492b10d4562f0a3283791.png",
+    "type": "輔助"
+  },
+  {
+    "id": "lido",
+    "name": "裡多",
+    "image": "https://img.gamewith.jp/img/c7468f8a74ccc490d82c98b0fda48750.png",
+    "type": "輔助"
+  },
+  {
+    "id": "mith",
+    "name": "米斯",
+    "image": "https://img.gamewith.jp/img/4397eb8f4dbd32f3e6d1fabdb3935275.png",
+    "type": "輔助"
+  }
+]

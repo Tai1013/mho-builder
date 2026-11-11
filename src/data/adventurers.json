@@ -1,0 +1,170 @@
+[
+  {
+    "id": "fated-adventurer-great-sword",
+    "name": "主角冒險者",
+    "image": "https://img.gamewith.jp/img/cd96695f67ffdcfebc7b72769dc6e810.png",
+    "weapon": "大劍",
+    "element": "全屬性",
+    "type": "全類型"
+  },
+  {
+    "id": "fated-adventurer-long-sword",
+    "name": "主角冒險者",
+    "image": "https://img.gamewith.jp/img/cd96695f67ffdcfebc7b72769dc6e810.png",
+    "weapon": "太刀",
+    "element": "全屬性",
+    "type": "全類型"
+  },
+  {
+    "id": "fated-adventurer-dual-blades",
+    "name": "主角冒險者",
+    "image": "https://img.gamewith.jp/img/cd96695f67ffdcfebc7b72769dc6e810.png",
+    "weapon": "雙劍",
+    "element": "全屬性",
+    "type": "全類型"
+  },
+  {
+    "id": "fated-adventurer-lance",
+    "name": "主角冒險者",
+    "image": "https://img.gamewith.jp/img/cd96695f67ffdcfebc7b72769dc6e810.png",
+    "weapon": "長槍",
+    "element": "全屬性",
+    "type": "全類型"
+  },
+  {
+    "id": "fated-adventurer-hammer",
+    "name": "主角冒險者",
+    "image": "https://img.gamewith.jp/img/cd96695f67ffdcfebc7b72769dc6e810.png",
+    "weapon": "大錘",
+    "element": "全屬性",
+    "type": "全類型"
+  },
+  {
+    "id": "fated-adventurer-charge-blade",
+    "name": "主角冒險者",
+    "image": "https://img.gamewith.jp/img/cd96695f67ffdcfebc7b72769dc6e810.png",
+    "weapon": "充能斧",
+    "element": "全屬性",
+    "type": "全類型"
+  },
+  {
+    "id": "fated-adventurer-heavy-bowgun",
+    "name": "主角冒險者",
+    "image": "https://img.gamewith.jp/img/cd96695f67ffdcfebc7b72769dc6e810.png",
+    "weapon": "重弩槍",
+    "element": "全屬性",
+    "type": "全類型"
+  },
+  {
+    "id": "fated-adventurer-bow",
+    "name": "主角冒險者",
+    "image": "https://img.gamewith.jp/img/cd96695f67ffdcfebc7b72769dc6e810.png",
+    "weapon": "弓",
+    "element": "全屬性",
+    "type": "全類型"
+  },
+  {
+    "id": "pyro",
+    "name": "炎囂",
+    "image": "https://img.gamewith.jp/img/277c2b6488f8e643d90924cfba3feb7a.png",
+    "weapon": "大劍",
+    "element": "龍",
+    "type": "進擊"
+  },
+  {
+    "id": "midori",
+    "name": "彌多律",
+    "image": "https://img.gamewith.jp/img/9d1497be7cea177f0a21aca743a2121a.png",
+    "weapon": "太刀",
+    "element": "火",
+    "type": "進擊"
+  },
+  {
+    "id": "keres",
+    "name": "克蕾絲",
+    "image": "https://img.gamewith.jp/img/12a98419be010ebfecf5586c86192438.png",
+    "weapon": "雙劍",
+    "element": "龍",
+    "type": "控場"
+  },
+  {
+    "id": "haze",
+    "name": "朧",
+    "image": "https://img.gamewith.jp/img/47f5a8ce3326ec59d6b59fe4cf19d449.jpg",
+    "weapon": "雙劍",
+    "element": "雷",
+    "type": "輔助"
+  },
+  {
+    "id": "arkaya",
+    "name": "阿坎亞",
+    "image": "https://img.gamewith.jp/img/21c5ee258e8939517b09a0dc879cb345.png",
+    "weapon": "長槍",
+    "element": "龍",
+    "type": "輔助"
+  },
+  {
+    "id": "rhodes",
+    "name": "羅德",
+    "image": "https://img.gamewith.jp/img/2f27ad2ae451a139897535bab08a2204.png",
+    "weapon": "大錘",
+    "element": "冰",
+    "type": "進擊"
+  },
+  {
+    "id": "pepper",
+    "name": "佩佩",
+    "image": "https://img.gamewith.jp/img/0587e356a64cd6c2c6cf3177ce92b2db.png",
+    "weapon": "重弩槍",
+    "element": "水",
+    "type": "控場"
+  },
+  {
+    "id": "luka",
+    "name": "路加",
+    "image": "https://img.gamewith.jp/img/9e4000429ded9c44b30801954d0d8b72.png",
+    "weapon": "弓",
+    "element": "雷",
+    "type": "進擊"
+  },
+  {
+    "id": "luxheart",
+    "name": "光赫",
+    "image": "https://img.gamewith.jp/img/acf40125ac8531df471d64c15aaa7799.png",
+    "weapon": "大劍",
+    "element": "雷",
+    "type": "控場"
+  },
+  {
+    "id": "ryunosuke",
+    "name": "御谷龍之介",
+    "image": "https://img.gamewith.jp/img/14dcb977934d9922a1d297a23f61c228.png",
+    "weapon": "太刀",
+    "element": "火",
+    "type": "輔助"
+  },
+  {
+    "id": "raya",
+    "name": "菈雅",
+    "image": "https://img.gamewith.jp/img/44bdfe618d56832ab23b27546f9224c8.png",
+    "weapon": "雙劍",
+    "element": "火",
+    "type": "控場"
+  },
+  {
+    "id": "ouyang-varen",
+    "name": "法里歐",
+    "image": "https://img.gamewith.jp/img/43a43cfcf16d501ccb28ffdfb09811b0.png",
+    "weapon": "長槍",
+    "element": "水",
+    "type": "進擊"
+  },
+  {
+    "id": "madelyn",
+    "name": "瑪德琳",
+    "image": "https://img.gamewith.jp/img/7f066202ea8e4192737ab4032d52e86a.png",
+    "weapon": "弓",
+    "element": "水",
+    "type": "輔助"
+  }
+]

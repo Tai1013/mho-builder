@@ -82,3 +82,26 @@ export interface ArmorSeries {
   rarityMax: number
   pieces: Partial<Record<PartId, ArmorPiece>>
 }
+
+/** 冒險者（配裝頁最上面左邊那格；只記錄選了誰，不影響技能） */
+export interface Adventurer {
+  id: string
+  /** 主角冒險者每種武器各一個，名稱都是「主角冒險者」，用武器區分 */
+  name: string
+  image: string
+  /** 武器種類，例如 大劍 */
+  weapon: string
+  /** 屬性：火／水／雷／冰／龍／全屬性 */
+  element: string
+  /** 類型：進擊／控場／輔助／全類型 */
+  type: string
+}
+
+/** 隨從（配裝頁最上面右邊那格；只記錄選了誰，不影響技能） */
+export interface Buddy {
+  id: string
+  name: string
+  image: string
+  /** 類型：進擊／控場／輔助 */
+  type: string
+}

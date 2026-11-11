@@ -9,6 +9,7 @@ import { useSavedBuilds, type SavedBuild } from '../stores/savedBuilds'
 import MonsterIcon from './MonsterIcon.vue'
 import OverCapIcon from './OverCapIcon.vue'
 import CompactInput from './CompactInput.vue'
+import CrewImage from './CrewImage.vue'
 
 const emit = defineEmits<{ close: [] }>()
 const close = () => emit('close')
@@ -36,6 +37,11 @@ const rows = computed(() =>
     return {
       build,
       isCurrent: build.code === currentCode.value,
+      /** 有選的冒險者、隨從：標題列 R 左邊的小圖、展開後的圖＋名稱（沒選就不佔位置） */
+      crew: [
+        { kind: 'adventurer' as const, c: sum.adventurer },
+        { kind: 'buddy' as const, c: sum.buddy },
+      ].filter((x) => x.c),
       icons: PARTS.map((p) => {
         const piece = sum.slots[p.id].pieceId ? pieceMap.get(sum.slots[p.id].pieceId!) : undefined
         const series = piece ? seriesMap.get(piece.series) : undefined
@@ -264,6 +270,9 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
                   @click="onLoad(r.build)"
                 >
                   <span class="name">{{ r.build.name }}</span>
+                  <span v-if="r.crew.length" class="crew-icons" aria-hidden="true">
+                    <CrewImage v-for="x in r.crew" :key="x.kind" :src="x.c!.image" :name="x.c!.name" :width="20" :title="x.c!.name" />
+                  </span>
                   <span v-if="r.needRarity" class="need" :title="`最低需要 R${r.needRarity}`">R{{ r.needRarity }}</span>
                   <span class="icons" aria-hidden="true">
                     <template v-for="ic in r.icons" :key="ic.part">
@@ -287,6 +296,20 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
 
               <!-- 展開：套裝技能、技能合計、管理按鈕 -->
               <div v-if="expanded.has(r.build.id)" class="detail">
+                <template v-if="r.crew.length">
+                  <div class="d-title">冒險者／隨從</div>
+                  <ul class="d-crew">
+                    <li v-for="x in r.crew" :key="x.kind">
+                      <CrewImage :src="x.c!.image" :name="x.c!.name" :width="20" />
+                      <!-- 名稱和小字對齊同一條底線，整組再跟頭像上下置中 -->
+                      <span class="d-crew-text">
+                        {{ x.c!.name }}
+                        <!-- 冒險者另外寫武器・類型（主角冒險者要靠武器區分） -->
+                        <small v-if="'weapon' in x.c!">{{ x.c.weapon }}・{{ x.c.type }}</small>
+                      </span>
+                    </li>
+                  </ul>
+                </template>
                 <div class="d-title">套裝技能</div>
                 <ul v-if="r.activeSets.length" class="d-list">
                   <li v-for="s in r.activeSets" :key="s.set.id">
@@ -537,6 +560,17 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
 .need + .icons {
   margin-left: 0;
 }
+/* 冒險者、隨從的小圖：接在 R 左邊；有它的時候由它負責靠右 */
+.crew-icons {
+  margin-left: auto;
+  display: inline-flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.crew-icons + .need,
+.crew-icons + .icons {
+  margin-left: 0;
+}
 .item.current .name {
   color: var(--accent);
 }
@@ -629,6 +663,33 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown))
 }
 .d-title:first-child {
   margin-top: 0;
+}
+.d-crew {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-strong);
+}
+.d-crew li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.d-crew-text {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  line-height: 1;
+}
+.d-crew small {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
 }
 .d-list {
   list-style: none;

@@ -3,7 +3,9 @@ import setSkillsJson from './set-skills.json'
 import armorJson from './armor.json'
 import monstersJson from './monsters.json'
 import metaJson from './meta.json'
-import type { ArmorPiece, ArmorSeries, Monster, PartId, SetSkill, Skill, Stage } from '../types'
+import adventurersJson from './adventurers.json'
+import buddiesJson from './buddies.json'
+import type { Adventurer, ArmorPiece, ArmorSeries, Buddy, Monster, PartId, SetSkill, Skill, Stage } from '../types'
 
 export const PARTS: { id: PartId; label: string }[] = [
   { id: 'head', label: '頭部' },
@@ -98,6 +100,24 @@ export function stageFor(piece: ArmorPiece, rarity: number | 'max'): Stage {
 
 export const monsters = monstersJson as unknown as Monster[]
 export const monsterMap = new Map(monsters.map((m) => [m.id, m]))
+
+/** 冒險者、隨從（順序：主角冒險者 → SSR → SR → R） */
+export const adventurers = adventurersJson as unknown as Adventurer[]
+export const adventurerMap = new Map(adventurers.map((a) => [a.id, a]))
+export const buddies = buddiesJson as unknown as Buddy[]
+export const buddyMap = new Map(buddies.map((b) => [b.id, b]))
+
+export type CrewKind = 'adventurer' | 'buddy'
+export const CREW_LABEL: Record<CrewKind, string> = { adventurer: '冒險者', buddy: '隨從' }
+/**
+ * 名稱下面的小字：冒險者是「武器種類・屬性」＋「類型」（例：大劍・龍屬性、進擊），隨從只有類型。
+ * 選擇視窗格子小，一個元素一行；裝備格和配裝清單用「・」接成一行。
+ */
+export function crewMeta(c: Adventurer | Buddy): string[] {
+  if (!('weapon' in c)) return [c.type]
+  const element = c.element.endsWith('屬性') ? c.element : `${c.element}屬性`
+  return [`${c.weapon}・${element}`, c.type]
+}
 
 /** 系列對應的魔物：優先用來源標示的魔物，沒有的話用素材推得的魔物 */
 export function seriesMonsterIds(series: ArmorSeries | undefined): string[] {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
-import { DATA_SOURCES, DATA_UPDATED_AT, PARTS, RARITIES } from './data'
+import { DATA_SOURCES, DATA_UPDATED_AT, PARTS, RARITIES, type CrewKind } from './data'
 import { useBuild } from './composables/useBuild'
 import { useUiPrefs } from './stores/uiPrefs'
 import { useSavedBuilds } from './stores/savedBuilds'
@@ -11,6 +11,8 @@ import SkillSummary from './components/SkillSummary.vue'
 import BuildStats from './components/BuildStats.vue'
 import SelectChip from './components/SelectChip.vue'
 import SavedBuilds from './components/SavedBuilds.vue'
+import CrewCard from './components/CrewCard.vue'
+import CrewPicker from './components/CrewPicker.vue'
 import { applyUpdate, dismissUpdate, updateReady } from './composables/appUpdate'
 
 const { targetRarity, setTargetRarity, clearAll, pickerOpen } = useBuild()
@@ -19,6 +21,8 @@ const { compactSlots, theme } = storeToRefs(uiPrefs)
 const THEME_LABEL = { auto: '自動', light: '淺色', dark: '深色' } as const
 const { builds } = storeToRefs(useSavedBuilds())
 const listOpen = ref(false)
+/** 冒險者／隨從選擇視窗：打開時是哪一種 */
+const crewOpen = ref<CrewKind | null>(null)
 
 const targetOptions = [
   { value: 'max', label: '各部位最高' },
@@ -84,6 +88,11 @@ function onTarget(v: string) {
         </button>
         <button type="button" class="ghost clear-btn" aria-label="清除全部裝備" @click="clearAll">清除</button>
       </div>
+      <!-- 最上面左右兩格：冒險者、隨從 -->
+      <div class="crew-row">
+        <CrewCard kind="adventurer" :compact="compactSlots" @open="crewOpen = 'adventurer'" />
+        <CrewCard kind="buddy" :compact="compactSlots" @open="crewOpen = 'buddy'" />
+      </div>
       <SlotCard v-for="p in PARTS" :key="p.id" :part="p.id" :label="p.label" :compact="compactSlots" />
     </section>
     <SkillSummary :compact="compactSlots" />
@@ -102,6 +111,7 @@ function onTarget(v: string) {
 
   <ArmorPicker v-if="pickerOpen" />
   <SavedBuilds v-if="listOpen" @close="listOpen = false" />
+  <CrewPicker v-if="crewOpen" :kind="crewOpen" @close="crewOpen = null" />
 
   <!-- 背景已下載好新版本時，從底部浮出 -->
   <div v-if="updateReady" class="update-bar" role="status">
@@ -196,6 +206,11 @@ h1 {
 }
 .slots.compact {
   gap: 6px;
+}
+.crew-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: inherit;
 }
 .slots-bar {
   display: flex;

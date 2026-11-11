@@ -28,7 +28,7 @@ import MonsterIcon from './MonsterIcon.vue'
 import SelectChip from './SelectChip.vue'
 import CompactInput from './CompactInput.vue'
 
-const { slots, activePart, targetRarity, equip, equipSeries, closePicker } = useBuild()
+const { slots, activePart, targetRarity, equip, unequip, equipSeries, closePicker } = useBuild()
 
 // 篩選條件放在 Pinia：關掉視窗或換部位都會保留
 const filters = usePickerFilters()
@@ -195,6 +195,12 @@ function resetFilters() {
 }
 
 function choose(pieceId: string) {
+  // 再點一次已裝備的部件 → 取消裝備
+  if (equippedId.value === pieceId) {
+    unequip(activePart.value)
+    closePicker()
+    return
+  }
   const piece = pieceMap.get(pieceId)
   if (piece && !fitsTarget(piece, targetRarity.value)) return
   equip(pieceId)
@@ -205,9 +211,20 @@ function chooseSeries(seriesId: string) {
   closePicker()
 }
 
-// 換部位時清單回到最上面
+// 打開視窗、換部位時：有裝備就捲到那一列（放在清單中間，排序不變），沒有就回到最上面
 const listEl = ref<HTMLElement | null>(null)
-watch(activePart, () => nextTick(() => listEl.value?.scrollTo({ top: 0 })))
+function scrollToEquipped() {
+  const list = listEl.value
+  if (!list) return
+  const row = list.querySelector<HTMLElement>('.row.equipped')
+  if (!row) {
+    list.scrollTo({ top: 0 })
+    return
+  }
+  const offset = row.getBoundingClientRect().top - list.getBoundingClientRect().top + list.scrollTop
+  list.scrollTo({ top: Math.max(0, offset - (list.clientHeight - row.offsetHeight) / 2) })
+}
+watch(activePart, () => nextTick(scrollToEquipped))
 
 // ---------- 視窗行為：點外面收合面板、Esc、返回鍵、鎖住背景捲動 ----------
 const filterWrap = ref<HTMLElement | null>(null)
@@ -229,7 +246,10 @@ useModalHistory(closePicker)
 onMounted(() => {
   document.addEventListener('pointerdown', onPointerDown)
   document.addEventListener('keydown', onKeydown)
-  nextTick(() => sheetEl.value?.focus({ preventScroll: true }))
+  nextTick(() => {
+    sheetEl.value?.focus({ preventScroll: true })
+    scrollToEquipped()
+  })
 })
 onBeforeUnmount(() => {
   document.removeEventListener('pointerdown', onPointerDown)
@@ -434,7 +454,14 @@ onBeforeUnmount(() => {
             class="row"
             :class="{ equipped: equippedId === r.piece.id, locked: r.locked || r.tooHigh }"
           >
-            <button type="button" class="row-main" :disabled="r.locked || r.tooHigh" @click="choose(r.piece.id)">
+            <button
+              type="button"
+              class="row-main"
+              :disabled="(r.locked || r.tooHigh) && equippedId !== r.piece.id"
+              :aria-pressed="equippedId === r.piece.id"
+              :title="equippedId === r.piece.id ? '再點一次取消裝備' : undefined"
+              @click="choose(r.piece.id)"
+            >
               <MonsterIcon class="row-icon" :monster="r.monster" :size="40" />
               <div class="row-body">
                 <div class="row-top">

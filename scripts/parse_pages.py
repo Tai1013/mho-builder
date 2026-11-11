@@ -431,6 +431,29 @@ for m in monsters:
 for sk in skills:
     for k in ('armorCount', 'weaponCount'): sk.pop(k, None)
 
+# ---------- adventurers / buddies（冒險者、隨從） ----------
+# 配裝頁最上面可以選冒險者和隨從；只記錄選了誰，不影響技能計算。
+# 只留畫面要用的欄位：冒險者＝圖、名稱、武器種類、屬性、類型；隨從＝圖、名稱、類型。
+# 排序：主角冒險者在最前面，接著依稀有度（SSR → SR → R），同稀有度照來源網站的順序。
+RARITY_RANK = {'SSR': 0, 'SR': 1, 'R': 2}
+def list_rows(fname):
+    path = os.path.join(RAW, fname)
+    if not os.path.exists(path):
+        print('WARN', fname, 'not found, run fetch_pages.py')
+        return []
+    s = rsc(path)
+    i = s.find('"rows":[{"slug"') + len('"rows":')
+    rows, _ = json.JSONDecoder().raw_decode(s, i)
+    return sorted(rows, key=lambda r: (not r.get('fated'), RARITY_RANK.get(r['rarity'], 9), r.get('order', 0)))
+adventurers = [{
+    # 主角冒險者每種武器各一個，來源寫成「主角冒險者 (大劍)」；武器另外有欄位，名稱就只寫「主角冒險者」
+    'id': r['slug'], 'name': re.sub(r'\s*\(.*\)$', '', r['name']) if r.get('fated') else r['name'],
+    'image': r['image'], 'weapon': r['weaponTypeLabel'], 'element': r['specialtyLabel'], 'type': r['typeLabel'],
+} for r in list_rows('adventurers.html')]
+buddies = [{
+    'id': r['slug'], 'name': r['name'], 'image': r['image'], 'type': r['typeLabel'],
+} for r in list_rows('buddies.html')]
+
 # 資料更新時間：快取裡最新一個檔案的下載時間（台灣時間），網站頁尾會顯示
 from datetime import datetime, timezone, timedelta
 latest = max(os.path.getmtime(os.path.join(d, f)) for d, _, fs in os.walk(RAW) for f in fs)
@@ -448,4 +471,6 @@ dump('set-skills.json', set_skills)
 dump('armor.json', armor)
 dump('meta.json', meta)
 dump('monsters.json', monsters)
-print('skills', len(skills), 'set', len(set_skills), 'series', len(armor), 'pieces', sum(len(s['pieces']) for s in armor), 'monsters', len(monsters))
+dump('adventurers.json', adventurers)
+dump('buddies.json', buddies)
+print('skills', len(skills), 'set', len(set_skills), 'series', len(armor), 'pieces', sum(len(s['pieces']) for s in armor), 'monsters', len(monsters), 'adventurers', len(adventurers), 'buddies', len(buddies))

@@ -1,11 +1,11 @@
 import { computed, reactive, ref, watch } from 'vue'
-import { PART_IDS, fitsTarget, pieceMap, setSkillMap, seriesMap, skillMap, stageFor } from '../data'
+import { PART_IDS, adventurerMap, buddyMap, fitsTarget, pieceMap, setSkillMap, seriesMap, skillMap, stageFor } from '../data'
 import type { ArmorPiece, PartId, SetSkill, Skill, Stage } from '../types'
 import { type BuildSlots, decodeBuild, emptySlots, encodeBuild, hasBuildData, isPlainCode } from './buildCode'
 import { fromShareCode, toShareCode } from './shareCode'
 
 export { decodeBuild, encodeBuild } from './buildCode'
-export type { BuildSlots, SlotState } from './buildCode'
+export type { BuildCrew, BuildSlots, SlotState } from './buildCode'
 
 export interface EquippedSlot {
   part: PartId
@@ -117,11 +117,13 @@ export function computeSkills(equipped: EquippedSlot[], setStatuses: SetStatus[]
 
 /** 把一組配裝代碼算成清單要顯示的內容 */
 export function summarizeBuild(code: string) {
-  const { slots } = decodeBuild(code)
+  const { slots, adventurer, buddy } = decodeBuild(code)
   const equipped = computeEquipped(slots)
   const setStatuses = computeSetStatuses(equipped)
   return {
     slots,
+    adventurer: adventurer ? adventurerMap.get(adventurer) : undefined,
+    buddy: buddy ? buddyMap.get(buddy) : undefined,
     equipped,
     setStatuses,
     skills: computeSkills(equipped, setStatuses),
@@ -131,12 +133,17 @@ export function summarizeBuild(code: string) {
 // ---------- 目前配裝 ----------
 const slots = reactive(emptySlots())
 const targetRarity = ref<number | 'max'>('max')
+/** 裝備最上面左右兩格：冒險者、隨從（只記錄選了誰，不影響技能） */
+const adventurer = ref<string | null>(null)
+const buddy = ref<string | null>(null)
 const activePart = ref<PartId>('head')
 const pickerOpen = ref(false)
 
 function applyCode(code: string) {
   const decoded = decodeBuild(code)
   targetRarity.value = decoded.targetRarity
+  adventurer.value = decoded.adventurer
+  buddy.value = decoded.buddy
   for (const part of PART_IDS) Object.assign(slots[part], decoded.slots[part])
 }
 
@@ -177,7 +184,7 @@ async function readHash() {
 }
 async function writeHash() {
   if (!hashReady) return
-  const code = encodeBuild(slots, targetRarity.value)
+  const code = encodeBuild(slots, targetRarity.value, { adventurer: adventurer.value, buddy: buddy.value })
   store(code)
   const seq = ++writeSeq
   const share = code ? await toShareCode('', code) : ''
@@ -205,7 +212,7 @@ window.addEventListener('hashchange', () => {
   if (performance.now() < ignoreHashUntil) writeHash()
   else readHash()
 })
-watch([slots, targetRarity], writeHash, { deep: true })
+watch([slots, targetRarity, adventurer, buddy], writeHash, { deep: true })
 
 // ---------- 動作 ----------
 function equip(pieceId: string) {
@@ -218,6 +225,13 @@ function equip(pieceId: string) {
 function unequip(part: PartId) {
   slots[part].pieceId = null
   slots[part].rarity = null
+}
+/** 選冒險者／隨從；null 是不選 */
+function setAdventurer(id: string | null) {
+  adventurer.value = id && adventurerMap.has(id) ? id : null
+}
+function setBuddy(id: string | null) {
+  buddy.value = id && buddyMap.has(id) ? id : null
 }
 function clearAll() {
   for (const part of PART_IDS) unequip(part)
@@ -261,12 +275,18 @@ const equipped = computed(() => computeEquipped(slots))
 const setStatuses = computed(() => computeSetStatuses(equipped.value))
 const aggregatedSkills = computed(() => computeSkills(equipped.value, setStatuses.value))
 /** 目前配裝的代碼（跟網址 # 後面一樣），用來比對清單裡哪一組是目前的配裝 */
-const currentCode = computed(() => encodeBuild(slots, targetRarity.value))
+const currentCode = computed(() =>
+  encodeBuild(slots, targetRarity.value, { adventurer: adventurer.value, buddy: buddy.value }),
+)
 
 export function useBuild() {
   return {
     slots,
     targetRarity,
+    adventurer,
+    buddy,
+    setAdventurer,
+    setBuddy,
     activePart,
     pickerOpen,
     openPicker,
