@@ -37,7 +37,11 @@ self.addEventListener('activate', (event) => {
         await Promise.all(
           clients
             .filter((client) => client.url.startsWith(self.registration.scope))
-            .map((client) => client.navigate(client.url).catch(() => null)),
+            .map((client) => {
+              const url = new URL(client.url)
+              url.searchParams.set('__mho_updated', '1')
+              return client.navigate(url.href).catch(() => null)
+            }),
         )
       }
     })(),

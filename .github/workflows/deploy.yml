@@ -21,6 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v7
         with:
@@ -28,6 +30,34 @@ jobs:
           cache: npm
 
       - run: npm ci
+
+      # 以最近一次資料檔提交時間作為更新時間；程式碼變更不會誤改資料日期。
+      - name: Set data update timestamp
+        shell: bash
+        run: |
+          DATA_UPDATED_EPOCH="$(git log -1 --format=%ct -- \
+            src/data/skills.json src/data/set-skills.json src/data/armor.json \
+            src/data/monsters.json src/data/adventurers.json src/data/buddies.json \
+            scripts/manual_data.json)"
+          if [[ -z "$DATA_UPDATED_EPOCH" ]]; then
+            echo "::error::Unable to determine the latest data update commit"
+            exit 1
+          fi
+          DATA_UPDATED_AT="$(node -e '
+            const date = new Date(Number(process.argv[1]) * 1000)
+            const parts = Object.fromEntries(new Intl.DateTimeFormat("en-GB", {
+              timeZone: "Asia/Taipei",
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+              hour: "2-digit",
+              minute: "2-digit",
+              second: "2-digit",
+              hourCycle: "h23",
+            }).formatToParts(date).map(({ type, value }) => [type, value]))
+            console.log(`${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}:${parts.second}+08:00`)
+          ' "$DATA_UPDATED_EPOCH")"
+          echo "VITE_DATA_UPDATED_AT=$DATA_UPDATED_AT" >> "$GITHUB_ENV"
 
       # 型別檢查 + 建置；網址路徑用 repo 名稱，改名也不用改程式
       - run: npm run build

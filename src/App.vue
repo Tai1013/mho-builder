@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { DATA_SOURCES, DATA_UPDATED_AT, PARTS, RARITIES, type CrewKind } from './data'
 import { useBuild } from './composables/useBuild'
@@ -20,8 +20,12 @@ const { compactSlots, theme } = storeToRefs(uiPrefs)
 const THEME_LABEL = { auto: '自動', light: '淺色', dark: '深色' } as const
 const { builds } = storeToRefs(useSavedBuilds())
 const listOpen = ref(false)
+const showDataUpdated = ref(false)
+let dataUpdatedTimer: number | undefined
 /** 冒險者／隨從選擇視窗：打開時是哪一種 */
 const crewOpen = ref<CrewKind | null>(null)
+const DATA_UPDATE_STORAGE_KEY = 'mho-last-seen-data-update'
+const UPDATE_QUERY_KEY = '__mho_updated'
 
 const targetOptions = [
   { value: 'max', label: '各部位最高' },
@@ -30,9 +34,46 @@ const targetOptions = [
 function onTarget(v: string) {
   setTargetRarity(v === 'max' ? 'max' : Number(v))
 }
+
+onMounted(() => {
+  const url = new URL(window.location.href)
+  const wasServiceWorkerUpdate = url.searchParams.get(UPDATE_QUERY_KEY) === '1'
+  if (wasServiceWorkerUpdate) {
+    url.searchParams.delete(UPDATE_QUERY_KEY)
+    window.history.replaceState(window.history.state, '', `${url.pathname}${url.search}${url.hash}`)
+  }
+
+  let previousUpdate: string | null = null
+  try {
+    previousUpdate = window.localStorage.getItem(DATA_UPDATE_STORAGE_KEY)
+    window.localStorage.setItem(DATA_UPDATE_STORAGE_KEY, DATA_UPDATED_AT)
+  } catch {
+    // 儲存空間不可用時，仍可透過 Service Worker 的更新標記提示一次。
+  }
+
+  if ((previousUpdate && previousUpdate !== DATA_UPDATED_AT) || (wasServiceWorkerUpdate && !previousUpdate)) {
+    showDataUpdated.value = true
+    dataUpdatedTimer = window.setTimeout(() => {
+      showDataUpdated.value = false
+    }, 3000)
+  }
+})
+
+onBeforeUnmount(() => {
+  if (dataUpdatedTimer !== undefined) window.clearTimeout(dataUpdatedTimer)
+})
 </script>
 
 <template>
+  <Transition name="data-update-toast">
+    <div v-if="showDataUpdated" class="data-update-toast" role="status" aria-live="polite">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <path d="m5 12 4 4L19 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <span>資料已更新</span>
+    </div>
+  </Transition>
+
   <header class="topbar">
     <h1>MHO 自由配裝</h1>
     <div class="controls">
@@ -114,6 +155,33 @@ function onTarget(v: string) {
 </template>
 
 <style scoped>
+.data-update-toast {
+  position: fixed;
+  z-index: 10000;
+  top: max(16px, env(safe-area-inset-top));
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 18px;
+  border: 1px solid var(--good-border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--good);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.16);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+.data-update-toast-enter-active,
+.data-update-toast-leave-active {
+  transition: opacity 0.2s ease;
+}
+.data-update-toast-enter-from,
+.data-update-toast-leave-to {
+  opacity: 0;
+}
 .topbar {
   display: flex;
   align-items: center;

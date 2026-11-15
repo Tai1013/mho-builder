@@ -16,10 +16,11 @@ export const PARTS: { id: PartId; label: string }[] = [
 ]
 export const PART_IDS = PARTS.map((p) => p.id)
 
-/** 資料來源與更新時間（parse_pages.py 產生；時間是抓資料的時間，台灣時間） */
+/** 資料來源與更新時間（正式建置由 CI 依資料檔最後變更提交帶入；本機使用 meta.json） */
 export const DATA_SOURCES: { name: string; url: string }[] = metaJson.sources
 /** 例：2026/11/10 16:27:42 */
-export const DATA_UPDATED_AT = metaJson.updatedAt.slice(0, 19).replace('T', ' ').replace(/-/g, '/')
+const dataUpdatedAt = import.meta.env.VITE_DATA_UPDATED_AT || metaJson.updatedAt
+export const DATA_UPDATED_AT = dataUpdatedAt.slice(0, 19).replace('T', ' ').replace(/-/g, '/')
 
 export const skills = skillsJson as unknown as Skill[]
 export const setSkills = setSkillsJson as unknown as SetSkill[]
