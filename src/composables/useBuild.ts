@@ -235,6 +235,8 @@ function setBuddy(id: string | null) {
 }
 function clearAll() {
   for (const part of PART_IDS) unequip(part)
+  adventurer.value = null
+  buddy.value = null
 }
 function setRarity(part: PartId, rarity: number) {
   if (targetRarity.value !== 'max' && rarity > targetRarity.value) return
