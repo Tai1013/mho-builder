@@ -484,9 +484,14 @@ buddies = [{
     'id': r['slug'], 'name': r['name'], 'image': r['image'], 'type': r['typeLabel'],
 } for r in list_rows('buddies.html')]
 
-# 資料更新時間：快取裡最新一個檔案的下載時間（台灣時間），網站頁尾會顯示
+# 資料更新時間：來源快取或手動補充資料中最新的修改時間（台灣時間），網站頁尾會顯示
 from datetime import datetime, timezone, timedelta
-latest = max(os.path.getmtime(os.path.join(d, f)) for d, _, fs in os.walk(RAW) for f in fs)
+update_times = [os.path.getmtime(os.path.join(d, f)) for d, _, fs in os.walk(RAW) for f in fs]
+# 手動補充資料也會改變輸出的遊戲資料，因此要一併計入更新時間。
+manual_path = os.path.join(_here, 'manual_data.json')
+if os.path.exists(manual_path):
+    update_times.append(os.path.getmtime(manual_path))
+latest = max(update_times)
 updated_at = datetime.fromtimestamp(latest, timezone(timedelta(hours=8))).isoformat(timespec='seconds')
 meta = {'sources': [{'name': 'gamewith.ai', 'url': 'https://gamewith.ai/monster-hunter-outlanders/zh-hant'},
                     {'name': 'mhohub.com', 'url': 'https://mhohub.com/zh-tw/'}],

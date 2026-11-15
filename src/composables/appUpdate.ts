@@ -24,14 +24,15 @@ export function registerServiceWorker() {
       track(reg.installing)
       reg.addEventListener('updatefound', () => track(reg.installing))
       const checkOnline = () => {
-        if (navigator.onLine) reg.update().catch(() => {})
+        if (navigator.onLine && document.visibilityState === 'visible') reg.update().catch(() => {})
       }
-      // 啟動、恢復前景或網路重新連線時都檢查新版。
+      // 啟動、恢復前景、網路重新連線，以及前景停留期間定時檢查新版。
       checkOnline()
       document.addEventListener('visibilitychange', () => {
         if (document.visibilityState === 'visible') checkOnline()
       })
       window.addEventListener('online', checkOnline)
+      window.setInterval(checkOnline, 5 * 60 * 1000)
     })
     .catch(() => {
       // 註冊失敗（例如瀏覽器關掉了這個功能）就照一般網頁使用
