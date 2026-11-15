@@ -119,8 +119,4 @@ npm run dev
 
 ## 更新資料
 
-```bash
-rm -rf scripts/.cache
-python3 scripts/fetch_pages.py     # 下載約 330 頁（含魔物一覽）到 scripts/.cache
-python3 scripts/parse_pages.py     # 重新產生 src/data/*.json
-```
+完整更新會抓取數百個頁面。為避免快取混入 Git 或解析器直接覆寫正式資料，請先輸出到系統暫存目錄、檢查差異後再採用。步驟與手動資料維護方式見[資料更新說明](docs/data-update.md)。

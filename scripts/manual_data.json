@@ -27,6 +27,8 @@
     { "armor": "radiant-odogaron", "part": "waist", "skill": "血氣", "level": 1, "temporary": true, "note": "2026-11-12 使用者提供" },
     { "armor": "radiant-odogaron", "part": "waist", "skill": "窮追猛打", "level": 1, "temporary": true, "note": "2026-11-12 使用者提供" },
     { "armor": "radiant-odogaron", "part": "legs", "skill": "超回復力", "level": 2, "temporary": true, "note": "2026-11-12 使用者提供" },
-    { "armor": "radiant-odogaron", "part": "legs", "skill": "體力強化", "level": 1, "temporary": true, "note": "2026-11-12 使用者提供" }
+    { "armor": "radiant-odogaron", "part": "legs", "skill": "體力強化", "level": 1, "temporary": true, "note": "2026-11-12 使用者提供" },
+    { "armor": "radiant-rathalos", "part": "arms", "skill": "火屬性傷害提升", "level": 3, "note": "2026-11-15 使用者提供" },
+    { "armor": "radiant-rathalos", "part": "waist", "skill": "蓄力強化", "level": 3, "note": "2026-11-15 使用者提供" }
   ]
 }

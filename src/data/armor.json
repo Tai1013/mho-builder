@@ -24574,7 +24574,7 @@
           {
             "skillId": "fire-damage-up",
             "name": "火屬性傷害提升",
-            "level": null
+            "level": 3
           },
           {
             "skillId": "suppression-recovery",
@@ -24591,7 +24591,7 @@
               {
                 "skillId": "fire-damage-up",
                 "name": "火屬性傷害提升",
-                "level": null
+                "level": 3
               },
               {
                 "skillId": "suppression-recovery",
@@ -24615,7 +24615,7 @@
           {
             "skillId": "charge-enhancement",
             "name": "蓄力強化",
-            "level": null
+            "level": 3
           },
           {
             "skillId": "deterrence",
@@ -24632,7 +24632,7 @@
               {
                 "skillId": "charge-enhancement",
                 "name": "蓄力強化",
-                "level": null
+                "level": 3
               },
               {
                 "skillId": "deterrence",

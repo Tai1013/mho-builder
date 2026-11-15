@@ -25,6 +25,7 @@ dist-ssr
 
 # scraper cache
 scripts/.cache
+scripts/.cache-refresh/
 __pycache__
 
 # 本機開發工具設定（含本機絕對路徑）

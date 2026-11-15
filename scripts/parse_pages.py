@@ -126,8 +126,10 @@ for r in armor_list:
                 if lv is None: print('NOTE skill without level', sid, part, t)
                 else: print('NOTE skill level override', sid, part, rarity, t, '-> Lv%d' % lv)
                 sks.append({'skillId': m.group(1), 'name': t, 'level': lv})
+        defense_text = clean(cells[2])
+        defense = int(defense_text) if defense_text.isdigit() else None
         stages.append({'rarity': rarity, 'name': clean(cells[1]),
-                       'defense': int(clean(cells[2])), 'skills': sks})
+                   'defense': defense, 'skills': sks})
     mats = {}
     for cells in rows(section(h, 'materials')):
         items = [{'itemId': m.group(1), 'name': clean(m.group(2)), 'qty': int(m.group(3))}
@@ -152,7 +154,7 @@ for r in armor_list:
     # cross-check list page vs detail page
     lbl = [s['name'] if s['level'] is None or (top['rarity'], s['skillId']) in no_level_in_source
            else '%s Lv%d' % (s['name'], s['level']) for s in piece['skills']]
-    if lbl != r['skillLabels'] or (top and top['defense'] != r['defense']) or (top and top['rarity'] != r['maxRarity']):
+    if lbl != r['skillLabels'] or (top and top['defense'] is not None and top['defense'] != r['defense']) or (top and top['rarity'] != r['maxRarity']):
         print('WARN mismatch', piece['id'], lbl, r['skillLabels'], top and top['defense'], r['defense'])
     s = series.setdefault(sid, {
         'id': sid, 'name': r['seriesLabel'],
@@ -268,16 +270,21 @@ def mh_parse_sets():
         title = clean(re.search(r'<h1[^>]*>(.*?)</h1>', h, flags=re.S).group(1))
         # 套裝效果：<div data-set-bonus><h3>名稱</h3><li><strong>2 件</strong> · <a #equipment-skill-ID>技能+1</a>
         bonus = None
-        bm = re.search(r'<div data-set-bonus="\d+"><h3[^>]*>(.*?)</h3>\s*<ul><li><strong>(\d+) 件</strong>'
-                       r'<span[^>]*> · <a href="/zh-tw/skills/#equipment-skill-(\d+)">(.*?)\+(\d+)</a>', h, flags=re.S)
+        bm = re.search(r'<div data-set-bonus="\d+"[^>]*><h3[^>]*>(.*?)</h3>\s*<ul[^>]*><li[^>]*><strong[^>]*>(\d+) 件</strong>'
+                   r'.*?<a href="/zh-tw/skills/#equipment-skill-(\d+)"[^>]*>(.*?)\+(\d+)</a>', h, flags=re.S)
         if bm:
             bonus = {'name': clean(bm.group(1)), 'pieces': int(bm.group(2)), 'mhId': int(bm.group(3)),
                      'skill': clean(bm.group(4)), 'level': int(bm.group(5))}
         pieces = {}
         for art in re.findall(r'<article class="armor-set-card armor-piece-card"[^>]*>(.*?)</article>', h, flags=re.S):
-            part = MH_PART.get(clean(re.search(r'<p class="eyebrow">(.*?)</p>', art).group(1)))
+            part_match = re.search(r'<p class="eyebrow"[^>]*>(.*?)</p>', art, flags=re.S)
+            if not part_match:
+                continue
+            part = MH_PART.get(clean(part_match.group(1)))
+            if not part:
+                continue
             sks = []
-            for lang, sid, name, meta in re.findall(r'<li><strong lang="([^"]+)"><a href="/zh-tw/skills/#equipment-skill-(\d+)">(.*?)</a></strong><small class="meta">(.*?)</small>', art):
+            for lang, sid, name, meta in re.findall(r'<li[^>]*><strong lang="([^"]+)"[^>]*><a href="/zh-tw/skills/#equipment-skill-(\d+)"[^>]*>(.*?)</a></strong><small class="meta"[^>]*>(.*?)</small>', art):
                 lv = re.search(r'技能等級 (\d+)', meta); un = re.search(r'解鎖等級 (\d+)', meta)
                 if not un: continue
                 sks.append({'mhId': int(sid), 'name': clean(name), 'zh': lang == 'zh-TW',
