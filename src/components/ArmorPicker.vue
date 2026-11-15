@@ -7,6 +7,7 @@ import {
   PARTS,
   armorSkills,
   fitsTarget,
+  hasCompleteSeriesSkills,
   isPieceSelectable,
   monsterLabel,
   monsterMap,
@@ -148,6 +149,7 @@ function buildRows(part: PartId) {
       set,
       monster: seriesMonster(series),
       notes: filterNotes(piece, stage),
+      seriesIncomplete: !hasCompleteSeriesSkills(series),
       /** 技能等級還不確定（有「?」），不能拿來配裝，只能看 */
       locked: !isPieceSelectable(piece),
       /** 最低階就超過右上角的稀有度上限（例如只有 R12，上限是 R10） */
@@ -490,7 +492,8 @@ onBeforeUnmount(() => {
                 <div v-if="r.set" class="row-set" :class="{ hit: r.setHit }">
                   套裝 {{ r.set.name }}（{{ r.set.requiredPieces }} 件：{{ r.set.bonusLabel }}）
                 </div>
-                <div v-if="r.locked" class="row-locked">技能等級還不確定（?），暫時不能配裝</div>
+                <div v-if="r.seriesIncomplete" class="row-locked">五件套技能資料尚未完整，暫時不能配裝</div>
+                <div v-else-if="r.locked" class="row-locked">技能等級還不確定（?），暫時不能配裝</div>
                 <div v-else-if="r.tooHigh" class="row-locked">
                   最低 R{{ r.stage.rarity }}，超過目前的稀有度 R{{ targetRarity }}
                 </div>

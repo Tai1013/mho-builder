@@ -24779,7 +24779,7 @@
           {
             "skillId": "bento-lover",
             "name": "愛吃便當",
-            "level": null
+            "level": 3
           }
         ],
         "setSkill": "radiant-diablos-set",
@@ -24796,7 +24796,7 @@
               {
                 "skillId": "bento-lover",
                 "name": "愛吃便當",
-                "level": null
+                "level": 3
               }
             ]
           }
@@ -24866,7 +24866,7 @@
           {
             "skillId": "flash-draw",
             "name": "拔刀一閃",
-            "level": null
+            "level": 3
           },
           {
             "skillId": "tremor-resistance",
@@ -24883,7 +24883,7 @@
               {
                 "skillId": "flash-draw",
                 "name": "拔刀一閃",
-                "level": null
+                "level": 3
               },
               {
                 "skillId": "tremor-resistance",
@@ -24912,7 +24912,7 @@
           {
             "skillId": "defense-up",
             "name": "防護",
-            "level": null
+            "level": 2
           }
         ],
         "setSkill": "radiant-diablos-set",
@@ -24929,7 +24929,7 @@
               {
                 "skillId": "defense-up",
                 "name": "防護",
-                "level": null
+                "level": 2
               }
             ]
           }

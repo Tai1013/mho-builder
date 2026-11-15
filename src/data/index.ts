@@ -53,12 +53,22 @@ export const armorSkills = skills.filter((s) => s.sources.includes('armor'))
 export function isStageKnown(st: Stage): boolean {
   return st.skills.every((k) => k.level != null)
 }
+/** 五件套完整性：五個部位都要有資料，且每件最高階的技能等級都已確認。 */
+export function hasCompleteSeriesSkills(series: ArmorSeries | undefined): boolean {
+  if (!series) return false
+  return PART_IDS.every((part) => {
+    const piece = series.pieces[part]
+    const stages = piece?.stages
+    const latest = stages?.[stages.length - 1]
+    return !!latest && latest.skills.length > 0 && isStageKnown(latest)
+  })
+}
 const selectableCache = new Map<string, Stage[]>()
 /** 可以拿來配裝的階（技能等級都確定） */
 export function selectableStages(piece: ArmorPiece): Stage[] {
   let list = selectableCache.get(piece.id)
   if (!list) {
-    list = piece.stages.filter(isStageKnown)
+    list = hasCompleteSeriesSkills(seriesMap.get(piece.series)) ? piece.stages.filter(isStageKnown) : []
     selectableCache.set(piece.id, list)
   }
   return list
@@ -139,6 +149,8 @@ export function monsterLabel(series: ArmorSeries | undefined): string {
 
 /** 魔物篩選的選項：有防具可對應的魔物，大型在前 */
 export const NO_MONSTER = '__none'
+const monsterOrder = new Map(monsters.map((m, i) => [m.id, i]))
+const baseMonsterId = (id: string) => (id.startsWith('radiant-') ? id.slice('radiant-'.length) : id)
 export const monsterOptions = monsters
   .map((m, order) => ({
     monster: m,
@@ -146,7 +158,15 @@ export const monsterOptions = monsters
     seriesCount: seriesList.filter((s) => seriesMonsterIds(s).includes(m.id)).length,
   }))
   .filter((o) => o.seriesCount > 0)
-  .sort((a, b) => Number(a.monster.size !== '大型') - Number(b.monster.size !== '大型') || a.order - b.order)
+  .sort((a, b) => {
+    const sizeOrder = Number(a.monster.size !== '大型') - Number(b.monster.size !== '大型')
+    if (sizeOrder) return sizeOrder
+    const aId = baseMonsterId(a.monster.id)
+    const bId = baseMonsterId(b.monster.id)
+    const aOrder = monsterOrder.get(aId) ?? a.order
+    const bOrder = monsterOrder.get(bId) ?? b.order
+    return aOrder - bOrder || Number(a.monster.id.startsWith('radiant-')) - Number(b.monster.id.startsWith('radiant-')) || a.order - b.order
+  })
 export const noMonsterSeriesCount = seriesList.filter((s) => !seriesMonsterIds(s).length).length
 
 /** 系列在魔物下拉選單的位置（大型 → 小型），無魔物素材的系列排最後 */

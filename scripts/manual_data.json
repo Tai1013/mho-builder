@@ -10,7 +10,10 @@
     { "armor": "radiant-tzitzi-ya-ku", "part": "chest", "skill": "道具專家", "level": 2, "note": "2026-11-10 使用者提供" },
     { "armor": "radiant-tzitzi-ya-ku", "part": "arms", "skill": "睡眠耐性", "level": 2, "note": "2026-11-10 使用者提供" },
     { "armor": "radiant-tzitzi-ya-ku", "part": "waist", "skill": "一擊洞穿", "level": 3, "note": "2026-11-10 使用者提供" },
-    { "armor": "radiant-tzitzi-ya-ku", "part": "legs", "skill": "水屬性傷害提升", "level": 3, "note": "2026-11-10 使用者提供" }
+    { "armor": "radiant-tzitzi-ya-ku", "part": "legs", "skill": "水屬性傷害提升", "level": 3, "note": "2026-11-10 使用者提供" },
+    { "armor": "radiant-diablos", "part": "chest", "skill": "愛吃便當", "level": 3, "note": "2026-11-15 使用者提供" },
+    { "armor": "radiant-diablos", "part": "waist", "skill": "拔刀一閃", "level": 3, "note": "2026-11-15 使用者提供" },
+    { "armor": "radiant-diablos", "part": "legs", "skill": "防護", "level": 2, "note": "2026-11-15 使用者提供" }
   ],
   "skillLevelOverrides": [
     { "armor": "radiant-odogaron", "part": "head", "skill": "精神抖擻", "level": 3, "temporary": true, "note": "2026-11-12 使用者提供" },
