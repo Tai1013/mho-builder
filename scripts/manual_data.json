@@ -1,34 +1,25 @@
 {
   "_說明": [
-    "使用者在遊戲中確認、gamewith 和 mhohub 都推不出來的資料。parse_pages.py 會用這裡補上。",
-    "skillLevels：mhohub 有寫這個技能、但沒寫技能等級，gamewith 也沒有的時候才會用到。",
-    "skillLevelOverrides：遊戲中確認的技能等級，優先於來源網站的標示；temporary=true 的項目在來源值一致後會提示可移除。",
+    "使用者確認、來源網站還缺少或標示不正確的技能等級；parse_pages.py 會用這裡補齊。",
+    "skillLevels 是唯一手動補資料清單；來源解析出的最高階等級已相同時，解析器會提示可移除此筆。",
     "armor 是系列 id（例如 radiant-tzitzi-ya-ku），part 是 head／chest／arms／waist／legs，skill 是技能中文名稱。",
-    "如果來源網站之後補上了等級，parse_pages.py 會印出「not needed」，就可以把那一筆刪掉。"
+    "來源資料更新後，請依 parse_pages.py 的提示刪除已能正確解析的項目。"
   ],
   "skillLevels": [
-    { "armor": "radiant-tzitzi-ya-ku", "part": "chest", "skill": "道具專家", "level": 2, "note": "2026-11-10 使用者提供" },
-    { "armor": "radiant-tzitzi-ya-ku", "part": "arms", "skill": "睡眠耐性", "level": 2, "note": "2026-11-10 使用者提供" },
-    { "armor": "radiant-tzitzi-ya-ku", "part": "waist", "skill": "一擊洞穿", "level": 3, "note": "2026-11-10 使用者提供" },
-    { "armor": "radiant-tzitzi-ya-ku", "part": "legs", "skill": "水屬性傷害提升", "level": 3, "note": "2026-11-10 使用者提供" },
     { "armor": "radiant-diablos", "part": "chest", "skill": "愛吃便當", "level": 3, "note": "2026-11-15 使用者提供" },
     { "armor": "radiant-diablos", "part": "waist", "skill": "拔刀一閃", "level": 3, "note": "2026-11-15 使用者提供" },
-    { "armor": "radiant-diablos", "part": "legs", "skill": "防護", "level": 2, "note": "2026-11-15 使用者提供" }
-  ],
-  "skillLevelOverrides": [
-    { "armor": "radiant-odogaron", "part": "head", "skill": "精神抖擻", "level": 3, "temporary": true, "note": "2026-11-12 使用者提供" },
-    { "armor": "radiant-odogaron", "part": "head", "skill": "超回復力", "level": 1, "temporary": true, "note": "2026-11-12 使用者提供" },
-    { "armor": "radiant-odogaron", "part": "chest", "skill": "連擊強化", "level": 3, "temporary": true, "note": "2026-11-12 使用者提供" },
-    { "armor": "radiant-odogaron", "part": "chest", "skill": "超回復力", "level": 1, "temporary": true, "note": "2026-11-12 使用者提供" },
-    { "armor": "radiant-odogaron", "part": "arms", "skill": "鬼人修羅", "level": 1, "temporary": true, "note": "2026-11-12 使用者提供" },
-    { "armor": "radiant-odogaron", "part": "arms", "skill": "血氣", "level": 2, "temporary": true, "note": "2026-11-12 使用者提供" },
-    { "armor": "radiant-odogaron", "part": "arms", "skill": "極力", "level": 1, "temporary": true, "note": "2026-11-12 使用者提供" },
-    { "armor": "radiant-odogaron", "part": "waist", "skill": "鬼人修羅", "level": 2, "temporary": true, "note": "2026-11-12 使用者提供" },
-    { "armor": "radiant-odogaron", "part": "waist", "skill": "血氣", "level": 1, "temporary": true, "note": "2026-11-12 使用者提供" },
-    { "armor": "radiant-odogaron", "part": "waist", "skill": "窮追猛打", "level": 1, "temporary": true, "note": "2026-11-12 使用者提供" },
-    { "armor": "radiant-odogaron", "part": "legs", "skill": "超回復力", "level": 2, "temporary": true, "note": "2026-11-12 使用者提供" },
-    { "armor": "radiant-odogaron", "part": "legs", "skill": "體力強化", "level": 1, "temporary": true, "note": "2026-11-12 使用者提供" },
+    { "armor": "radiant-diablos", "part": "legs", "skill": "防護", "level": 2, "note": "2026-11-15 使用者提供" },
+    { "armor": "radiant-odogaron", "part": "arms", "skill": "鬼人修羅", "level": 1, "note": "2026-11-12 使用者提供" },
+    { "armor": "radiant-odogaron", "part": "arms", "skill": "血氣", "level": 2, "note": "2026-11-12 使用者提供" },
+    { "armor": "radiant-odogaron", "part": "legs", "skill": "超回復力", "level": 2, "note": "2026-11-12 使用者提供" },
+    { "armor": "radiant-odogaron", "part": "legs", "skill": "體力強化", "level": 1, "note": "2026-11-12 使用者提供" },
     { "armor": "radiant-rathalos", "part": "arms", "skill": "火屬性傷害提升", "level": 3, "note": "2026-11-15 使用者提供" },
-    { "armor": "radiant-rathalos", "part": "waist", "skill": "蓄力強化", "level": 3, "note": "2026-11-15 使用者提供" }
+    { "armor": "radiant-rathalos", "part": "waist", "skill": "蓄力強化", "level": 3, "note": "2026-11-15 使用者提供" },
+    { "armor": "radiant-legiana", "part": "head", "skill": "冰屬性傷害提升", "level": 3, "note": "2026-11-17 使用者提供" },
+    { "armor": "radiant-legiana", "part": "chest", "skill": "蓄勢強射", "level": 3, "note": "2026-11-17 使用者提供" },
+    { "armor": "radiant-legiana", "part": "waist", "skill": "庇佑", "level": 2, "note": "2026-11-17 使用者提供" },
+    { "armor": "black-diablos", "part": "arms", "skill": "昏厥耐性", "level": 2, "note": "2026-11-17 使用者提供" },
+    { "armor": "black-diablos", "part": "waist", "skill": "龍屬性傷害提升", "level": 3, "note": "2026-11-17 使用者提供" },
+    { "armor": "black-diablos", "part": "legs", "skill": "氣力轉化", "level": 3, "note": "2026-11-17 使用者提供" }
   ]
 }

@@ -23508,7 +23508,7 @@
           {
             "skillId": "ice-damage-up",
             "name": "冰屬性傷害提升",
-            "level": null
+            "level": 3
           },
           {
             "skillId": "blessing",
@@ -23525,7 +23525,7 @@
               {
                 "skillId": "ice-damage-up",
                 "name": "冰屬性傷害提升",
-                "level": null
+                "level": 3
               },
               {
                 "skillId": "blessing",
@@ -23549,7 +23549,7 @@
           {
             "skillId": "charged-power-shot",
             "name": "蓄勢強射",
-            "level": null
+            "level": 3
           },
           {
             "skillId": "ice-resistance",
@@ -23566,7 +23566,7 @@
               {
                 "skillId": "charged-power-shot",
                 "name": "蓄勢強射",
-                "level": null
+                "level": 3
               },
               {
                 "skillId": "ice-resistance",
@@ -23641,7 +23641,7 @@
           {
             "skillId": "blessing",
             "name": "庇佑",
-            "level": null
+            "level": 2
           },
           {
             "skillId": "ice-resistance",
@@ -23658,7 +23658,7 @@
               {
                 "skillId": "blessing",
                 "name": "庇佑",
-                "level": null
+                "level": 2
               },
               {
                 "skillId": "ice-resistance",
@@ -24343,7 +24343,7 @@
           {
             "skillId": "stun-resistance",
             "name": "昏厥耐性",
-            "level": null
+            "level": 2
           },
           {
             "skillId": "tremor-resistance",
@@ -24360,7 +24360,7 @@
               {
                 "skillId": "stun-resistance",
                 "name": "昏厥耐性",
-                "level": null
+                "level": 2
               },
               {
                 "skillId": "tremor-resistance",
@@ -24384,7 +24384,7 @@
           {
             "skillId": "dragon-damage-up",
             "name": "龍屬性傷害提升",
-            "level": null
+            "level": 3
           },
           {
             "skillId": "stun-resistance",
@@ -24401,7 +24401,7 @@
               {
                 "skillId": "dragon-damage-up",
                 "name": "龍屬性傷害提升",
-                "level": null
+                "level": 3
               },
               {
                 "skillId": "stun-resistance",
@@ -24425,7 +24425,7 @@
           {
             "skillId": "stamina-conversion",
             "name": "氣力轉化",
-            "level": null
+            "level": 3
           },
           {
             "skillId": "guard-technique",
@@ -24442,7 +24442,7 @@
               {
                 "skillId": "stamina-conversion",
                 "name": "氣力轉化",
-                "level": null
+                "level": 3
               },
               {
                 "skillId": "guard-technique",

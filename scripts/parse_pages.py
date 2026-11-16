@@ -251,16 +251,9 @@ def strip_tier(t): return re.sub(r'[ⅠⅡⅢⅣⅤⅥ]+$', '', t)
 
 manual = json.load(open(os.path.join(_here, 'manual_data.json'), encoding='utf-8')) \
     if os.path.exists(os.path.join(_here, 'manual_data.json')) else {}
-# (系列 id, 部位, 技能名稱) → 等級；遊戲內確認、兩個網站都沒寫等級的技能
-level_patch = {(x['armor'], x['part'], x['skill']): x['level'] for x in manual.get('skillLevels', [])}
-level_patch_used = set()
-level_overrides = {(x['armor'], x['part'], x['skill']): x['level']
-                   for x in manual.get('skillLevelOverrides', [])}
-temporary_level_overrides = {
-    (x['armor'], x['part'], x['skill']): x
-    for x in manual.get('skillLevelOverrides', []) if x.get('temporary')
-}
-temporary_overrides_seen = set()
+# (系列 id, 部位, 技能名稱) → 遊戲內確認的補充等級；來源資料缺漏或不正確時使用。
+manual_levels = {(x['armor'], x['part'], x['skill']): x['level'] for x in manual.get('skillLevels', [])}
+manual_levels_used = set()
 
 def mh_parse_sets():
     out = []
@@ -352,8 +345,9 @@ if os.path.isdir(MH):
                         lv = cur[sk['id']]['level'] + 1          # 同部位先前出現過 → 前一級 +1
                     if lv is None:                                # 用 gamewith 之後的階的等級
                         lv = next((k['level'] for rr in sorted(g_st) if rr > r for k in g_st[rr]['skills'] if k['skillId'] == sk['id']), None)
-                    if lv is None and (sid, part, sk['name']) in level_patch:
-                        lv = level_patch[(sid, part, sk['name'])]; level_patch_used.add((sid, part, sk['name']))
+                    key = (sid, part, sk['name'])
+                    if lv is None and key in manual_levels:
+                        lv = manual_levels[key]; manual_levels_used.add(key)
                     if lv is None: print('NEED level', sid, part, 'R%d' % r, sk['name'])
                     cur[sk['id']] = {'skillId': sk['id'], 'name': sk['name'], 'level': lv}
                 name = stages[-1]['name'] if stages else stage_name
@@ -422,33 +416,37 @@ if os.path.isdir(MH):
                       'rarityMax': max(p['rarityMax'] for p in pieces.values()),
                       'pieces': pieces, 'materialMonsters': [mon['id']]})
         print('NOTE mhohub set added', sid, base_name)
-    for k in set(level_patch) - level_patch_used:
-        print('NOTE manual skillLevels not needed (already known)', k)
 else:
     print('WARN mhohub cache not found, run fetch_pages.py')
 
-# 使用者在遊戲內確認的技能等級優先於來源頁面標示。
+# 使用者在遊戲內確認的技能等級只補來源缺漏／不符的資料；若爬到相同等級，提示可從手動資料移除。
+series_by_id = {s['id']: s for s in armor}
+for key, level in manual_levels.items():
+    sid, part, skill_name = key
+    piece = series_by_id.get(sid, {}).get('pieces', {}).get(part)
+    if not piece or not piece.get('stages'):
+        print('WARN manual skill level not found in parsed armor', key)
+        continue
+    top_stage = piece['stages'][-1]
+    top_skill = next((k for k in top_stage['skills'] if k['name'] == skill_name), None)
+    if not top_skill:
+        print('WARN manual skill level not found in parsed armor', key)
+        continue
+    parsed_level = top_skill['level']
+    if parsed_level == level and key not in manual_levels_used:
+        print('NOTE manual skill level matches source; can remove', key)
+        continue
+    for stage in piece['stages']:
+        for skill in stage['skills']:
+            if skill['name'] == skill_name and skill['level'] is None:
+                skill['level'] = level
+    top_skill['level'] = level
+    print('NOTE manual skill level retained', key, parsed_level, '->', level)
+
 for s in armor:
     for part, p in s['pieces'].items():
-        for st in p['stages']:
-            for skill in st['skills']:
-                key = (s['id'], part, skill['name'])
-                override = level_overrides.get(key)
-                if override is not None:
-                    temporary = temporary_level_overrides.get(key)
-                    if temporary:
-                        temporary_overrides_seen.add(key)
-                        if skill['level'] == override:
-                            print('NOTE temporary skill override matches source; can remove', key)
-                            continue
-                        print('NOTE temporary skill override applied', key,
-                              skill['level'], '->', override)
-                    skill['level'] = override
         if p['stages']:
             p['skills'] = p['stages'][-1]['skills']
-
-for key in temporary_level_overrides.keys() - temporary_overrides_seen:
-    print('WARN temporary skill override not found in parsed armor', key)
 
 # 防具上出現的技能都要能在「技能篩選」選到（mhohub 補進來的技能可能先被當成套裝技能建立）
 used_on_armor = {k['skillId'] for s in armor for p in s['pieces'].values() for st in p['stages'] for k in st['skills']}

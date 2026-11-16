@@ -32,7 +32,7 @@ python3 scripts/parse_pages.py "$CACHE" "$CACHE/generated"
 
 ## 手動確認資料
 
-來源網站可能沒有標出遊戲內的技能等級。這類使用者確認的固定值記在 `scripts/manual_data.json` 的 `skillLevelOverrides`，不要只手動改 `src/data/armor.json`，否則下次重新解析會被來源資料覆蓋。
+來源網站可能沒有標出遊戲內的技能等級，或暫時標示錯誤。這類使用者確認的資料統一記在 `scripts/manual_data.json` 的 `skillLevels`，不要只手動改 `src/data/armor.json`，否則下次重新解析會遺失。
 
 每筆以系列 id、部位 id、技能名稱為鍵，例如：
 
@@ -40,7 +40,7 @@ python3 scripts/parse_pages.py "$CACHE" "$CACHE/generated"
 { "armor": "radiant-rathalos", "part": "arms", "skill": "火屬性傷害提升", "level": 3, "note": "使用者提供" }
 ```
 
-`part` 使用 `head`、`chest`、`arms`、`waist`、`legs`。加入覆寫後，依前述方式重新解析到暫存輸出，確認 `armor.json` 中最高階的技能等級正確，再採用變更。若覆寫有 `temporary: true`，只有在來源值相符時解析器才會提示可以移除；非暫時的使用者確認資料會持續優先於來源值。
+`part` 使用 `head`、`chest`、`arms`、`waist`、`legs`。新增資料後，依前述方式重新解析到暫存輸出，檢查 `armor.json` 中最高階的技能等級。解析器若發現來源已提供相同等級，會印出 `can remove`；確認後即可從 `skillLevels` 刪除該筆，讓清單只保留來源仍缺漏或不正確的資料。
 
 ## 腳本注意事項
 
