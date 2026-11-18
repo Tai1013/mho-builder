@@ -23262,7 +23262,7 @@
           {
             "skillId": "grace-under-pressure",
             "name": "高壓防禦",
-            "level": null
+            "level": 2
           }
         ],
         "setSkill": "radiant-radobaan-set",
@@ -23279,7 +23279,7 @@
               {
                 "skillId": "grace-under-pressure",
                 "name": "高壓防禦",
-                "level": null
+                "level": 2
               }
             ]
           }
@@ -23298,7 +23298,7 @@
           {
             "skillId": "immovable-stance",
             "name": "剛勢",
-            "level": null
+            "level": 3
           },
           {
             "skillId": "tremor-resistance",
@@ -23315,7 +23315,7 @@
               {
                 "skillId": "immovable-stance",
                 "name": "剛勢",
-                "level": null
+                "level": 3
               },
               {
                 "skillId": "tremor-resistance",
@@ -23995,7 +23995,7 @@
           {
             "skillId": "critical-element",
             "name": "會心擊【屬性】",
-            "level": null
+            "level": 2
           },
           {
             "skillId": "grace-under-pressure",
@@ -24017,7 +24017,7 @@
               {
                 "skillId": "critical-element",
                 "name": "會心擊【屬性】",
-                "level": null
+                "level": 2
               },
               {
                 "skillId": "grace-under-pressure",
@@ -24092,7 +24092,7 @@
           {
             "skillId": "insight",
             "name": "看破",
-            "level": null
+            "level": 2
           },
           {
             "skillId": "mhohub-164",
@@ -24114,7 +24114,7 @@
               {
                 "skillId": "insight",
                 "name": "看破",
-                "level": null
+                "level": 2
               },
               {
                 "skillId": "mhohub-164",
@@ -24148,7 +24148,7 @@
           {
             "skillId": "poison-resistance",
             "name": "毒耐性",
-            "level": null
+            "level": 2
           }
         ],
         "setSkill": "radiant-pink-rathian-set",
@@ -24165,7 +24165,7 @@
               {
                 "skillId": "poison-resistance",
                 "name": "毒耐性",
-                "level": null
+                "level": 2
               }
             ]
           }
@@ -24189,7 +24189,7 @@
           {
             "skillId": "capacity-boost",
             "name": "裝填強化",
-            "level": null
+            "level": 3
           }
         ],
         "setSkill": "radiant-pink-rathian-set",
@@ -24206,7 +24206,7 @@
               {
                 "skillId": "capacity-boost",
                 "name": "裝填強化",
-                "level": null
+                "level": 3
               }
             ]
           }

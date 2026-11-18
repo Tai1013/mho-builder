@@ -240,7 +240,7 @@ for s in series.values():
 
 # ---------- mhohub.com：補 gamewith 沒有的階與防具 ----------
 # 以 gamewith 為主；mhohub 只補 gamewith 沒有的稀有度（例如 R10 以上、中間階）和 gamewith 還沒收錄的套裝。
-# mhohub 每個部件的技能寫成「技能・技能等級・解鎖等級」，解鎖等級就是稀有度（跟 gamewith 對過 941 筆一致）。
+# mhohub 的「稀有度條件」（舊稱「解鎖等級」）是該技能出現的稀有度。
 # mhohub 有些條目沒寫技能等級：同部位先前出現過的 → 前一級 +1；沒出現過的 → 用 gamewith 的等級，
 # 兩邊都沒有就看 manual_data.json 的 skillLevels，再沒有就留 null（網站顯示「?」）。
 MH = os.path.join(RAW, 'mhohub')
@@ -278,7 +278,8 @@ def mh_parse_sets():
                 continue
             sks = []
             for lang, sid, name, meta in re.findall(r'<li[^>]*><strong lang="([^"]+)"[^>]*><a href="/zh-tw/skills/#equipment-skill-(\d+)"[^>]*>(.*?)</a></strong><small class="meta"[^>]*>(.*?)</small>', art):
-                lv = re.search(r'技能等級 (\d+)', meta); un = re.search(r'解鎖等級 (\d+)', meta)
+                lv = re.search(r'技能等級\s+(\d+)', meta)
+                un = re.search(r'(?:稀有度條件|解鎖等級)\s+(\d+)', meta)
                 if not un: continue
                 sks.append({'mhId': int(sid), 'name': clean(name), 'zh': lang == 'zh-TW',
                             'level': int(lv.group(1)) if lv else None, 'unlock': int(un.group(1))})
