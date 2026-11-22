@@ -49,6 +49,7 @@ function onRarity(v: string) {
           </span>
           <span v-if="!stage.skills.length" class="muted">無技能</span>
         </div>
+        <button class="icon-btn compact-remove" type="button" :title="`移除${label}`" :aria-label="`移除${label}`" @click.stop="unequip(part)">×</button>
       </template>
       <div v-else class="placeholder c-placeholder"><span class="plus" aria-hidden="true">＋</span>{{ label }}</div>
     </template>
@@ -58,7 +59,7 @@ function onRarity(v: string) {
       <span class="part">{{ label }}</span>
       <template v-if="piece && stage">
         <SelectChip :value="stage.rarity" :options="rarityOptions" :label="`${label}稀有度`" @change="onRarity" />
-        <button class="icon-btn" type="button" title="移除" aria-label="移除" @click.stop="unequip(part)">×</button>
+        <button class="icon-btn" type="button" :title="`移除${label}`" :aria-label="`移除${label}`" @click.stop="unequip(part)">×</button>
       </template>
     </div>
 
@@ -195,6 +196,11 @@ function onRarity(v: string) {
 }
 .c-icon {
   flex-shrink: 0;
+}
+.compact-remove {
+  flex: 0 0 32px;
+  min-height: 32px;
+  margin-right: -6px;
 }
 .c-line {
   flex: 1;

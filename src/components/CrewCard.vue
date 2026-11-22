@@ -49,6 +49,9 @@ function clear() {
       </div>
     </div>
     <div v-else class="placeholder"><span class="plus" aria-hidden="true">＋</span>選擇{{ label }}</div>
+    <button v-if="compact && picked" class="icon-btn compact-remove" type="button" :title="`移除${label}`" :aria-label="`移除${label}`" @click.stop="clear">
+      ×
+    </button>
   </div>
 </template>
 
@@ -121,10 +124,19 @@ function clear() {
 
 /* ---------- 簡易排版 ---------- */
 .crew.compact {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   padding: 6px 10px;
 }
 .crew.compact .ident {
+  flex: 1;
   margin-top: 0;
+}
+.compact-remove {
+  flex: 0 0 32px;
+  min-height: 32px;
+  margin-right: -6px;
 }
 .crew.compact .name {
   font-size: 14px;
