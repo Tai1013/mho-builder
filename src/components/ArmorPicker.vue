@@ -2,6 +2,7 @@
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { usePickerFilters, type SortKey } from '../stores/pickerFilters'
+import { useUiPrefs } from '../stores/uiPrefs'
 import {
   NO_MONSTER,
   PARTS,
@@ -33,6 +34,7 @@ const { slots, activePart, targetRarity, equip, unequip, equipSeries, closePicke
 
 // 篩選條件放在 Pinia：關掉視窗或換部位都會保留
 const filters = usePickerFilters()
+const { showSkillDescriptions } = storeToRefs(useUiPrefs())
 const {
   query,
   skills: skillFilter,
@@ -100,7 +102,10 @@ function skillIdsOf(piece: ArmorPiece): Set<string> {
 const skillQuery = ref('')
 const skillOptions = computed(() => {
   const q = skillQuery.value.trim().toLowerCase()
-  return armorSkills.filter((s) => !q || s.name.toLowerCase().includes(q) || (s.nameEn ?? '').toLowerCase().includes(q))
+  return armorSkills.filter((s) =>
+    !q || [s.name, s.nameEn ?? '', s.description ?? '']
+      .some((text) => text.toLowerCase().includes(q)),
+  )
 })
 
 // ---------- 清單 ----------
@@ -375,11 +380,11 @@ onBeforeUnmount(() => {
 
               <!-- 技能面板：可多選，可切換「任一／全部」 -->
               <div v-if="openPanel === 'skill'" id="skill-panel" class="panel">
+                <div class="panel-top skill-panel-head">
+                  <CompactInput v-model="skillQuery" class="skill-search" placeholder="搜尋技能名稱／說明" label="搜尋技能" />
+                  <button v-if="skillFilter.length" type="button" class="link-btn" @click="skillFilter = []">清除技能</button>
+                </div>
                 <div class="panel-body">
-                  <div class="panel-top">
-                    <CompactInput v-model="skillQuery" class="skill-search" placeholder="搜尋技能" label="搜尋技能" />
-                    <button v-if="skillFilter.length" type="button" class="link-btn" @click="skillFilter = []">清除技能</button>
-                  </div>
                   <div v-if="skillFilter.length > 1" class="mode" role="group" aria-label="多個技能的比對方式">
                     <span>比對方式</span>
                     <button type="button" :class="{ on: skillMode === 'any' }" :aria-pressed="skillMode === 'any'" @click="skillMode = 'any'">
@@ -389,7 +394,7 @@ onBeforeUnmount(() => {
                       全部都有
                     </button>
                   </div>
-                  <div class="sk-grid">
+                  <div class="sk-grid" :class="{ detailed: showSkillDescriptions }">
                     <button
                       v-for="s in skillOptions"
                       :key="s.id"
@@ -399,12 +404,20 @@ onBeforeUnmount(() => {
                       :aria-pressed="selectedSkillSet.has(s.id)"
                       @click="filters.toggleSkill(s.id)"
                     >
-                      {{ s.name }}
+                      <span class="skill-name">{{ s.name }}</span>
+                      <template v-if="showSkillDescriptions">
+                        <span v-if="s.description" class="skill-description">{{ s.description }}</span>
+                        <span v-else class="skill-description">暫無說明資料</span>
+                      </template>
                     </button>
                     <p v-if="!skillOptions.length" class="hint">找不到技能</p>
                   </div>
                 </div>
                 <div class="panel-foot">
+                  <button type="button" class="description-toggle" role="switch" :aria-checked="showSkillDescriptions" @click="showSkillDescriptions = !showSkillDescriptions">
+                    <span class="toggle-track" aria-hidden="true"><span class="toggle-knob" /></span>
+                    顯示技能說明
+                  </button>
                   <button type="button" class="done-btn" @click="openPanel = null">篩選出 {{ rows.length }} 件</button>
                 </div>
               </div>
@@ -744,6 +757,10 @@ onBeforeUnmount(() => {
 .panel-top .link-btn {
   margin-left: auto;
 }
+.skill-panel-head {
+  flex-shrink: 0;
+  padding: 10px 10px 0;
+}
 .skill-search {
   flex: 1;
   min-width: 0;
@@ -766,6 +783,40 @@ onBeforeUnmount(() => {
   padding: 8px 10px;
   border-top: 1px solid var(--border);
   background: var(--surface);
+}
+.description-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  padding: 4px 0;
+  background: none;
+  color: var(--text);
+  font-size: 13px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.toggle-track {
+  width: 30px;
+  height: 18px;
+  padding: 2px;
+  border-radius: 999px;
+  background: var(--border);
+  transition: background 0.15s;
+}
+.toggle-knob {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--surface);
+  transition: transform 0.15s;
+}
+.description-toggle[aria-checked='true'] .toggle-track {
+  background: var(--accent);
+}
+.description-toggle[aria-checked='true'] .toggle-knob {
+  transform: translateX(12px);
 }
 .done-btn {
   margin-left: auto;
@@ -847,6 +898,11 @@ onBeforeUnmount(() => {
   grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
   gap: 4px;
 }
+.sk-grid.detailed {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  align-items: start;
+  gap: 6px;
+}
 .schip {
   border: 1px solid var(--border);
   background: none;
@@ -859,6 +915,23 @@ onBeforeUnmount(() => {
   line-height: 1.25;
   word-break: break-all;
   min-width: 0;
+}
+.detailed .schip {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 8px;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+.detailed .skill-name {
+  font-weight: 700;
+}
+.skill-description {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
 }
 .active-row {
   display: flex;

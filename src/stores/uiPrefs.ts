@@ -8,7 +8,7 @@ const KEY = 'mho-ui-prefs'
 export type Theme = 'auto' | 'light' | 'dark'
 const THEMES: Theme[] = ['auto', 'light', 'dark']
 
-type SavedPrefs = { compactSlots?: boolean; theme?: Theme }
+type SavedPrefs = { compactSlots?: boolean; theme?: Theme; showSkillDescriptions?: boolean }
 
 function load(): SavedPrefs {
   try {
@@ -37,24 +37,26 @@ function applyTheme(theme: Theme) {
  * 介面偏好（存在瀏覽器裡，重新整理後保留）。
  * compactSlots：簡易排版。配裝欄位只顯示魔物圖、稀有度、技能；套裝技能只顯示名稱、加成、件數、是否發動；技能合計只顯示技能、格子、等級。
  * theme：主題，右上角的按鈕在 自動 → 淺色 → 深色 之間輪流切換。
+ * showSkillDescriptions：防具篩選面板是否顯示技能說明。
  */
 export const useUiPrefs = defineStore('uiPrefs', () => {
   const saved = load()
   const compactSlots = ref(saved.compactSlots === true)
   const theme = ref<Theme>(THEMES.includes(saved.theme as Theme) ? (saved.theme as Theme) : 'auto')
+  const showSkillDescriptions = ref(saved.showSkillDescriptions === true)
 
   function cycleTheme() {
     theme.value = THEMES[(THEMES.indexOf(theme.value) + 1) % THEMES.length]
   }
 
   watch(theme, applyTheme, { immediate: true })
-  watch([compactSlots, theme], () => {
+  watch([compactSlots, theme, showSkillDescriptions], () => {
     try {
-      localStorage.setItem(KEY, JSON.stringify({ compactSlots: compactSlots.value, theme: theme.value } satisfies SavedPrefs))
+      localStorage.setItem(KEY, JSON.stringify({ compactSlots: compactSlots.value, theme: theme.value, showSkillDescriptions: showSkillDescriptions.value } satisfies SavedPrefs))
     } catch {
       // 無痕模式等情況存不了也沒關係，只是下次會回到預設
     }
   })
 
-  return { compactSlots, theme, cycleTheme }
+  return { compactSlots, theme, showSkillDescriptions, cycleTheme }
 })
