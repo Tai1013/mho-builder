@@ -34,15 +34,12 @@ self.addEventListener('activate', (event) => {
       await self.clients.claim()
       if (hadPreviousVersion) {
         const clients = await self.clients.matchAll({ type: 'window', includeUncontrolled: true })
-        await Promise.all(
-          clients
-            .filter((client) => client.url.startsWith(self.registration.scope))
-            .map((client) => {
-              const url = new URL(client.url)
-              url.searchParams.set('__mho_updated', '1')
-              return client.navigate(url.href).catch(() => null)
-            }),
-        )
+        for (const client of clients.filter((client) => client.url.startsWith(self.registration.scope))) {
+          const url = new URL(client.url)
+          url.searchParams.set('__mho_updated', '1')
+          // 導覽須等此 worker 啟用後才能完成；不能在 activate 的 waitUntil 裡等待它，否則會互相等待。
+          client.navigate(url.href).catch(() => {})
+        }
       }
     })(),
   )
