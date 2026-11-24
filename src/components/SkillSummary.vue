@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useBuild } from '../composables/useBuild'
+import { calculateDamageSummary } from '../composables/damageSummary'
 import SkillDetail from './SkillDetail.vue'
 import OverCapIcon from './OverCapIcon.vue'
 
@@ -9,6 +10,11 @@ const { setStatuses, aggregatedSkills } = useBuild()
 
 /** 簡易排版只列出已發動的套裝技能 */
 const activeSets = computed(() => setStatuses.value.filter((s) => s.active))
+const damageSummary = computed(() => calculateDamageSummary(aggregatedSkills.value))
+
+function damageText(normal: number, radiant: number) {
+  return `+${normal}${radiant !== normal ? `(${radiant})` : ''}%`
+}
 
 /** 點技能跳出各等級說明 */
 const detailKey = ref<string | null>(null)
@@ -46,7 +52,29 @@ const detail = computed(() => aggregatedSkills.value.find((s) => s.key === detai
     <p v-else class="muted">尚未裝備任何防具</p>
     </template>
 
-    <h3>技能合計</h3>
+    <div class="skill-heading">
+      <h3>技能合計</h3>
+      <span v-if="damageSummary.hasValues" class="estimate-label">最高理想化</span>
+    </div>
+    <div v-if="damageSummary.hasValues" class="damage-summary">
+      <div class="damage-values" :class="{ 'single-line': damageSummary.elements.length <= 1 }">
+        <div v-if="damageSummary.elements.length !== 1 && (damageSummary.attack || damageSummary.damage || damageSummary.radiantDamage)" class="damage-line">
+          <span v-if="damageSummary.attack">屬性 <b>+{{ damageSummary.attack }}</b></span>
+          <span v-if="damageSummary.damage || damageSummary.radiantDamage">傷害 <b>{{ damageText(damageSummary.damage, damageSummary.radiantDamage) }}</b></span>
+        </div>
+        <div v-for="e in damageSummary.elements" :key="e.element" class="damage-line">
+          <strong v-if="damageSummary.elements.length > 1">{{ e.element }}屬性</strong>
+          <span v-if="e.attack">屬性 <b>+{{ e.attack }}</b></span>
+          <span>傷害 <b>{{ damageText(e.damage, e.radiantDamage) }}</b></span>
+        </div>
+        <div v-if="damageSummary.elementalDamage || damageSummary.affinity || damageSummary.followUp" class="damage-line">
+          <span v-if="damageSummary.elementalDamage">屬會傷害 <b>+{{ damageSummary.elementalDamage }}%</b></span>
+          <span v-if="damageSummary.affinity">會心率 <b>+{{ damageSummary.affinity }}%</b></span>
+          <span v-if="damageSummary.followUp">追擊傷害 <b>+{{ damageSummary.followUp }}%</b></span>
+        </div>
+      </div>
+      <p class="estimate-note">假設技能條件均成立，百分比直接相加，非實際傷害；武器、招式與條件可能無法同時成立。<template v-if="damageSummary.elements.length === 1">屬性強化僅適用{{ damageSummary.elements[0]?.element }}屬性。</template>括號內為融光種，倍率與追擊傷害不計入合計。</p>
+    </div>
     <!-- 簡易排版：只顯示技能名稱、格子、等級 -->
     <!-- 點技能可看各等級說明 -->
     <ul v-if="aggregatedSkills.length && compact" class="compact-list skills-compact">
@@ -122,6 +150,65 @@ h3 {
 }
 h3:first-child {
   margin-top: 0;
+}
+.skill-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 8px;
+}
+.skill-heading h3 {
+  margin: 0;
+}
+.estimate-label {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+}
+.damage-summary {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.damage-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 6px;
+  color: var(--text-strong);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.damage-line + .damage-line {
+  margin-top: 4px;
+}
+.single-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 6px;
+}
+.single-line .damage-line {
+  display: contents;
+}
+.damage-line > span {
+  background: var(--chip);
+  border-radius: 6px;
+  padding: 1px 6px;
+  white-space: nowrap;
+}
+.damage-line > span b {
+  color: var(--accent);
+}
+.damage-line strong {
+  color: var(--accent);
+}
+.estimate-note {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
 }
 .sets,
 .skills {
