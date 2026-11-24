@@ -1,6 +1,6 @@
 """把 fetch_pages.py 下載的頁面解析成 src/data/*.json。
 用法: python3 scripts/parse_pages.py [cache_dir] [out_dir]"""
-import re, json, os, sys, html
+import re, json, os, sys, html, hashlib
 def rsc(path):
     h = open(path, encoding='utf-8').read()
     out = []
@@ -40,7 +40,7 @@ def raw_rows(fname, key):
     i = s.find(key); j = s.rfind('[{', 0, i)
     return json.JSONDecoder().raw_decode(s, j)[0]
 
-PART_SLUG = {'頭': 'head', '胴': 'chest', '腕': 'arms', '腰': 'waist', '脚': 'legs'}
+PART_SLUG = {'頭': 'head', '胴': 'chest', '腕': 'arms', '腰': 'waist', '腳': 'legs'}
 PART_LABEL = {'head': '頭部', 'chest': '胸部', 'arms': '腕部', 'waist': '腰部', 'legs': '腿部'}
 PART_ORDER = ['head', 'chest', 'arms', 'waist', 'legs']
 SKILL_LINK = r'href="/monster-hunter-outlanders/zh-hant/skills/([a-z0-9-]+)"[^>]*>(.*?)</a>'
@@ -58,13 +58,35 @@ for r in sorted(skill_list, key=lambda x: x['order']):
     en = [n for n in r['searchNames'] if n != r['name']]
     sk = {
         'id': r['slug'], 'name': r['name'], 'nameEn': en[0] if en else None,
-        'description': r['effect'], 'maxLevel': r['maxLevel'],
+        # 技能列表少數條目未提供摘要，使用技能頁第一級效果作說明。
+        'description': r['effect'] or (levels[0]['effect'] if levels else None), 'maxLevel': r['maxLevel'],
         'sources': r['sources'], 'armorCount': r['armorCount'], 'weaponCount': r['weaponCount'],
         'levels': levels,
     }
     if len(levels) != r['maxLevel']:
         print('WARN level count', r['slug'], len(levels), r['maxLevel'])
     skills.append(sk); skill_by_name[r['name']] = sk
+
+def ensure_set_grant_skill(name, level, effect):
+    """GameWith 套裝頁有時只顯示技能名稱和效果，不連到技能詳情頁。"""
+    sk = skill_by_name.get(name)
+    if sk is None:
+        # 以名稱雜湊產生穩定 ID，避免中文名稱或不同套裝產生重複技能。
+        sid = 'gamewith-set-%s' % hashlib.sha1(name.encode('utf-8')).hexdigest()[:12]
+        sk = {'id': sid, 'name': name, 'nameEn': None, 'description': effect,
+              'maxLevel': level, 'sources': ['set'], 'armorCount': 0, 'weaponCount': 0,
+              'levels': []}
+        skills.append(sk)
+        skill_by_name[name] = sk
+    elif 'set' not in sk['sources']:
+        sk['sources'].append('set')
+    if not sk['description']:
+        sk['description'] = effect
+    if not any(item['level'] == level for item in sk['levels']):
+        sk['levels'].append({'level': level, 'effect': effect})
+        sk['levels'].sort(key=lambda item: item['level'])
+    sk['maxLevel'] = max(sk['maxLevel'], level)
+    return sk
 
 # ---------- set skills ----------
 sk_html = open(os.path.join(RAW, 'skills.html'), encoding='utf-8').read()
@@ -89,8 +111,9 @@ for slug in set_slugs:
     if not grants:
         mm = re.match(r'(.+?)\+(\d+)$', label)
         if mm:
-            print('NOTE set grant without skill page', slug, label)
-            grants.append({'skillId': None, 'skillName': mm.group(1), 'level': int(mm.group(2))})
+            grant_name, grant_level = mm.group(1), int(mm.group(2))
+            grant_skill = ensure_set_grant_skill(grant_name, grant_level, effect)
+            grants.append({'skillId': grant_skill['id'], 'skillName': grant_name, 'level': grant_level})
     armor_ids = re.findall(r'href="/monster-hunter-outlanders/zh-hant/armor/([a-z0-9-]+/[a-z]+)"', section(h, 'armor'))
     set_skills.append({
         'id': slug, 'name': name, 'requiredPieces': pieces,
@@ -238,234 +261,62 @@ for s in series.values():
     s['materialMonsters'] = found
     armor.append(s)
 
-# ---------- mhohub.com：補 gamewith 沒有的階與防具 ----------
-# 以 gamewith 為主；mhohub 只補 gamewith 沒有的稀有度（例如 R10 以上、中間階）和 gamewith 還沒收錄的套裝。
-# mhohub 的「稀有度條件」（舊稱「解鎖等級」）是該技能出現的稀有度。
-# mhohub 有些條目沒寫技能等級：同部位先前出現過的 → 前一級 +1；沒出現過的 → 用 gamewith 的等級，
-# 兩邊都沒有就看 manual_data.json 的 skillLevels，再沒有就留 null（網站顯示「?」）。
-MH = os.path.join(RAW, 'mhohub')
-MH_PART = {'頭部': 'head', '胸部': 'chest', '手部': 'arms', '腰部': 'waist', '腿部': 'legs'}
-# mhohub 套裝名稱跟 gamewith 不同的
-MH_SERIES_ALIAS = {'光稜龍・聖騎套裝': '光稜龍套裝'}
-def strip_tier(t): return re.sub(r'[ⅠⅡⅢⅣⅤⅥ]+$', '', t)
-
-manual = json.load(open(os.path.join(_here, 'manual_data.json'), encoding='utf-8')) \
-    if os.path.exists(os.path.join(_here, 'manual_data.json')) else {}
-# (系列 id, 部位, 技能名稱) → 遊戲內確認的補充等級；來源資料缺漏或不正確時使用。
-manual_levels = {(x['armor'], x['part'], x['skill']): x['level'] for x in manual.get('skillLevels', [])}
-manual_levels_used = set()
-
-def mh_parse_sets():
-    out = []
-    d = os.path.join(MH, 'sets')
-    for f in sorted(os.listdir(d)):
-        h = open(os.path.join(d, f), encoding='utf-8').read()
-        title = clean(re.search(r'<h1[^>]*>(.*?)</h1>', h, flags=re.S).group(1))
-        # 套裝效果：<div data-set-bonus><h3>名稱</h3><li><strong>2 件</strong> · <a #equipment-skill-ID>技能+1</a>
-        bonus = None
-        bm = re.search(r'<div data-set-bonus="\d+"[^>]*><h3[^>]*>(.*?)</h3>\s*<ul[^>]*><li[^>]*><strong[^>]*>(\d+) 件</strong>'
-                   r'.*?<a href="/zh-tw/skills/#equipment-skill-(\d+)"[^>]*>(.*?)\+(\d+)</a>', h, flags=re.S)
-        if bm:
-            bonus = {'name': clean(bm.group(1)), 'pieces': int(bm.group(2)), 'mhId': int(bm.group(3)),
-                     'skill': clean(bm.group(4)), 'level': int(bm.group(5))}
-        pieces = {}
-        for art in re.findall(r'<article class="armor-set-card armor-piece-card"[^>]*>(.*?)</article>', h, flags=re.S):
-            part_match = re.search(r'<p class="eyebrow"[^>]*>(.*?)</p>', art, flags=re.S)
-            if not part_match:
-                continue
-            part = MH_PART.get(clean(part_match.group(1)))
-            if not part:
-                continue
-            sks = []
-            for lang, sid, name, meta in re.findall(r'<li[^>]*><strong lang="([^"]+)"[^>]*><a href="/zh-tw/skills/#equipment-skill-(\d+)"[^>]*>(.*?)</a></strong><small class="meta"[^>]*>(.*?)</small>', art):
-                lv = re.search(r'技能等級\s+(\d+)', meta)
-                un = re.search(r'(?:稀有度條件|解鎖等級)\s+(\d+)', meta)
-                if not un: continue
-                sks.append({'mhId': int(sid), 'name': clean(name), 'zh': lang == 'zh-TW',
-                            'level': int(lv.group(1)) if lv else None, 'unlock': int(un.group(1))})
-            pieces[part] = {'name': clean(re.search(r'<h3[^>]*>(.*?)</h3>', art).group(1)), 'skills': sks}
-        out.append({'title': title, 'bonus': bonus, 'pieces': pieces})
-    return out
-
-def mh_parse_skills():
-    h = open(os.path.join(MH, 'skills.html'), encoding='utf-8').read()
-    out = {}
-    for sid, blk in re.findall(r'<article[^>]*id="equipment-skill-(\d+)"[^>]*>(.*?)</article>', h, flags=re.S):
-        name = clean(re.search(r'<h[23][^>]*>(.*?)</h[23]>', blk, flags=re.S).group(1))
-        t = clean(blk)
-        desc = t[len(name):t.find('技能等級與效果')].strip() if '技能等級與效果' in t else ''
-        levels = [{'level': int(a), 'effect': b.strip()} for a, b in
-                  re.findall(r'技能等級 (\d+) · (.*?)(?=\s*技能等級 \d+ · |\s*防具部件|\s*防具套裝效果|$)', t)]
-        out[int(sid)] = {'name': name, 'description': desc or None, 'levels': levels}
-    return out
-
-if os.path.isdir(MH):
-    mh_sets = mh_parse_sets()
-    mh_skills = mh_parse_skills()
-    sk_by_en = {(s['nameEn'] or '').lower(): s for s in skills}
-    # mhohub 的技能 id → 中文名稱（有些條目只有英文，靠其他條目或技能頁對回中文）
-    mh_zh = {i: v['name'] for i, v in mh_skills.items()}
-    for ms_ in mh_sets:
-        for p in ms_['pieces'].values():
-            for k in p['skills']:
-                if k['zh']: mh_zh.setdefault(k['mhId'], k['name'])
-    def mh_skill(mh_id, fallback_name, source):
-        """mhohub 技能 → skills.json 的技能；gamewith 沒有的技能用 mhohub 技能頁的資料新增"""
-        name = mh_zh.get(mh_id, fallback_name)
-        # mhohub 有些技能名稱只有英文（例如 Blessing＝庇佑），用 gamewith 的英文名稱對回來
-        sk = skill_by_name.get(name) or skill_by_name.get(fallback_name) \
-            or sk_by_en.get(name.lower()) or sk_by_en.get(fallback_name.lower())
-        if sk: return sk
-        info = mh_skills.get(mh_id, {'name': name, 'description': None, 'levels': []})
-        levels = [l for l in info['levels'] if '待核驗' not in l['effect']]
-        sk = {'id': 'mhohub-%d' % mh_id, 'name': name, 'nameEn': None, 'description': info['description'],
-              'maxLevel': max([l['level'] for l in info['levels']] or [1]), 'sources': [source],
-              'armorCount': 0, 'weaponCount': 0, 'levels': levels}
-        skills.append(sk); skill_by_name[name] = sk
-        print('NOTE skill from mhohub', sk['id'], name)
-        return sk
-
-    def merge_piece(sid, part, gp, mp, stage_name):
-        """gamewith 部件（可能沒有）＋ mhohub 部件（可能沒有）→ 各稀有度的技能"""
-        g_st = {st['rarity']: st for st in gp['stages']} if gp else {}
-        entries = sorted(mp['skills'], key=lambda k: k['unlock']) if mp else []
-        g_min = min(g_st) if g_st else None
-        rarities = sorted(set(g_st) | {e['unlock'] for e in entries if g_min is None or e['unlock'] > g_min})
-        stages, cur, prev_r, conflicts = [], {}, 0, []
-        for r in rarities:
-            new = [e for e in entries if prev_r < e['unlock'] <= r] if g_min is None or r > g_min else []
-            if r in g_st:
-                st = g_st[r]
-                cur = {k['skillId']: dict(k) for k in st['skills']}
-            else:
-                cur = {k: dict(v) for k, v in cur.items()}
-                for e in new:
-                    sk = mh_skill(e['mhId'], e['name'], 'armor')
-                    lv = e['level']
-                    if lv is None and sk['id'] in cur and cur[sk['id']]['level']:
-                        lv = cur[sk['id']]['level'] + 1          # 同部位先前出現過 → 前一級 +1
-                    if lv is None:                                # 用 gamewith 之後的階的等級
-                        lv = next((k['level'] for rr in sorted(g_st) if rr > r for k in g_st[rr]['skills'] if k['skillId'] == sk['id']), None)
-                    key = (sid, part, sk['name'])
-                    if lv is None and key in manual_levels:
-                        lv = manual_levels[key]; manual_levels_used.add(key)
-                    if lv is None: print('NEED level', sid, part, 'R%d' % r, sk['name'])
-                    cur[sk['id']] = {'skillId': sk['id'], 'name': sk['name'], 'level': lv}
-                name = stages[-1]['name'] if stages else stage_name
-                st = {'rarity': r, 'name': name, 'defense': None, 'skills': list(cur.values()), 'materials': None,
-                      'source': 'mhohub'}
-            stages.append(st if r not in g_st else dict(st))
-            prev_r = r
-        return stages
-
-    g_by_name = {s['name']: s for s in armor}
-    set_by_name = {s['name']: s for s in set_skills}
-    for ms_ in mh_sets:
-        base_name = MH_SERIES_ALIAS.get(strip_tier(ms_['title']), strip_tier(ms_['title']))
-        g = g_by_name.get(base_name)
-        if not any(p['skills'] for p in ms_['pieces'].values()):
-            print('NOTE mhohub set without skills, skipped', ms_['title']); continue
-        if g:
-            # gamewith 有的套裝：只補 gamewith 沒有的階
-            for part, gp in g['pieces'].items():
-                mp = ms_['pieces'].get(part)
-                if not mp: continue
-                before = {st['rarity'] for st in gp['stages']}
-                gp['stages'] = merge_piece(g['id'], part, gp, mp, gp['stages'][-1]['name'])
-                added = [st['rarity'] for st in gp['stages'] if st['rarity'] not in before]
-                if added:
-                    print('NOTE mhohub stages', g['id'], part, added)
-                    gp['rarityMax'] = max(gp['rarityMax'], max(added)); gp['skills'] = gp['stages'][-1]['skills']
-            g['rarityMax'] = max(p['rarityMax'] for p in g['pieces'].values())
-            continue
-        # gamewith 沒有的套裝：整套用 mhohub
-        mon_name = base_name.replace('套裝', '')
-        mon = next((m for m in monsters if m['name'] == mon_name), None)
-        if not mon: print('WARN mhohub set monster not found', ms_['title']); continue
-        sid = mon['id']
-        b = ms_['bonus']
-        set_id = None
-        if b:
-            set_name, req, glv = b['name'], b['pieces'], b['level']
-            if set_name in set_by_name:
-                set_id = set_by_name[set_name]['id']
-            else:
-                gsk = mh_skill(b['mhId'], b['skill'], 'set')
-                gname = gsk['name']
-                effect = next((l['effect'] for l in gsk['levels'] if l['level'] == glv), None)
-                set_id = '%s-set' % sid
-                set_skills.append({'id': set_id, 'name': set_name, 'requiredPieces': req,
-                                   'bonusLabel': '%s+%d' % (gname, glv), 'bonusEffect': effect,
-                                   'grants': [{'skillId': gsk['id'], 'skillName': gname, 'level': glv}],
-                                   'series': []})
-                set_by_name[set_name] = set_skills[-1]
-            set_by_name[set_name]['series'] = sorted(set(set_by_name[set_name]['series']) | {sid})
-        pieces = {}
-        for part in PART_ORDER:
-            mp = ms_['pieces'].get(part)
-            if not mp: continue
-            stages = merge_piece(sid, part, None, mp, mp['name'])
-            pieces[part] = {
-                'id': '%s/%s' % (sid, part), 'name': strip_tier(mp['name']), 'nameEn': None,
-                'part': part, 'partLabel': PART_LABEL[part], 'series': sid,
-                'rarityMin': stages[0]['rarity'], 'rarityMax': stages[-1]['rarity'],
-                'skills': stages[-1]['skills'], 'setSkill': set_id, 'image': '', 'stages': stages,
-            }
-        armor.append({'id': sid, 'name': base_name, 'monster': {'id': mon['id'], 'name': mon['name']},
-                      'setSkill': set_id,
-                      'rarityMin': min(p['rarityMin'] for p in pieces.values()),
-                      'rarityMax': max(p['rarityMax'] for p in pieces.values()),
-                      'pieces': pieces, 'materialMonsters': [mon['id']]})
-        print('NOTE mhohub set added', sid, base_name)
-else:
-    print('WARN mhohub cache not found, run fetch_pages.py')
-
-# 使用者在遊戲內確認的技能等級只補來源缺漏／不符的資料；若爬到相同等級，提示可從手動資料移除。
-series_by_id = {s['id']: s for s in armor}
-for key, level in manual_levels.items():
-    sid, part, skill_name = key
-    piece = series_by_id.get(sid, {}).get('pieces', {}).get(part)
-    if not piece or not piece.get('stages'):
-        print('WARN manual skill level not found in parsed armor', key)
-        continue
-    top_stage = piece['stages'][-1]
-    top_skill = next((k for k in top_stage['skills'] if k['name'] == skill_name), None)
-    if not top_skill:
-        print('WARN manual skill level not found in parsed armor', key)
-        continue
-    parsed_level = top_skill['level']
-    if parsed_level == level and key not in manual_levels_used:
-        print('NOTE manual skill level matches source; can remove', key)
-        continue
-    for stage in piece['stages']:
-        for skill in stage['skills']:
-            if skill['name'] == skill_name and skill['level'] is None:
-                skill['level'] = level
-    top_skill['level'] = level
-    print('NOTE manual skill level retained', key, parsed_level, '->', level)
-
+# 防具資料以 GameWith 為主，各部位目前技能取該部位最高階資料。
 for s in armor:
-    for part, p in s['pieces'].items():
+    for p in s['pieces'].values():
         if p['stages']:
             p['skills'] = p['stages'][-1]['skills']
 
-# 防具上出現的技能都要能在「技能篩選」選到（mhohub 補進來的技能可能先被當成套裝技能建立）
-used_on_armor = {k['skillId'] for s in armor for p in s['pieces'].values() for st in p['stages'] for k in st['skills']}
+# 防具上出現的技能都要能在「技能篩選」選到。
+used_on_armor = {k['skillId'] for s in armor for p in s['pieces'].values()
+                 for stage in p['stages'] for k in stage['skills']}
 for sk in skills:
-    if sk['id'] in used_on_armor and 'armor' not in sk['sources']: sk['sources'].append('armor')
+    if sk['id'] in used_on_armor and 'armor' not in sk['sources']:
+        sk['sources'].append('armor')
 
-# 網站沒用到的欄位輸出時拿掉，手機要下載的資料少一半（2026-11-10）：
-# 防禦力（使用者決定移除）、製作素材、部件圖片網址、魔物的種族／棲息地／弱點／異常／肉質、技能出現次數。
-# 素材在上面推算 materialMonsters 時已經用過了。
+# MHO Hub 僅輔助補 GameWith 缺少的技能說明或等級效果，不新增防具／魔物／技能項目。
+mh_skill_path = os.path.join(RAW, 'mhohub', 'skills.html')
+if os.path.exists(mh_skill_path):
+    mh_html = open(mh_skill_path, encoding='utf-8').read()
+    mh_by_name = {}
+    for _, block in re.findall(r'<article[^>]*id="equipment-skill-(\d+)"[^>]*>(.*?)</article>', mh_html, flags=re.S):
+        title = re.search(r'<h[23][^>]*>(.*?)</h[23]>', block, flags=re.S)
+        if not title:
+            continue
+        mh_name = clean(title.group(1))
+        text = clean(block)
+        marker = text.find('技能等級與效果')
+        description = text[len(mh_name):marker].strip() if marker >= 0 else ''
+        levels = [{'level': int(level), 'effect': effect.strip()} for level, effect in
+                  re.findall(r'技能等級 (\d+) · (.*?)(?=\s*技能等級 \d+ · |\s*防具部件|\s*防具套裝效果|$)', text)]
+        mh_by_name[mh_name.casefold()] = {'description': description or None, 'levels': levels}
+    for sk in skills:
+        info = mh_by_name.get(sk['name'].casefold())
+        if not info and sk['nameEn']:
+            info = mh_by_name.get(sk['nameEn'].casefold())
+        if not info:
+            continue
+        if not sk['description'] and info['description']:
+            sk['description'] = info['description']
+        verified_levels = [item for item in info['levels'] if '待核驗' not in item['effect']]
+        if not sk['levels'] and verified_levels:
+            sk['levels'] = verified_levels
+            sk['maxLevel'] = max(item['level'] for item in verified_levels)
+
+# 精簡正式資料，只保留配裝頁使用的欄位。
 for s in armor:
     for p in s['pieces'].values():
-        for k in ('maxDefense', 'image'): p.pop(k, None)
-        for st in p['stages']:
-            for k in ('defense', 'source', 'materials'): st.pop(k, None)
-for m in monsters:
-    for k in ('species', 'habitats', 'weakness', 'ailments', 'hitzones'): m.pop(k, None)
+        for key in ('maxDefense', 'image'):
+            p.pop(key, None)
+        for stage in p['stages']:
+            for key in ('defense', 'source', 'materials'):
+                stage.pop(key, None)
+for monster in monsters:
+    for key in ('species', 'habitats', 'weakness', 'ailments', 'hitzones'):
+        monster.pop(key, None)
 for sk in skills:
-    for k in ('armorCount', 'weaponCount'): sk.pop(k, None)
+    for key in ('armorCount', 'weaponCount'):
+        sk.pop(key, None)
 
 # ---------- adventurers / buddies（冒險者、隨從） ----------
 # 配裝頁最上面可以選冒險者和隨從；只記錄選了誰，不影響技能計算。
@@ -490,17 +341,13 @@ buddies = [{
     'id': r['slug'], 'name': r['name'], 'image': r['image'], 'type': r['typeLabel'],
 } for r in list_rows('buddies.html')]
 
-# 資料更新時間：來源快取或手動補充資料中最新的修改時間（台灣時間），網站頁尾會顯示
+# 資料更新時間：來源快取中最新的修改時間（台灣時間），網站頁尾會顯示
 from datetime import datetime, timezone, timedelta
 update_times = [os.path.getmtime(os.path.join(d, f)) for d, _, fs in os.walk(RAW) for f in fs]
-# 手動補充資料也會改變輸出的遊戲資料，因此要一併計入更新時間。
-manual_path = os.path.join(_here, 'manual_data.json')
-if os.path.exists(manual_path):
-    update_times.append(os.path.getmtime(manual_path))
 latest = max(update_times)
 updated_at = datetime.fromtimestamp(latest, timezone(timedelta(hours=8))).isoformat(timespec='seconds')
 meta = {'sources': [{'name': 'gamewith.ai', 'url': 'https://gamewith.ai/monster-hunter-outlanders/zh-hant'},
-                    {'name': 'mhohub.com', 'url': 'https://mhohub.com/zh-tw/'}],
+                    {'name': 'mhohub.com', 'url': 'https://mhohub.com/zh-tw/skills/'}],
         'updatedAt': updated_at, 'locale': 'zh-hant',
         'parts': [{'id': p, 'label': PART_LABEL[p]} for p in PART_ORDER]}
 print('data updated at', updated_at)

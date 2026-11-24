@@ -219,7 +219,8 @@
     "description": "體力在達到一定值前會持續回復。",
     "maxLevel": 3,
     "sources": [
-      "armor"
+      "armor",
+      "set"
     ],
     "levels": [
       {
@@ -243,7 +244,8 @@
     "description": "體力計量表殘留有灰色部分的期間，造成的傷害提升。",
     "maxLevel": 5,
     "sources": [
-      "armor"
+      "armor",
+      "set"
     ],
     "levels": [
       {
@@ -365,7 +367,8 @@
     "description": "若戰鬥中的大型魔物發怒或融光狂暴時，即會提高會心率。",
     "maxLevel": 5,
     "sources": [
-      "armor"
+      "armor",
+      "set"
     ],
     "levels": [
       {
@@ -506,12 +509,13 @@
   },
   {
     "id": "blessing",
-    "name": "庇佑",
+    "name": "加護",
     "nameEn": "Blessing",
     "description": "一定機率減少冒險者受到的傷害。",
     "maxLevel": 5,
     "sources": [
-      "armor"
+      "armor",
+      "set"
     ],
     "levels": [
       {
@@ -998,7 +1002,8 @@
     "description": "因攻擊而出現會心時，所造成的屬性傷害（火、水、雷、冰、龍）會提升。",
     "maxLevel": 3,
     "sources": [
-      "armor"
+      "armor",
+      "set"
     ],
     "levels": [
       {
@@ -1164,7 +1169,8 @@
     "description": "縮短彈藥、箭矢達到最大威力時的距離。",
     "maxLevel": 1,
     "sources": [
-      "armor"
+      "armor",
+      "set"
     ],
     "levels": [
       {
@@ -1275,7 +1281,7 @@
   },
   {
     "id": "deterrence",
-    "name": "威勢",
+    "name": "威嚇",
     "nameEn": "Deterrence",
     "description": "即使被小型魔物發現也不容易進入狩獵狀態。（對甲蟲種等部分魔物無效）",
     "maxLevel": 3,
@@ -1398,8 +1404,8 @@
     "id": "carving-pro",
     "name": "剝取鐵人",
     "nameEn": "Carving Pro",
-    "description": null,
-    "maxLevel": 5,
+    "description": "剝取中即使遭受攻擊，也不會膽怯。",
+    "maxLevel": 1,
     "sources": [
       "armor"
     ],
@@ -1407,22 +1413,6 @@
       {
         "level": 1,
         "effect": "剝取中即使遭受攻擊，也不會膽怯。"
-      },
-      {
-        "level": 2,
-        "effect": "魔物仍有集中力時，對魔物的傷害將降低其20%火元素抗性。"
-      },
-      {
-        "level": 3,
-        "effect": "魔物仍有集中力時，對魔物的傷害將降低其30%火元素抗性。"
-      },
-      {
-        "level": 4,
-        "effect": "魔物仍有集中力時，對魔物的傷害將降低其40%火元素抗性。"
-      },
-      {
-        "level": 5,
-        "effect": "魔物仍有集中力時，對魔物的傷害將降低其50%火元素抗性。"
       }
     ]
   },
@@ -1619,6 +1609,30 @@
       {
         "level": 3,
         "effect": "體力回復4，每8秒只能觸發1次。"
+      }
+    ]
+  },
+  {
+    "id": "unshaken-resolve",
+    "name": "堅定意志",
+    "nameEn": "Unshaken Resolve",
+    "description": "冒險者獲得狀態異常或融光活性時，傷害提升一段時間。並且減少融光活性的負面影響時間。",
+    "maxLevel": 3,
+    "sources": [
+      "armor"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "effect": "技能發動時，傷害+3%，融光活性負面影響時間減少20%。"
+      },
+      {
+        "level": 2,
+        "effect": "技能發動時，傷害+6%，融光活性負面影響時間減少50%。"
+      },
+      {
+        "level": 3,
+        "effect": "技能發動時，傷害+12%，融光活性負面影響時間消失。"
       }
     ]
   },
@@ -2248,7 +2262,7 @@
     "id": "ammo-enhancement",
     "name": "弩彈強化",
     "nameEn": "Ammo Enhancement",
-    "description": "提升弩砲通常彈、散彈和貫通彈的傷害。",
+    "description": "提升弩槍通常彈、散彈和貫通彈的傷害。",
     "maxLevel": 4,
     "sources": [
       "armor"
@@ -2350,54 +2364,10 @@
     ]
   },
   {
-    "id": "guild-might-weapon",
-    "name": "冒險團之力・武器",
-    "nameEn": "Guild Might - Weapon",
-    "description": "赤翎冒險團統一發放的裝備，稀有度會隨著冒險等級的提升而同步提升。",
-    "maxLevel": 8,
-    "sources": [
-      "weapon"
-    ],
-    "levels": [
-      {
-        "level": 1,
-        "effect": "達到對應冒險等級時，該裝備提升至稀有度1。"
-      },
-      {
-        "level": 2,
-        "effect": "達到對應冒險等級時，該裝備提升至稀有度2。"
-      },
-      {
-        "level": 3,
-        "effect": "達到對應冒險等級時，該裝備提升至稀有度3。"
-      },
-      {
-        "level": 4,
-        "effect": "達到對應冒險等級時，該裝備提升至稀有度4。"
-      },
-      {
-        "level": 5,
-        "effect": "達到對應冒險等級時，該裝備提升至稀有度5。"
-      },
-      {
-        "level": 6,
-        "effect": "達到對應冒險等級時，該裝備提升至稀有度6。"
-      },
-      {
-        "level": 7,
-        "effect": "達到對應冒險等級時，該裝備提升至稀有度7。"
-      },
-      {
-        "level": 8,
-        "effect": "達到對應冒險等級時，該裝備提升至稀有度8。"
-      }
-    ]
-  },
-  {
     "id": "guild-might-helm",
     "name": "冒險團之力・頭盔",
     "nameEn": "Guild Might - Helm",
-    "description": null,
+    "description": "達到對應冒險等級時，該裝備提升至稀有度1。",
     "maxLevel": 8,
     "sources": [
       "armor"
@@ -2441,7 +2411,7 @@
     "id": "guild-might-mail",
     "name": "冒險團之力・鎧甲",
     "nameEn": "Guild Might - Mail",
-    "description": null,
+    "description": "達到對應冒險等級時，該裝備提升至稀有度1。",
     "maxLevel": 8,
     "sources": [
       "armor"
@@ -2485,7 +2455,7 @@
     "id": "guild-might-gauntlets",
     "name": "冒險團之力・手甲",
     "nameEn": "Guild Might - Gauntlets",
-    "description": null,
+    "description": "達到對應冒險等級時，該裝備提升至稀有度1。",
     "maxLevel": 8,
     "sources": [
       "armor"
@@ -2529,7 +2499,7 @@
     "id": "guild-might-coil",
     "name": "冒險團之力・腰甲",
     "nameEn": "Guild Might - Coil",
-    "description": null,
+    "description": "達到對應冒險等級時，該裝備提升至稀有度1。",
     "maxLevel": 8,
     "sources": [
       "armor"
@@ -2573,7 +2543,7 @@
     "id": "guild-might-greaves",
     "name": "冒險團之力・腿甲",
     "nameEn": "Guild Might - Greaves",
-    "description": null,
+    "description": "達到對應冒險等級時，該裝備提升至稀有度1。",
     "maxLevel": 8,
     "sources": [
       "armor"
@@ -2614,36 +2584,29 @@
     ]
   },
   {
-    "id": "mhohub-136",
-    "name": "融光活性",
+    "id": "gamewith-set-e454272825d5",
+    "name": "泥耐性",
     "nameEn": null,
-    "description": "冒險者受融光影響傷害提升一段時間，但影響結束後傷害和耐力上限下降一段時間。",
+    "description": "減輕移動速度、迴避行動的限制。",
     "maxLevel": 1,
     "sources": [
       "set"
     ],
-    "levels": []
+    "levels": [
+      {
+        "level": 1,
+        "effect": "減輕移動速度、迴避行動的限制。"
+      }
+    ]
   },
   {
-    "id": "mhohub-164",
-    "name": "堅定意志",
-    "nameEn": null,
-    "description": "冒險者獲得狀態異常或融光活性時，傷害提升一段時間。並且減少融光活性的負面影響時間。",
-    "maxLevel": 3,
-    "sources": [
-      "armor"
-    ],
-    "levels": []
-  },
-  {
-    "id": "mhohub-83",
+    "id": "gamewith-set-bed3b409991f",
     "name": "鐵壁防禦",
     "nameEn": null,
-    "description": null,
+    "description": "可以防禦一般無法防禦的攻擊。",
     "maxLevel": 1,
     "sources": [
-      "set",
-      "armor"
+      "set"
     ],
     "levels": [
       {
@@ -2653,25 +2616,19 @@
     ]
   },
   {
-    "id": "mhohub-42",
-    "name": "火場怪力",
+    "id": "gamewith-set-615ec22b68d3",
+    "name": "融光活性",
     "nameEn": null,
-    "description": "體力在最大值的一定比例以下時，防禦力與造成的傷害會提升。",
+    "description": "冒險者受融光影響傷害+10%持續30秒，結束後傷害-10%，耐力上限-50持續30秒。",
     "maxLevel": 1,
     "sources": [
       "set"
     ],
-    "levels": []
-  },
-  {
-    "id": "mhohub-110",
-    "name": "Radiant Power Surge",
-    "nameEn": null,
-    "description": "體力上限降低，同時造成的傷害提升。",
-    "maxLevel": 3,
-    "sources": [
-      "armor"
-    ],
-    "levels": []
+    "levels": [
+      {
+        "level": 1,
+        "effect": "冒險者受融光影響傷害+10%持續30秒，結束後傷害-10%，耐力上限-50持續30秒。"
+      }
+    ]
   }
 ]

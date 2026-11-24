@@ -240,6 +240,14 @@
     "visage": null
   },
   {
+    "id": "nergigante",
+    "name": "滅盡龍",
+    "nameEn": "Nergigante",
+    "image": "https://img.gamewith.jp/img/97e9e04ce617cc96f5bf81ceab4a8190.png",
+    "size": "大型",
+    "visage": null
+  },
+  {
     "id": "radiant-pink-rathian",
     "name": "融光種櫻火龍",
     "nameEn": "Radiant Pink Rathian",
@@ -267,7 +275,7 @@
     "id": "radiant-great-girros",
     "name": "融光種大凶顎龍",
     "nameEn": "Radiant Great Girros",
-    "image": "https://img.gamewith.jp/img/ee1302e677fe4a836c49ba2dfc644fe9.png",
+    "image": "https://img.gamewith.jp/img/d0aaba960df57f0da51313ac4a5d5ae2.png",
     "size": "大型",
     "visage": null
   },
